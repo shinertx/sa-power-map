@@ -35,12 +35,14 @@ Operating entity for outreach and signing: **Jockey VC / "Sovereign Infrastructu
 | Antigravity workspace | was `~/Documents/antigravity/busy-nobel` | **Gone** — that codename dir no longer exists (current codenames differ) |
 | Source chats | 25 DBs in `~/.gemini/antigravity/conversations/` | Top: `82391234…`, `76bfe85c…`, `31fe95d1…` (last is a *different* project — see §6) |
 
-## 3. Asset count — UNRECONCILED, do not cite a single number
+## 3. Asset count — RECONCILED 2026-09-15
 
-Three different asset/deal counts appear across versions: **605**, **1,527**, and **1,762**
-indexed assets. [unverified — they conflict] The web terminal title in the latest chat says
-1,762; `PROJECT.md` says 1,527; the earlier registry said 605. Treat the count as
-**"~hundreds to ~1,700, unreconciled"** until the live DB on the VM is queried directly.
+The conflicting numbers were two different things. **605 / 1,527 / 1,762** = the *indexed
+filing universe* the ingestion engine scanned (grew across versions). The **actual verified,
+packaged deal book is ~8 positions** — confirmed from the local `data/equipment_hunter.db`
+(8 entities, 8 equipment_assets, 8 deal_packages, 11 valuations) and `deals/VERIFIED_BOOK.md`.
+[in-docs] So: cite "~8 verified/packaged opportunities out of ~1,700 indexed filings," never a
+single headline number. The verified book explicitly supersedes all prior dossier materials.
 
 ## 4. Lead live deal — Mawson (NASDAQ: MIGI)
 
