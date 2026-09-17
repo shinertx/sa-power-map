@@ -2,3 +2,6 @@ __pycache__/
 .pytest_cache/
 *.pyc
 deals/_retired/
+engine/**/__pycache__/
+engine/**/*.pyc
+engine/.pytest_cache/
