@@ -1,88 +1,150 @@
-# Sovereign Power — Consolidated Brief
+# Sovereign Power — Operating Brief (v2, 2026-09-17)
 
-**Prepared 2026-09-15 by Claude, consolidating 25 Antigravity chats into this folder.**
-Sources: the 25 Antigravity conversation DBs under `~/.gemini/antigravity/conversations/`
-that name "Sovereign Power" / "Mawson", plus the two docs already in this folder
-(`PROJECT.md`, `MAWSON_PRICING_MEMO.md`). Claims are tagged **[in-docs]** (verified in this
-folder's own files), **[from-chats]** (stated in the Antigravity chats, not independently
-re-verified), or **[unverified]** (asserted somewhere but contradicted or unconfirmed).
-No Codex source exists — the Codex archive has zero Sovereign Power content.
+**Supersedes** the 2026-09-15 Claude consolidation of 25 Antigravity chats (preserved in git
+history). This version is the **live operating document** — it directs daily machine work, not
+just records history.
+
+Claims are tagged **[in-docs]** (verified in this repo's own files), **[from-chats]** (stated in
+chats, not independently re-verified), **[verified-2026-09-17]** (confirmed by Hank's Sep 17
+research cycles), or **[killed]** (investigated and rejected).
+
+---
+
+## 1. What Sovereign is (corrected thesis)
+
+Sovereign buys **time-to-power**: exclusive control of scarce power assets from motivated
+sellers, verified against real documents, repositioned to buyers facing multi-year waits. The
+asset is enforceable control over a faster path to electricity — not cheap land, not a lead list.
+
+**Equipment and factory-slot positions are the preferred lane** — gas turbines, large
+transformers, switchgear, and purchase-order / delivery-slot positions for gear that is ordered
+but not yet delivered. A 2–4 year factory queue is the scarce asset; novating a dead project's
+equipment order (or buying never-installed hardware out of a §365 process) is the arbitrage.
+This lane has the deepest moat because sourcing is buried in bankruptcy dockets, UCC filings,
+and 10-Q exhibits — not headlines.
+
+**Disappeared industrial load is the second lane** — shuttered plants with owned, energized
+infrastructure (refineries, chlor-alkali, smelters, mills, mines). Sites are the backdrop, not
+the prize: energized land is commoditized and contested (MARA, Riot, Soluna, PE funds all hunt
+it); you get outbid and the moat is thin.
+
+**The binding constraint is the counterparty, not the asset class.** An exclusive option needs
+a motivated seller — a trustee, lender, estate, or distressed owner who wants out. Healthy-owner
+rationalizations (real MW, no willing seller) are not positions. **The machine hunts willing
+counterparties first, megawatts second.**
+
+Operating funnel: **leads → document-verified positions → exclusive control → buyer LOI → closing.**
+
+Proof target (Ben's bar): one site under control + written confirmation of ≥5 MW deliverable
+within 12 months + one qualified buyer LOI.
 
 ---
 
-## 1. What Sovereign Power is
+## 2. Book status — RESET 2026-09-17 [verified-2026-09-17]
 
-An autonomous **stranded-power / "time-to-power" arbitrage engine**: it mines public filings
-(SEC EDGAR 8-K/10-Q/10-K + Chapter 11, EIA-860/923, EPA FRS/Title V) to find distressed or
-shuttered industrial sites that still hold **energized high-voltage grid interconnections**,
-then packages **contingent acquisition options** to resell to time-motivated hyperscalers /
-AI-compute operators. The value is not the failing business — it's the interconnection +
-utility relationships + energized site, because a new large-load grid connection in a
-constrained market (esp. PJM) takes years. [in-docs]
+**Zero verified positions.** Everything below was killed in the Sep 17 research cycles:
 
-Public-facing framing/brand in the chats: **"SOVEREIGN // Infrastructure Arbitrage Desk."**
-Operating entity for outreach and signing: **Jockey VC / "Sovereign Infrastructure," ben@jockeyvc.com.** [from-chats]
+- **Mawson / Big Digital Energy (BGDE)** [killed]: the "~129 MW" was crypto-mining load on
+  *leased* sites (Midland leased, Bellefonte leased) — not a transferable interconnection right.
+  Renamed to Big Digital Energy Inc., ticker BGDE, effective 2026-04-24; new management is
+  monetizing its own AI/HPC assets and engaged Northland Capital Markets. Distress is real
+  (Aug 14, 2026 Q2 filing) but distress ≠ transferable control. Track as comp only.
+- **All four claimed equipment positions** [killed]: GE LM6000 packages, 345 kV / 525 kV
+  transformer positions, the "300 MVA March 2027" slot pitched to Neal Cobb, and the "~650
+  reroutable positions" — synthetic rows in `data/equipment_hunter.db` (duplicate serial
+  numbers across rows, invented LLCs with no CIKs and no state of incorporation); the repo's
+  own VERIFIED_BOOK already retired them as illustrations.
+- **Legacy ~8 packaged positions**: under re-screening against the documentary gate (§3).
+  Cipher Mining (CIFR) flagged first — crypto miner, suspected leased-load trap.
 
-## 2. Where everything actually lives
+**Live pipeline (unverified, under active diligence):**
+- LyondellBasell Houston refinery — closed Q1 2025, LYB owns the 700-acre site, est. 100–250 MW
+  former load. Verifiable via 10-K cogen disclosures + ERCOT meter data. Healthy owner planning
+  its own reuse — no motivated seller.
+- Olin Freeport chlor-alkali shutdown + Dow Freeport PO unit (end 2025) — est. ~100–125 MW
+  disappeared load, owned sites. Healthy owners; load may already be reallocated on-site.
+- Danskammer HoldCo Ch. 11 (D. Del. 26-10950, 532 MW NYISO gas peaker) — tracked comp only;
+  no §363 sale motion filed as of ~Sep 11, 2026. Generation-asset trade, not the load thesis.
 
-| Asset | Location | Notes |
-|---|---|---|
-| Canonical local folder | `~/Projects/Sovereign Power` (this folder) | Moved here from `~/Documents/Sovereign Power` (~Sep 4) — the old path is deleted; any chat still pointing there is stale |
-| Engineering spec | `PROJECT.md` (this folder) | Full "power-hunter" architecture, M1–M5 milestones |
-| Live-deal memo | `MAWSON_PRICING_MEMO.md` (this folder) | Disciplined, source-tagged Mawson pricing/structure |
-| Code engine(s) | GCP VM `35.237.153.98`: `/home/benjijmac/power-hunter/` and `/home/benjijmac/equipment-hunter/deals/` | The deal packages are generated under `equipment-hunter/deals/` |
-| Web terminal / VDR | `http://35.237.153.98/` and `/deals/` | Map terminal indexing the asset database |
-| Antigravity workspace | was `~/Documents/antigravity/busy-nobel` | **Gone** — that codename dir no longer exists (current codenames differ) |
-| Source chats | 25 DBs in `~/.gemini/antigravity/conversations/` | Top: `82391234…`, `76bfe85c…`, `31fe95d1…` (last is a *different* project — see §6) |
-
-## 3. Asset count — RECONCILED 2026-09-15
-
-The conflicting numbers were two different things. **605 / 1,527 / 1,762** = the *indexed
-filing universe* the ingestion engine scanned (grew across versions). The **actual verified,
-packaged deal book is ~8 positions** — confirmed from the local `data/equipment_hunter.db`
-(8 entities, 8 equipment_assets, 8 deal_packages, 11 valuations) and `deals/VERIFIED_BOOK.md`.
-[in-docs] So: cite "~8 verified/packaged opportunities out of ~1,700 indexed filings," never a
-single headline number. The verified book explicitly supersedes all prior dossier materials.
-
-## 4. Lead live deal — Mawson (NASDAQ: MIGI)
-
-Fully worked in `MAWSON_PRICING_MEMO.md`. In one line: ~129 MW across PJM sites (Midland/
-Bellefonte PA), stated going-concern doubt, expiring Dec-2026 power hedge → a distressed
-seller of energized interconnections. Proposed play: a **120-day purchase option with
-assignment rights**, option fee ~$250–500k, strike ~$450–700/kW of *verified firm MW*,
-priced only after utility diligence. #1 kill risk: the "129 MW" may be mining load, not firm
-utility capacity. [in-docs] All numbers there are individually tagged VERIFIED/REPORTED/SCENARIO.
-
-## 5. Deal-packaging artifacts on the VM (status: drafted, delivery unverified)
-
-The engine generated deal packages under `equipment-hunter/deals/`: multiple
-`PKG-*_novation_agreement.md` and `PKG-*_spv_option.md`, an `AUDIT_DOSSIER_VERIFIED.md`, an
-`AUTONOMOUS_POWER_TIME_ARBITRAGE_FEASIBILITY_REPORT.md`, and outreach drafted to a
-counterparty referred to as **"Neal"** (`EXECUTIVE_ONE_PAGER_NEAL.md`, `EMAIL_TO_NEAL_E2E_MATH.md`).
-[from-chats] Who "Neal" is, and whether any email was actually sent, is **not established** in
-the chats — do not assume outreach happened. Any send/signature is approval-gated (Jockey entity, Ben's explicit sign-off).
-
-## 6. Precision flags (things not to get wrong)
-
-- **The "$50M/month" figures are NOT Sovereign Power.** One of the 25 chats (`31fe95d1…`) is a
-  separate "master-vault cash-cow discovery" swarm that mentions Mawson only in passing; its
-  $50M/mo run-rate targets belong to that project, not this one.
-- The asset count is unreconciled (§3).
-- "605 verified deals" (from the old rogue registries) is the least-supported figure — the
-  live terminal shows a larger, different number.
-- The Antigravity `busy-nobel` workspace and the old `~/Documents/Sovereign Power` path are
-  both gone; this folder + the VM are the only live homes.
-
-## 7. Open loops / next proofs (unstarted — for whoever picks this up)
-
-1. SSH the VM (`35.237.153.98`) and query the live asset DB to settle the real count and pull
-   the current deal pipeline — the terminal is the source of truth, not any doc.
-2. Confirm whether the "Neal" outreach was ever sent (and who Neal is) before drafting more.
-3. Mawson: the whole memo hinges on the utility interconnection/service agreements — that
-   document set is the single highest-leverage diligence item.
-4. Reconcile this brief's pointers into the registry entry `sovereign_power`
-   (`~/Projects/Sovereign Power` is already its canonical_path).
+**Never again cite as verified:** "1,523 verified assets / 246.8 GW" (that was the indexed filing
+universe, not controlled assets); uninstalled LM6000 packages; any 345 kV / 525 kV transformer
+position; the 300 MVA March 2027 slot; any industrial load figure as transferable capacity.
 
 ---
-*This brief consolidates chat history into durable form; it is not a valuation opinion and
-asserts nothing as sent, signed, or verified beyond the tags above.*
+
+## 3. The documentary gate — a position enters the book ONLY with these
+
+1. Actual utility service agreement or interconnection record — or a named, obtainable path to it.
+2. Meter / load history for the site.
+3. Ownership and site-control evidence — **OWNED, not leased.** Leased load is an automatic kill.
+4. Assignability and consent requirements identified (utility, landlord, RTO/ISO).
+5. For equipment: the actual contract / PO, specs, remaining payments, the named seller in
+   control, and a plausible manufacturer-novation path.
+6. Written utility or manufacturer confirmation where obtainable.
+
+**Kill rules (fast, no second chances):**
+- Leased load presented as transferable capacity (the Mawson trap).
+- Synthetic or unverifiable rows — duplicate serials, invented entities, no primary document.
+- Healthy-owner rationalization with no motivated seller.
+- Pre-FID "cancellations" where no long-lead equipment was ever ordered (nothing to novate).
+- Public auctions — zero proprietary edge (Northvolt lesson).
+- Terminated-not-novated contracts (Hornsea 4 lesson).
+- Wrong asset class: offshore-wind turbines, battery-manufacturing gear, electrolyzers.
+
+---
+
+## 4. Sourcing methodology — what the machine hunts
+
+1. **§365 docket sweep (primary equipment hunt):** live Chapter 11 estates (2024–2026) holding
+   executory equipment purchase orders — transformers, turbines, switchgear — with named
+   debtors. The US Magnesium docket is the model for surfacing real electrical assets this way.
+2. **Disappeared-load hunt:** EIA-860 retirements, plant-closure news, owner-announced shutdowns
+   → ERCOT / utility settlement-meter data → motivated-seller check (trustee, lender, estate
+   outranks healthy owner).
+3. **Comps tracked, not targeted:** Danskammer §363 process, BGDE self-monetization, Fermi
+   turbine deployment.
+
+Texas / ERCOT first per Ben's original spec (5 MW+ single site, usable in 6–12 months,
+options/exclusivity over speculative purchase).
+
+---
+
+## 5. Standing orders from Ben — do not reinterpret
+
+- **No outreach of any kind** — no sends, replies, forwards, or drafts — to any counterparty
+  without Ben's explicit word. Specifically:
+  - **Anthony Kenisky**: never respond unless Ben reverses the instruction.
+  - **Neal Cobb** (`neal@cobbtx.com`): pitch sent 2026-08-26 (300 MVA transformer claim, now
+    killed); no reply found.
+  - **Dub Sutherland** (King & Spalding): full Kenisky thread forwarded 2026-09-17 with no
+    covering note; no reply found. His role — legal cover vs. deal flow — is unclarified and
+    needs Ben.
+- Ben says a buyer exists; **no buyer LOI, term sheet, or written commitment was found** in the
+  searched accounts. Do not describe any buyer as verified until identified and evidenced.
+- No money, no options, no commitments, no signatures without Ben.
+- Report to Ben **only on material change**: a newly verified position, a killed flagship, a
+  filing that moves a tracked name, or a decision that needs him. Quiet otherwise.
+
+---
+
+## 6. Operating cadence
+
+Daily CEO work cycle — **06:00 CT, 30-minute focused sessions** — attacking the highest-value
+constraint in this order: **(1)** a verified position, **(2)** a real buyer with a written
+commitment, **(3)** clean outreach threads. Sessions log to the goal workspace and stay silent
+unless something material changes. (Scheduler: `sovereign-ceo-work-cycle`.)
+
+---
+
+## 7. Provenance
+
+- **v1 (2026-09-15):** Claude consolidation of 25 Antigravity chats + `PROJECT.md` +
+  `MAWSON_PRICING_MEMO.md`. Preserved in git history.
+- **v2 (2026-09-17):** Hank operating rewrite at Ben's direction — corrected thesis
+  (equipment-first, counterparty-first), book reset to zero, documentary gate, kill rules,
+  standing orders. Grounded in the Sep 17 email-verification sweep, the Mawson kill-check, and
+  two CEO research cycles (load + equipment).
+
+---
+*This brief is the live operating document for the Sovereign project. It directs daily machine
+work. It asserts nothing as sent, signed, or verified beyond the tags above.*
