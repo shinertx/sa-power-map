@@ -728,19 +728,27 @@
           <input type="text" id="search" placeholder="Search 264 sites, broker (CBRE, JLL, Todd Mills), zip..." oninput="renderList()" />
           <button type="button" class="cmd-btn" onclick="resetFilters()">Reset</button>
         </div>
-        <div style="display:grid; grid-template-columns: 1.3fr 1fr; gap:6px;">
+        <div class="filter-pills">
+          <button type="button" class="pill-btn active" data-c="0" onclick="setCluster(0)">All (269)</button>
+          <button type="button" class="pill-btn" data-c="71" onclick="setCluster(71)">Fiber A+: At Curb (146)</button>
+          <button type="button" class="pill-btn" data-c="1" onclick="setCluster(1)">Tier 1: 3–6 Pod Whales (50)</button>
+          <button type="button" class="pill-btn" data-c="99" onclick="setCluster(99)">Gov / Pod #1 Hosts (19)</button>
+          <button type="button" class="pill-btn" data-c="2" onclick="setCluster(2)">Tier 2: Call Ctrs &amp; Malls (48)</button>
+          <button type="button" class="pill-btn" data-c="88" onclick="setCluster(88)">Eagle Ford Plants (7)</button>
+        </div>
+        <div style="display:grid; grid-template-columns: 1.35fr 1fr; gap:6px;">
           <select id="cluster-select" class="d-select" onchange="setClusterSelect(this.value)">
-            <option value="0">All 264 Verified Sites</option>
-            <option value="99">Gov / Pod #1 (DOE Host Sites)</option>
+            <option value="0">All 269 Sites (Filter by Power Tier or Fiber)</option>
+            <option value="71">Fiber A+ Only: Fiber at Curb / Basement (&lt;14d · 146)</option>
+            <option value="72">Fiber B Only: Highway Curb Bore (~30d · 81)</option>
+            <option value="73">Fiber C Only: Side-Street Trench Needed (60d+ · 42)</option>
+            <option value="99">Gov / Open-Science Pod #1 Hosts (DOE Eligible · 19)</option>
+            <option value="1">Tier 1: Multi-Pod Whales — 3 to 6 Pods / Lease (50)</option>
+            <option value="2">Tier 2: Vacant Call Centers &amp; Big-Box Vaults — 1–2 Pods (48)</option>
+            <option value="3">Tier 3: Heavy Industrial, Cold Storage &amp; Port SA (43)</option>
+            <option value="4">Tier 4: BuildSA Permitted 480V Switchgear (63)</option>
+            <option value="5">Tier 5: Office (&gt;50k SF) &amp; Data Center Anchors (65)</option>
             <option value="88">Eagle Ford Oilfield &amp; Rail Megayards (7)</option>
-            <option value="71">Fiber A+ Only: Instant On-Net Ring (146)</option>
-            <option value="72">Fiber B Only: Arterial Curb Drop (81)</option>
-            <option value="73">Fiber C Only: Lateral Trench Needed (42)</option>
-            <option value="1">Tier 1: Multi-Pod Whales (47)</option>
-            <option value="2">Tier 2: Call Centers &amp; Big-Box (48)</option>
-            <option value="3">Tier 3: Heavy Ind &amp; Port SA (41)</option>
-            <option value="4">Tier 4: 480V Switchgear (63)</option>
-            <option value="5">Tier 5: Office &amp; DC Anchors (65)</option>
           </select>
           <select id="stage-select" class="d-select" onchange="setStagePill(this.value)">
             <option value="ALL">All CRM Stages</option>
@@ -765,12 +773,16 @@
       <div id="map"></div>
 
       <div class="map-legend">
-        <div class="legend-title">SAN ANTONIO 480V BTM CLUSTERS (CLICK ANY PIN OR CARD)</div>
-        <div class="legend-row"><span class="dot" style="background:#09090B;"></span> Tier 1: Multi-Pod Whales 3–6 Pods / 4.5–9.0 MW (47)</div>
-        <div class="legend-row"><span class="dot" style="background:#1D4ED8;"></span> Tier 2: Vacant Call Centers &amp; Big-Box Vaults (48)</div>
-        <div class="legend-row"><span class="dot" style="background:#0369A1;"></span> Tier 3: Heavy Industrial, Cold Storage &amp; Port SA (41)</div>
-        <div class="legend-row"><span class="dot" style="background:#475569;"></span> Tier 4: BuildSA Permitted 480V Switchgear Upgrades (63)</div>
-        <div class="legend-row"><span class="dot" style="background:#94A3B8;"></span> Tier 5: Heavy Commercial &amp; Data Center Anchors (65)</div>
+        <div class="legend-title">POWER TIERS (HOW MANY 1.5 MW PODS FIT)</div>
+        <div class="legend-row"><span class="dot" style="background:#09090B;"></span> <strong>Tier 1 Whale (50):</strong> 3–6 Pods on 1 Lease (Malls, Fabs, Mega Campuses)</div>
+        <div class="legend-row"><span class="dot" style="background:#1D4ED8;"></span> <strong>Tier 2 Call Ctr / Big-Box (48):</strong> 1–2 Pods (Vacant Sears, Conn's, AT&amp;T COs)</div>
+        <div class="legend-row"><span class="dot" style="background:#0369A1;"></span> <strong>Tier 3 Heavy Ind (43):</strong> 1–2 Pods (Cold Storage, Port SA, Bottling)</div>
+        <div class="legend-row"><span class="dot" style="background:#475569;"></span> <strong>Tier 4 Permitted 480V (63):</strong> 1 Pod (BuildSA 2,000A–3,000A Flex Parks)</div>
+        <div class="legend-row"><span class="dot" style="background:#94A3B8;"></span> <strong>Tier 5 Office / DC Anchor (65):</strong> 1 Pod (&gt;50k SF Office &amp; Feeder Reference)</div>
+        <div class="legend-title" style="margin-top:6px; padding-top:6px; border-top:1px solid var(--border);">FIBER GRADES (HOW FAST FIBER CONNECTS)</div>
+        <div class="legend-row"><span class="site-rank" style="background:#EFF6FF; color:#1D4ED8; border-color:#BFDBFE;">FIBER A+ (146)</span> Dark Fiber Ring at Curb / Basement (&lt;14 Days · &lt;$25K)</div>
+        <div class="legend-row"><span class="site-rank" style="background:#F8FAFC; color:#334155; border-color:#CBD5E1;">FIBER B (81)</span> Highway Curb Directional Bore (21–30 Days · ~$35K)</div>
+        <div class="legend-row"><span class="site-rank" style="background:#FEF2F2; color:#991B1B; border-color:#FECACA;">FIBER C (42)</span> Side-Street Trench Needed (60+ Days · $60K+)</div>
       </div>
 
       
@@ -1388,8 +1400,15 @@ function zoomToCurrentSat() {
   if (s) zoomSatellite(s.lat, s.lng);
 }
 
+function syncClusterPills() {
+  document.querySelectorAll("#sidebar .pill-btn[data-c]").forEach(b => {
+    b.classList.toggle("active", parseInt(b.getAttribute("data-c"), 10) === activeCluster);
+  });
+}
+
 function setClusterSelect(val) {
   activeCluster = parseInt(val, 10) || 0;
+  syncClusterPills();
   renderList();
 }
 
@@ -1397,6 +1416,7 @@ function setCluster(c) {
   activeCluster = c;
   const sel = document.getElementById("cluster-select");
   if (sel) sel.value = String(c);
+  syncClusterPills();
   renderList();
 }
 
@@ -1483,7 +1503,7 @@ function renderList() {
     card.innerHTML = `
       <div class="site-card-top">
         <div style="display:flex; gap:6px; align-items:center;">
-          <span class="site-rank">#${s.rank} · T${s.tier}</span><span class="site-rank" style="background:${s.fiber_grade==='A+'?'#EFF6FF':(s.fiber_grade==='B'?'#F8FAFC':'#FEF2F2')}; color:${s.fiber_grade==='A+'?'#1D4ED8':(s.fiber_grade==='B'?'#334155':'#991B1B')}; border-color:${s.fiber_grade==='A+'?'#BFDBFE':(s.fiber_grade==='B'?'#CBD5E1':'#FECACA')};">FIBER ${s.fiber_grade}</span>
+          <span class="site-rank">#${s.rank} · ${s.tier===1?"TIER 1 WHALE (3–6 PODS)":(s.tier===2?"TIER 2 CALL CTR / BIG-BOX":(s.tier===3?"TIER 3 HEAVY IND":(s.tier===4?"TIER 4 480V PERMIT":"TIER 5 ANCHOR")))}</span><span class="site-rank" style="background:${s.fiber_grade==='A+'?'#EFF6FF':(s.fiber_grade==='B'?'#F8FAFC':'#FEF2F2')}; color:${s.fiber_grade==='A+'?'#1D4ED8':(s.fiber_grade==='B'?'#334155':'#991B1B')}; border-color:${s.fiber_grade==='A+'?'#BFDBFE':(s.fiber_grade==='B'?'#CBD5E1':'#FECACA')};">${s.fiber_grade==='A+'?"FIBER A+: AT CURB (<14D)":(s.fiber_grade==='B'?"FIBER B: STREET BORE (~30D)":"FIBER C: TRENCH NEEDED")}</span>
           ${stagePill}
         </div>
         <span class="site-size">${s.size}</span>
