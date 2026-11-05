@@ -1674,6 +1674,7 @@ function openSiteDrawer(rank, panMap) {
       if (markersByRank[rank]) markersByRank[rank].openPopup();
     }
   }
+  try { history.replaceState(null, "", "?site=" + rank); } catch (e) {}
   renderList();
 }
 
@@ -1919,6 +1920,17 @@ window.addEventListener("DOMContentLoaded", () => {
   updateTrackedCount();
   renderList();
   renderBuyersTable();
+  const params = new URLSearchParams(window.location.search);
+  const siteParam = parseInt(params.get("site") || (window.location.hash.replace("#site-", "")), 10);
+  if (siteParam && !isNaN(siteParam)) {
+    const targetSite = SITES.find(x => x.rank === siteParam);
+    if (targetSite) {
+      setTimeout(() => {
+        openSiteDrawer(targetSite.rank, true);
+        zoomSatellite(targetSite.lat, targetSite.lng);
+      }, 150);
+    }
+  }
 });
 </script>
 </body>
