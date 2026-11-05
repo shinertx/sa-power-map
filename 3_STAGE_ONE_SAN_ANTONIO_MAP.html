@@ -669,9 +669,72 @@
     display: none;
     z-index: 9999;
   }
+
+  .aerial-frame {
+    position: relative;
+    width: 100%;
+    height: 176px;
+    border-radius: 8px;
+    overflow: hidden;
+    border: 1px solid var(--border-strong);
+    background: #0F172A;
+    cursor: zoom-in;
+  }
+  .aerial-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .aerial-reticle {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 28px;
+    height: 28px;
+    transform: translate(-50%, -50%);
+    border: 2px solid #38BDF8;
+    border-radius: 50%;
+    box-shadow: 0 0 0 2px rgba(15,23,42,0.65);
+    pointer-events: none;
+  }
+  .aerial-badge {
+    position: absolute;
+    bottom: 6px;
+    left: 6px;
+    background: rgba(15,23,42,0.84);
+    color: #F8FAFC;
+    font-family: var(--mono);
+    font-size: 9.5px;
+    font-weight: 600;
+    padding: 3px 7px;
+    border-radius: 4px;
+    pointer-events: none;
+  }
+  .card-aerial-thumb {
+    display: none;
+    position: relative;
+    width: 100%;
+    height: 120px;
+    border-radius: 6px;
+    overflow: hidden;
+    margin-top: 7px;
+    border: 1px solid var(--border);
+    background: #0F172A;
+  }
+  body.show-card-aerials .card-aerial-thumb {
+    display: block;
+  }
+  .card-aerial-thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
 </style>
 </head>
-<body>
+<body class="show-card-aerials">
 
 <!-- TOP COMMAND HEADER -->
 <header class="top-nav">
@@ -726,7 +789,7 @@
       <div class="sb-controls">
         <div style="display:flex; gap:6px;">
           <input type="text" id="search" placeholder="Search 264 sites, broker (CBRE, JLL, Todd Mills), zip..." oninput="renderList()" />
-          <button type="button" class="cmd-btn" onclick="resetFilters()">Reset</button>
+          <button type="button" class="cmd-btn" id="card-aerial-btn" onclick="toggleCardAerials()">Card Aerials: ON</button><button type="button" class="cmd-btn" onclick="resetFilters()">Reset</button>
         </div>
         <div class="filter-pills">
           <button type="button" class="pill-btn active" data-c="0" onclick="setCluster(0)">All (269)</button>
@@ -803,6 +866,23 @@
           <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px;">
             <button type="button" class="cmd-btn primary" style="justify-content:center;" onclick="copyAlBrokerScript()">Copy Al's $25K Broker Script</button>
             <button type="button" class="cmd-btn emerald" style="justify-content:center;" onclick="generateDubOptionPdf()">Print $100 90-Day Option</button>
+          </div>
+
+          <!-- OVERHEAD SATELLITE AERIAL LOT & TRANSFORMER PAD VIEW -->
+          <div class="d-box">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
+              <div class="d-box-title" style="margin-bottom:0;">Overhead Aerial View (Roof &amp; Rear Parking Lot)</div>
+              <div style="display:flex; gap:4px;">
+                <button type="button" class="pill-btn" style="padding:2px 6px; font-size:10px;" onclick="setDrawerAerialZoom(0.0011)">19x Pad</button>
+                <button type="button" class="pill-btn active" style="padding:2px 6px; font-size:10px;" onclick="setDrawerAerialZoom(0.0022)">18x Lot</button>
+                <button type="button" class="pill-btn" style="padding:2px 6px; font-size:10px;" onclick="setDrawerAerialZoom(0.0042)">17x Campus</button>
+              </div>
+            </div>
+            <div class="aerial-frame" onclick="openAerialLightbox()">
+              <img id="d-aerial-img" src="" alt="Overhead Aerial Satellite View" loading="lazy" />
+              <div class="aerial-reticle"></div>
+              <div class="aerial-badge">CLICK TO ENLARGE HIGH-RES AERIAL · ESRI WORLD IMAGERY</div>
+            </div>
           </div>
 
           <!-- CRM STAGE, PARTNER & NOTES -->
@@ -1319,6 +1399,36 @@ function showToast(msg) {
   window._tTimer = setTimeout(() => { t.style.display = "none"; }, 3200);
 }
 
+let currentAerialDelta = 0.0022;
+
+function getAerialUrl(lat, lng, delta, w, h) {
+  const dLat = delta || 0.0022;
+  const dLng = dLat * 1.45;
+  const bbox = `${(lng - dLng).toFixed(6)},${(lat - dLat).toFixed(6)},${(lng + dLng).toFixed(6)},${(lat + dLat).toFixed(6)}`;
+  return `https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/export?bbox=${bbox}&bboxSR=4326&imageSR=3857&size=${w||640},${h||340}&format=jpg&f=image`;
+}
+
+function setDrawerAerialZoom(delta) {
+  currentAerialDelta = delta;
+  const s = SITES.find(x => x.rank === selectedRank);
+  if (!s) return;
+  const img = document.getElementById("d-aerial-img");
+  if (img) img.src = getAerialUrl(s.lat, s.lng, delta, 680, 360);
+}
+
+function openAerialLightbox() {
+  const s = SITES.find(x => x.rank === selectedRank);
+  if (!s) return;
+  openLightbox(getAerialUrl(s.lat, s.lng, currentAerialDelta, 1280, 760), `#${s.rank} ${s.address} — ${s.name} (${s.size}) · Overhead Satellite Aerial`);
+}
+
+function toggleCardAerials() {
+  document.body.classList.toggle("show-card-aerials");
+  const on = document.body.classList.contains("show-card-aerials");
+  const btn = document.getElementById("card-aerial-btn");
+  if (btn) btn.textContent = on ? "Card Aerials: ON" : "Card Aerials: OFF";
+}
+
 function isEagleFordSite(s) {
   const hay = (s.name + " " + s.address + " " + (s.corridor || "")).toLowerCase();
   return hay.includes("eagle ford") || hay.includes("halliburton") || hay.includes("weatherford") || hay.includes("baker hughes") || hay.includes("elmendorf") || hay.includes("southton") || hay.includes("pleasanton") || hay.includes("refinery") || hay.includes("alamo junction") || hay.includes("twin eagle");
@@ -1476,7 +1586,7 @@ function renderList() {
         <div style="font-family:'JetBrains Mono',monospace; font-size:10px; color:${s.color}; font-weight:700;">
           #${s.rank} · ${s.category}
         </div>
-        <div style="font-size:16px; font-weight:800; margin-top:3px; color:var(--fg);">${s.address}</div>
+        <div style="position:relative; width:100%; height:118px; border-radius:6px; overflow:hidden; margin:5px 0; border:1px solid var(--border); background:#0F172A;"><img src="${getAerialUrl(s.lat, s.lng, 0.0022, 520, 240)}" style="width:100%; height:100%; object-fit:cover; display:block;" loading="lazy" /><div class="aerial-reticle"></div></div><div style="font-size:16px; font-weight:800; margin-top:3px; color:var(--fg);">${s.address}</div>
         <div style="font-size:12px; color:var(--fg-2); margin-top:2px;">${s.name} (${s.size})</div>
         <div style="font-family:'JetBrains Mono',monospace; font-size:11px; color:var(--fg-2); margin-top:7px;">
           ${s.signal}
@@ -1510,10 +1620,15 @@ function renderList() {
       </div>
       <div class="site-addr">${s.address} <span style="font-weight:500; font-size:12px; color:#888;">(${s.zip})</span></div>
       <div class="site-name">${s.name}</div>
+      <div class="card-aerial-thumb">
+        <img src="${getAerialUrl(s.lat, s.lng, 0.0022, 520, 220)}" alt="${s.address} Aerial" loading="lazy" />
+        <div class="aerial-reticle"></div>
+        <div class="aerial-badge">OVERHEAD SATELLITE LOT PREVIEW</div>
+      </div>
       <div class="site-signal">${s.signal}</div>
       <div class="site-contact">
-        <span>${s.contact}</span>
-        <span class="mono" style="color:var(--accent); font-weight:700;">${s.phone} →</span>
+        <span>${s.contact} · <strong class="mono" style="color:var(--fg);">${s.phone}</strong></span>
+        <span class="mono" style="color:var(--accent); font-weight:700;" onclick="event.stopPropagation(); openSiteDrawer(${s.rank}, true); zoomSatellite(${s.lat}, ${s.lng});">Aerial 18x →</span>
       </div>
     `;
     listEl.appendChild(card);
@@ -1547,6 +1662,8 @@ function openSiteDrawer(rank, panMap) {
   ph.textContent = s.phone;
   ph.href = "tel:" + s.phone.replace(/[^0-9]/g, "");
   document.getElementById("d-gmaps").href = "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(s.address + ", San Antonio, TX");
+  const aImg = document.getElementById("d-aerial-img");
+  if (aImg) aImg.src = getAerialUrl(s.lat, s.lng, currentAerialDelta, 680, 360);
 
   calcSpareMw();
   document.getElementById("site-drawer").classList.add("open");
@@ -1617,7 +1734,7 @@ function generateDubOptionPdf() {
       p { font-size: 13px; margin: 6px 0; }
       .box { background: #FAFAFA; border: 1px solid #E4E4E7; border-radius: 8px; padding: 16px 20px; margin: 18px 0; }
     </style>
-    </head><body>
+    </head><body class="show-card-aerials">
     <h1>EXCLUSIVE 90-DAY COMMERCIAL UTILITY &amp; PARKING LICENSE OPTION</h1>
     <p><strong>Grantee (Tenant):</strong> Bexar Commercial Utility Easements LLC</p>
     <p><strong>Property &amp; Address:</strong> ${s.name} — ${s.address}, San Antonio, TX ${s.zip}</p>
@@ -1699,7 +1816,7 @@ function generateCustomerLoi(idx) {
       p { font-size: 13px; margin: 6px 0; }
       .box { background: #FAFAFA; border: 1px solid #E4E4E7; border-radius: 8px; padding: 16px 20px; margin: 18px 0; }
     </style>
-    </head><body>
+    </head><body class="show-card-aerials">
     <h1>STAGE ONE CORP. — 30-DAY 1.5–2.0 MW MODULAR COMPUTE ENCLAVE RESERVATION LOI</h1>
     <p><strong>Provider:</strong> Stage One Corp. (stageonecorp.com)</p>
     <p><strong>Customer (Offtaker):</strong> ${b.org}</p>
