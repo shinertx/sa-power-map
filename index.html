@@ -752,6 +752,7 @@
   </nav>
 
   <div class="nav-right">
+    <button type="button" class="cmd-btn" onclick="generateLenderOnePager()">1-Page Lender Brief</button>
     <button type="button" class="cmd-btn primary" onclick="openAiModal()">Ask AI (⌘K)</button>
     <button type="button" class="cmd-btn" id="showroom-btn" onclick="toggleShowroom()">Showroom: OFF</button>
   </div>
@@ -7216,9 +7217,91 @@ function saveSiteCrm() {
 function copyAlBrokerScript() {
   const s = SITES.find(x => x.rank === selectedRank);
   if (!s) return;
-  const script = `Hey ${s.contact} — we represent Bexar Commercial Utility Easements. We lease 12 rear parking spaces at industrial and flex buildings across San Antonio for self-contained corporate IT utility enclosures. Regarding ${s.name} (${s.address}): (1) We pay your landlord $7,500/mo NNN ($90,000/yr)—adding +$1.4M in cap-rate value with $0 Landlord TI; (2) We pay 100% of our sub-metered electric bill and give the building 100% power priority; and (3) We pay you a flat $25,000 commission per site at turn-on ($125,000 for 5 sites). Can our engineer snap 3 quick photos of the outdoor transformer kVA tag and main 480V breaker this week?`;
+  const script = `Hi ${s.contact} — I'm Ben Jones. Reaching out to see if the owner at ${s.address} would be open to leasing a small section of outdoor yard or rear parking space (~10–12 spaces) for a self-contained equipment pad. We don't need any space inside the building—just a small paved footprint with access to existing heavy 480V 3-phase power (which we sub-meter and pay 100% directly). Give me a shout when you have two minutes or let me know a good number to reach you.`;
   navigator.clipboard.writeText(script);
-  showToast("Copied Al's $25K Broker Script for " + s.address);
+  showToast("Copied 3-Sentence Pad Inquiry for " + s.address);
+}
+
+function generateLenderOnePager() {
+  const w = window.open("", "_blank");
+  w.document.write(`
+    <html><head><title>Stage One Corp. — NVIDIA Blackwell GB200/GB300 Modular Pod Equipment Finance Brief</title>
+    <style>
+      body { font-family: -apple-system, BlinkMacSystemFont, 'Inter Tight', sans-serif; color: #0F172A; padding: 32px 42px; line-height: 1.5; max-width: 840px; margin: 0 auto; }
+      .kicker { font-family: monospace; font-size: 11px; font-weight: 700; color: #2563EB; letter-spacing: 0.06em; text-transform: uppercase; }
+      h1 { font-size: 20px; font-weight: 800; border-bottom: 2px solid #0F172A; padding-bottom: 10px; margin: 4px 0 14px 0; letter-spacing: -0.02em; }
+      h2 { font-size: 13px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.04em; color: #0F172A; margin: 16px 0 6px 0; }
+      p, li { font-size: 12.5px; margin: 5px 0; color: #1E293B; }
+      .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin: 12px 0; }
+      .box { background: #F8FAFC; border: 1px solid #CBD5E1; border-radius: 8px; padding: 12px 16px; }
+      table { width: 100%; border-collapse: collapse; margin: 8px 0; font-size: 12px; }
+      th, td { border: 1px solid #CBD5E1; padding: 7px 10px; text-align: left; }
+      th { background: #0F172A; color: #FFFFFF; font-size: 11px; text-transform: uppercase; }
+    </style>
+    </head><body>
+    <div class="kicker">STAGE ONE CORP. (STAGEONECORP.COM) · SENIOR EQUIPMENT FINANCE &amp; TAX LEASE BRIEF</div>
+    <h1>NVIDIA BLACKWELL (GB200 / GB300 NVL72) MODULAR COMPUTE POD — CREDIT SUMMARY</h1>
+    <p><strong>Sponsor:</strong> Stage One Corp. (San Antonio, TX) &nbsp;|&nbsp; <strong>Structure:</strong> 100% Equipment Lease / Senior Equipment Term Facility (IRC &sect; 168(k) 5-Year MACRS Rolling Stock)</p>
+    <div class="grid">
+      <div class="box">
+        <h2>1. The Bottleneck We Solve (30-Day Turn-On)</h2>
+        <p>Enterprise and Defense buyers face a 36-to-48 month utility substation queue for new data centers. Stage One Corp. controls pre-energized <strong>1.5 MW to 3.0 MW (480V 3-Phase)</strong> behind-the-meter industrial pads across San Antonio with dual-carrier 288F dark fiber—energizing factory-built modular pods in <strong>30 days</strong>.</p>
+      </div>
+      <div class="box">
+        <h2>2. 100% Removable Equipment Collateral</h2>
+        <p>Factory-built, serial-numbered <strong>40-ft Modular Compute Enclosure</strong> (Dell IR7000 / MDC or Vertiv SmartMod) with closed-loop dry coolers and NVIDIA Blackwell racks. Sits on precast crane mats with Cam-Lok quick disconnects and a recorded <strong>Landlord UCC-1 Waiver</strong>—100% removable by flatbed in 48 hours.</p>
+      </div>
+    </div>
+    <h2>3. Unit Economics &amp; Debt Service Coverage (Single 1.5 MW Pod vs. 3.0 MW Dual-Pod Enclave)</h2>
+    <table>
+      <tr>
+        <th>Metric</th>
+        <th>Track 1: Powered Modular Shell Pod (Customer Brings GPUs)</th>
+        <th>Track 2: Turnkey Single 1.5 MW Blackwell Pod (576 GPUs)</th>
+        <th>Track 3: Turnkey 3.0–4.0 MW Dual-Pod Enclave (1,152 GPUs)</th>
+      </tr>
+      <tr>
+        <td><strong>Total Equipment CapEx</strong></td>
+        <td><strong>$2,500,000</strong> (40-ft Liquid-Cooled Shell + 480V Skid)</td>
+        <td><strong>$30,000,000</strong> (8x GB200 NVL72 Racks + 40-ft Modular Pod)</td>
+        <td><strong>$60,000,000</strong> (16x GB200 NVL72 Racks + 2x Modular Pods)</td>
+      </tr>
+      <tr>
+        <td><strong>Contracted Take-or-Pay Revenue</strong></td>
+        <td><strong>$5.28M – $7.20M / yr</strong> ($440K–$600K/mo NNN + 1:1 power)</td>
+        <td><strong>$18.40M – $24.00M / yr</strong> ($1.53M–$2.0M/mo at $3.65–$4.75/GPU-hr)</td>
+        <td><strong>$36.80M – $48.00M / yr</strong> ($3.06M–$4.0M/mo Take-or-Pay)</td>
+      </tr>
+      <tr>
+        <td><strong>Est. Senior Equipment Lease / Debt</strong></td>
+        <td><strong>~$660K / yr</strong> ($55K/mo over 48–60 mos)</td>
+        <td><strong>~$9.60M / yr</strong> ($800K/mo over 36–48 mos)</td>
+        <td><strong>~$19.20M / yr</strong> ($1.60M/mo over 36–48 mos)</td>
+      </tr>
+      <tr>
+        <td><strong>Senior Lender DSCR (Lockbox First-Sweep)</strong></td>
+        <td><strong>6.50x+ DSCR</strong></td>
+        <td><strong>1.85x – 2.35x DSCR</strong></td>
+        <td><strong>1.85x – 2.35x DSCR</strong></td>
+      </tr>
+      <tr>
+        <td><strong>Year-1 IRC &sect; 168(k) Tax Depreciation</strong></td>
+        <td><strong>$2.50M</strong> Depreciable Basis</td>
+        <td><strong>$30.00M</strong> Basis (~$6.3M Federal Tax Shield)</td>
+        <td><strong>$60.00M</strong> Basis (~$12.6M Federal Tax Shield)</td>
+      </tr>
+    </table>
+    <h2>4. Four Institutional Lender Protections (Zero Speculative GPU Risk)</h2>
+    <ul>
+      <li><strong>No Speculative Drawdowns:</strong> Equipment funding occurs strictly simultaneous with (a) an executed 36-to-60 month Hell-or-High-Water Take-or-Pay Offtake Contract from an approved creditworthy counterparty (Enterprise, Defense Prime, or Tier-1 University/National Lab) and (b) verified 480V pad energization.</li>
+      <li><strong>Bank-Controlled Lockbox Waterfall:</strong> Offtaker wires monthly Take-or-Pay payments directly into a tri-party Lockbox Account; Lender's principal + interest/lease payment and insurance are swept first every month prior to Sponsor distribution.</li>
+      <li><strong>48-Hour Portable Remarketing &amp; OEM Warranty:</strong> Unlike brick-and-mortar data centers, 100% of the CapEx is inside a portable 40-ft ISO modular skid covered by 3-to-5 year OEM (Dell / NVIDIA / Vertiv) mission-critical hardware warranties and an explicit Landlord UCC-1 Personal Property Waiver.</li>
+      <li><strong>1:1 Utility Pass-Through:</strong> 100% of sub-metered 480V electricity is passed through 1:1 to the Offtaker with zero commodity price exposure to the equipment facility.</li>
+    </ul>
+    <script>window.print();<\/script>
+    </body></html>
+  `);
+  w.document.close();
 }
 
 function generateDubOptionPdf() {
