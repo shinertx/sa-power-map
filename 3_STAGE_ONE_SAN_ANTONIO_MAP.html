@@ -419,39 +419,7 @@
     background: #2563EB;
     color: #FFFFFF;
   }
-  .map-legend {
-    position: absolute;
-    bottom: 20px;
-    left: 12px;
-    z-index: 1000;
-    background: rgba(15, 23, 42, 0.94);
-    backdrop-filter: blur(8px);
-    border: 1px solid #334155;
-    border-radius: 8px;
-    padding: 10px 14px;
-    font-size: 11.5px;
-    display: flex;
-    flex-direction: column;
-    gap: 5px;
-    box-shadow: 0 8px 24px rgba(15,23,42,0.28);
-  }
-  .legend-title {
-    font-family: var(--mono);
-    font-size: 9.5px;
-    font-weight: 700;
-    color: #93C5FD;
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-    margin-bottom: 2px;
-  }
-  .legend-row {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    color: #F8FAFC;
-    font-weight: 500;
-    font-size: 11px;
-  }
+  
   .dot {
     width: 10px;
     height: 10px;
@@ -461,18 +429,7 @@
     flex-shrink: 0;
   }
 
-  /* DOCKED RIGHT DEAL SHEET (ZERO MAP OVERLAP) */
-  .deal-drawer {
-    width: 390px;
-    flex-shrink: 0;
-    height: 100%;
-    background: #F1F5F9;
-    border-left: 1px solid var(--border);
-    z-index: 1200;
-    display: none;
-    flex-direction: column;
-  }
-  .deal-drawer.open { display: flex; }
+  
   .drawer-head {
     padding: 14px 16px;
     background: #0F172A;
@@ -880,6 +837,253 @@
     color: #0F172A;
   }
 
+
+  /* RESPONSIVE & DISMISSIBLE DEAL DRAWER */
+  .deal-drawer {
+    width: 410px;
+    flex-shrink: 0;
+    height: 100%;
+    background: #FFFFFF;
+    border-left: 1px solid var(--border);
+    z-index: 1200;
+    display: none;
+    flex-direction: column;
+    box-shadow: -4px 0 20px rgba(15, 23, 42, 0.08);
+  }
+  .deal-drawer.open { display: flex; }
+
+  .drawer-head {
+    padding: 14px 18px;
+    background: #F8FAFC;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  .drawer-close-btn {
+    background: #E2E8F0;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    color: var(--fg);
+    font-size: 13px;
+    font-weight: 700;
+    padding: 6px 12px;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    white-space: nowrap;
+  }
+  .drawer-close-btn:hover {
+    background: #0F172A;
+    color: #FFFFFF;
+  }
+  .drawer-tabs {
+    display: flex;
+    background: #F1F5F9;
+    border-bottom: 1px solid var(--border);
+    padding: 4px 8px;
+    gap: 6px;
+  }
+  .drawer-tab-btn {
+    flex: 1;
+    padding: 8px 10px;
+    font-size: 12px;
+    font-weight: 700;
+    border: none;
+    background: transparent;
+    color: var(--fg-3);
+    cursor: pointer;
+    border-radius: 6px;
+    transition: all 0.15s ease;
+  }
+  .drawer-tab-btn.active {
+    background: #FFFFFF;
+    color: var(--accent);
+    box-shadow: 0 1px 3px rgba(15,23,42,0.1);
+  }
+  .drawer-tab-btn:hover:not(.active) {
+    color: var(--fg);
+  }
+  .drawer-body {
+    flex: 1;
+    overflow-y: auto;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    background: #F8FAFC;
+  }
+
+  /* QUICK SPECS GRID FOR STRANGERS */
+  .spec-grid-2x2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+  .spec-item {
+    background: #FFFFFF;
+    border: 1px solid #E2E8F0;
+    border-radius: 8px;
+    padding: 10px 12px;
+  }
+  .spec-label {
+    font-size: 10.5px;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: #64748B;
+    letter-spacing: 0.04em;
+    margin-bottom: 3px;
+  }
+  .spec-val {
+    font-size: 13.5px;
+    font-weight: 700;
+    color: #0F172A;
+  }
+  .spec-val.mono { font-family: var(--mono); }
+
+  /* FLOATING MAP LEGEND & TOGGLE PILL */
+  .legend-wrap {
+    position: absolute;
+    bottom: 24px;
+    left: 16px;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  .legend-pill-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(15, 23, 42, 0.92);
+    backdrop-filter: blur(8px);
+    border: 1px solid #334155;
+    color: #F8FAFC;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 8px 16px;
+    border-radius: 9999px;
+    cursor: pointer;
+    box-shadow: 0 4px 14px rgba(15,23,42,0.25);
+    transition: all 0.15s ease;
+  }
+  .legend-pill-btn:hover, .legend-pill-btn.active {
+    background: #2563EB;
+    border-color: #3B82F6;
+    color: #FFFFFF;
+    transform: translateY(-1px);
+  }
+  .map-legend {
+    width: min(340px, calc(100vw - 32px));
+    background: rgba(15, 23, 42, 0.96);
+    backdrop-filter: blur(12px);
+    border: 1px solid #334155;
+    border-radius: 10px;
+    padding: 12px 14px;
+    font-size: 11.5px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    box-shadow: 0 12px 32px rgba(15,23,42,0.35);
+  }
+  .legend-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 6px;
+    border-bottom: 1px solid #334155;
+    margin-bottom: 2px;
+  }
+  .legend-title-main {
+    font-family: var(--mono);
+    font-size: 10px;
+    font-weight: 700;
+    color: #93C5FD;
+    letter-spacing: 0.05em;
+  }
+  .legend-close-btn {
+    background: transparent;
+    border: none;
+    color: #94A3B8;
+    font-size: 14px;
+    cursor: pointer;
+    padding: 0 4px;
+    line-height: 1;
+  }
+  .legend-close-btn:hover { color: #FFFFFF; }
+
+  /* MOBILE & TABLET RESPONSIVE STYLES */
+  @media (max-width: 900px) {
+    #map-app {
+      position: relative;
+    }
+    #sidebar {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1002;
+    }
+    #map-container {
+      width: 100%;
+      height: 100%;
+    }
+    #map-app.show-map #sidebar {
+      display: none;
+    }
+    #map-app.show-map #map-container {
+      display: block;
+    }
+    #map-app.show-list #sidebar {
+      display: flex;
+    }
+    #map-app.show-list #map-container {
+      display: none;
+    }
+    .deal-drawer {
+      position: fixed;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      max-width: 100vw;
+      z-index: 3000;
+    }
+    .mobile-view-toggle {
+      display: flex;
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 2500;
+      background: #0F172A;
+      padding: 4px;
+      border-radius: 9999px;
+      box-shadow: 0 8px 24px rgba(15,23,42,0.35);
+      border: 1px solid #334155;
+    }
+    .mobile-toggle-btn {
+      padding: 8px 16px;
+      font-size: 13px;
+      font-weight: 700;
+      color: #94A3B8;
+      background: transparent;
+      border: none;
+      border-radius: 9999px;
+      cursor: pointer;
+    }
+    .mobile-toggle-btn.active {
+      background: #2563EB;
+      color: #FFFFFF;
+    }
+  }
+  @media (min-width: 901px) {
+    .mobile-view-toggle { display: none !important; }
+  }
+
 </style>
 </head>
 <body class="show-card-aerials">
@@ -985,43 +1189,56 @@
 
       <div id="map"></div>
 
-      <div class="map-legend">
-        <div class="legend-title">POWER TIERS (HOW MANY 1.5 MW PODS FIT)</div>
-        <div class="legend-row"><span class="dot" style="background:#09090B;"></span> <strong>Tier 1 Whale (50):</strong> 3–6 Pods on 1 Lease (Malls, Fabs, Mega Campuses)</div>
-        <div class="legend-row"><span class="dot" style="background:#1D4ED8;"></span> <strong>Tier 2 Call Ctr / Big-Box (48):</strong> 1–2 Pods (Vacant Sears, Conn's, AT&amp;T COs)</div>
-        <div class="legend-row"><span class="dot" style="background:#0369A1;"></span> <strong>Tier 3 Heavy Ind (43):</strong> 1–2 Pods (Cold Storage, Port SA, Bottling)</div>
-        <div class="legend-row"><span class="dot" style="background:#475569;"></span> <strong>Tier 4 Permitted 480V (63):</strong> 1 Pod (BuildSA 2,000A–3,000A Flex Parks)</div>
-        <div class="legend-row"><span class="dot" style="background:#94A3B8;"></span> <strong>Tier 5 Office / DC Anchor (65):</strong> 1 Pod (&gt;50k SF Office &amp; Feeder Reference)</div>
-        <div class="legend-title" style="margin-top:6px; padding-top:6px; border-top:1px solid var(--border);">FIBER GRADES (HOW FAST FIBER CONNECTS)</div>
-        <div class="legend-row"><span class="site-rank" style="background:#EFF6FF; color:#1D4ED8; border-color:#BFDBFE;">FIBER A+ (146)</span> Dark Fiber Ring at Curb / Basement (&lt;14 Days · &lt;$25K)</div>
-        <div class="legend-row"><span class="site-rank" style="background:#F8FAFC; color:#334155; border-color:#CBD5E1;">FIBER B (81)</span> Highway Curb Directional Bore (21–30 Days · ~$35K)</div>
-        <div class="legend-row"><span class="site-rank" style="background:#FEF2F2; color:#991B1B; border-color:#FECACA;">FIBER C (42)</span> Side-Street Trench Needed (60+ Days · $60K+)</div>
+            <!-- FLOATING DISMISSIBLE MAP LEGEND -->
+      <div class="legend-wrap" id="legend-wrap">
+        <button type="button" class="legend-pill-btn" id="legend-pill-btn" onclick="toggleMapLegend()" title="Toggle Power &amp; Fiber Key">
+          <span>📊 Map Key &amp; Tiers</span>
+        </button>
+        <div class="map-legend" id="map-legend" style="display:none;">
+          <div class="legend-header">
+            <span class="legend-title-main">POWER &amp; FIBER KEY</span>
+            <button type="button" class="legend-close-btn" onclick="toggleMapLegend(false)" title="Close Key">✕</button>
+          </div>
+          <div class="legend-title">POWER TIERS (1.5 MW POD CAPACITY)</div>
+          <div class="legend-row"><span class="dot" style="background:#09090B;"></span> <strong>Tier 1 Whale:</strong> 3–6 Pods (4.5–9.0 MW)</div>
+          <div class="legend-row"><span class="dot" style="background:#1D4ED8;"></span> <strong>Tier 2 Big-Box:</strong> 1–2 Pods (1.5–3.0 MW)</div>
+          <div class="legend-row"><span class="dot" style="background:#0369A1;"></span> <strong>Tier 3 Heavy Ind:</strong> 1–2 Pods (Cold / Port SA)</div>
+          <div class="legend-row"><span class="dot" style="background:#475569;"></span> <strong>Tier 4 Flex:</strong> 1 Pod (2,000A–3,000A)</div>
+          <div class="legend-row"><span class="dot" style="background:#94A3B8;"></span> <strong>Tier 5 Office:</strong> 1 Pod Reference</div>
+          <div class="legend-title" style="margin-top:6px; padding-top:6px; border-top:1px solid #334155;">FIBER GRADES</div>
+          <div class="legend-row"><span class="site-rank" style="background:#EFF6FF; color:#1D4ED8; border-color:#BFDBFE; font-size:9.5px; padding:1px 5px;">A+</span> Dark Fiber Ring at Curb (&lt;14 Days)</div>
+          <div class="legend-row"><span class="site-rank" style="background:#F8FAFC; color:#334155; border-color:#CBD5E1; font-size:9.5px; padding:1px 5px;">B</span> Highway Curb Bore (21–30 Days)</div>
+          <div class="legend-row"><span class="site-rank" style="background:#FEF2F2; color:#991B1B; border-color:#FECACA; font-size:9.5px; padding:1px 5px;">C</span> Trench Required (60+ Days)</div>
+        </div>
       </div>
 
       
     </main>
     <!-- SLIDE-OVER SITE CRM & EXECUTION DRAWER -->
-      <aside class="deal-drawer" id="site-drawer">
-        <div class="drawer-head">
-          <div>
-            <div class="kicker" id="d-kicker">SITE #1 · TIER 1</div>
-            <h2 style="font-size:18px; font-weight:800; color:var(--fg);" id="d-addr">Select a Site</h2>
-            <p style="font-size:12px; color:var(--fg-2); margin-top:2px;" id="d-name">—</p>
-            <p class="mono" style="font-size:11px; color:var(--fg); margin-top:4px;" id="d-signal">—</p>
-          </div>
-          <button type="button" class="cmd-btn" onclick="closeDrawer()">✕ Close</button>
+          <!-- SLIDE-OVER SITE CRM & EXECUTION DRAWER -->
+    <aside class="deal-drawer" id="site-drawer">
+      <div class="drawer-head">
+        <div>
+          <div class="kicker" id="d-kicker">SITE #1 · TIER 1</div>
+          <h2 style="font-size:17px; font-weight:800; color:var(--fg); line-height:1.2; margin-top:2px;" id="d-addr">Select a Site</h2>
+          <p style="font-size:12px; color:var(--fg-2); margin-top:2px;" id="d-name">—</p>
         </div>
+        <button type="button" class="drawer-close-btn" onclick="closeDrawer()" title="Close Site Sheet (ESC)">✕ Close</button>
+      </div>
 
-        <div class="drawer-body">
-          <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px;">
-            <button type="button" class="cmd-btn primary" style="justify-content:center;" onclick="copyAlBrokerScript()">Copy Al's $25K Broker Script</button>
-            <button type="button" class="cmd-btn emerald" style="justify-content:center;" onclick="generateDubOptionPdf()">Print $100 90-Day Option</button>
-          </div>
+      <!-- TWO-TAB SWITCHER: STRANGER-FRIENDLY OVERVIEW VS INTERNAL DEAL DESK -->
+      <div class="drawer-tabs">
+        <button type="button" class="drawer-tab-btn active" id="btn-tab-overview" onclick="switchDrawerTab('overview')">🏢 Property Overview</button>
+        <button type="button" class="drawer-tab-btn" id="btn-tab-internal" onclick="switchDrawerTab('internal')">🔒 Internal Deal Desk</button>
+      </div>
 
+      <div class="drawer-body">
+        <!-- TAB 1: PROPERTY OVERVIEW (EASY FOR A STRANGER) -->
+        <div id="pane-drawer-overview">
           <!-- OVERHEAD SATELLITE AERIAL LOT & TRANSFORMER PAD VIEW -->
-          <div class="d-box">
+          <div class="d-box" style="margin-bottom:12px;">
             <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
-              <div class="d-box-title" style="margin-bottom:0;">Overhead Aerial View (Roof &amp; Rear Parking Lot)</div>
+              <div class="d-box-title" style="margin-bottom:0;">Overhead Aerial View (Roof &amp; Yard)</div>
               <div style="display:flex; gap:4px;">
                 <button type="button" class="pill-btn" style="padding:2px 6px; font-size:10px;" onclick="setDrawerAerialZoom(0.0011)">19x Pad</button>
                 <button type="button" class="pill-btn active" style="padding:2px 6px; font-size:10px;" onclick="setDrawerAerialZoom(0.0022)">18x Lot</button>
@@ -1035,8 +1252,62 @@
             </div>
           </div>
 
-          <!-- CRM STAGE, PARTNER & NOTES -->
+          <!-- CLEAN 2x2 SPEC SHEET -->
+          <div class="spec-grid-2x2" style="margin-bottom:12px;">
+            <div class="spec-item">
+              <div class="spec-label">Available Power</div>
+              <div class="spec-val mono" id="d-spec-mw" style="color:#2563EB;">— MW</div>
+            </div>
+            <div class="spec-item">
+              <div class="spec-label">Dark Fiber Grade</div>
+              <div class="spec-val" id="d-spec-fiber">—</div>
+            </div>
+            <div class="spec-item">
+              <div class="spec-label">Property / Pad Size</div>
+              <div class="spec-val" id="d-spec-footprint" style="font-size:12px;">—</div>
+            </div>
+            <div class="spec-item">
+              <div class="spec-label">Electrical Service</div>
+              <div class="spec-val" style="font-size:12px;">480V 3-Phase BTM</div>
+            </div>
+          </div>
+
+          <!-- LOCATION & UTILITY SIGNAL -->
+          <div class="d-box" style="margin-bottom:12px;">
+            <div class="d-box-title">Utility &amp; Substation Infrastructure</div>
+            <p style="font-size:12.5px; color:#334155; line-height:1.5; margin:0;" id="d-spec-signal">—</p>
+          </div>
+
+          <!-- OWNER / BROKER & ACTION SHORTCUTS -->
           <div class="d-box">
+            <div class="d-box-title">Ownership &amp; Navigation</div>
+            <div style="font-size:12px; margin-bottom:10px;">
+              <span style="color:var(--fg-3); font-size:10.5px; display:block; text-transform:uppercase; font-weight:700;">Owner / Listing Rep</span>
+              <strong id="d-spec-contact" style="font-size:13px; color:#0F172A;">—</strong>
+            </div>
+            <div style="display:flex; flex-direction:column; gap:8px;">
+              <div style="display:flex; gap:8px;">
+                <button type="button" class="cmd-btn" style="flex:1; justify-content:center;" onclick="zoomToCurrentSat()">🛰 Zoom 18x Aerial</button>
+                <a id="d-gmaps" href="#" target="_blank" rel="noopener" class="cmd-btn" style="flex:1; justify-content:center;">🗺 Google Maps</a>
+              </div>
+              <button type="button" class="cmd-btn primary" style="justify-content:center; width:100%;" onclick="copySiteShareLink()">🔗 Copy Link to Share</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- TAB 2: INTERNAL DEAL DESK (FOR BEN & TEAM) -->
+        <div id="pane-drawer-internal" style="display:none;">
+          <div style="background:#EFF6FF; border:1px solid #BFDBFE; border-radius:8px; padding:8px 12px; margin-bottom:12px; font-size:11px; font-weight:700; color:#1D4ED8; text-align:center;">
+            🔒 INTERNAL WORKBENCH (AL · NEAL · DUB · BEN)
+          </div>
+
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-bottom:12px;">
+            <button type="button" class="cmd-btn primary" style="justify-content:center;" onclick="copyAlBrokerScript()">Al's $25K Script</button>
+            <button type="button" class="cmd-btn emerald" style="justify-content:center;" onclick="generateDubOptionPdf()">Print $100 Option</button>
+          </div>
+
+          <!-- CRM STAGE, PARTNER & NOTES -->
+          <div class="d-box" style="margin-bottom:12px;">
             <div class="d-box-title">1. Deal Stage &amp; Partner Owner (Auto-Saves)</div>
             <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-bottom:10px;">
               <div>
@@ -1065,8 +1336,8 @@
           </div>
 
           <!-- NEAL'S 3-PHOTO GATE & LIVE SPARE MW CALCULATOR -->
-          <div class="d-box">
-            <div class="d-box-title">2. Neal's 3-Photo Gate &amp; $250K Skidded Site Plug</div>
+          <div class="d-box" style="margin-bottom:12px;">
+            <div class="d-box-title">2. Neal's 3-Photo Gate &amp; Spare MW Calculator</div>
             <div style="display:flex; flex-direction:column; gap:6px; font-size:12px; color:var(--fg-2); margin-bottom:10px;">
               <label style="display:flex; align-items:center; gap:8px; cursor:pointer;">
                 <input type="checkbox" id="d-p1" onchange="saveSiteCrm()">
@@ -1099,7 +1370,7 @@
 
           <!-- BROKER CONTACT & SITE ECONOMICS -->
           <div class="d-box">
-            <div class="d-box-title">3. Broker Contact &amp; Single-Site Cash Flow</div>
+            <div class="d-box-title">3. Broker Direct &amp; Site Margins</div>
             <div style="display:grid; grid-template-columns:1fr 1fr; gap:8px; font-size:12px;">
               <div><span style="color:var(--fg-3); font-size:10px; display:block;">BROKER / CONTACT</span><strong id="d-contact">—</strong></div>
               <div><span style="color:var(--fg-3); font-size:10px; display:block;">DIRECT PHONE</span><a id="d-phone" href="#" class="mono" style="color:var(--accent); font-weight:700; text-decoration:none;">—</a></div>
@@ -1108,13 +1379,10 @@
               <div><span style="color:var(--fg-3); font-size:10px; display:block;">TRACK 1 SHELL PROFIT</span><strong class="mono" style="color:var(--accent);">$2.49M–$4.05M / yr Net</strong></div>
               <div><span style="color:var(--fg-3); font-size:10px; display:block;">TRACK 2 ($60M POD) PROFIT</span><strong class="mono" style="color:var(--accent);">$17.4M–$31.8M / yr Net</strong></div>
             </div>
-            <div style="display:flex; gap:8px; margin-top:12px;">
-              <button type="button" class="cmd-btn" style="flex:1; justify-content:center;" onclick="zoomToCurrentSat()">Zoom 18x Satellite Lot</button>
-              <a id="d-gmaps" href="#" target="_blank" rel="noopener" class="cmd-btn" style="flex:1; justify-content:center;">Open Google Street View</a>
-            </div>
           </div>
         </div>
-      </aside>
+      </div>
+    </aside>
   </div>
 </section>
 
@@ -8028,6 +8296,92 @@ function toggleCardAerials() {
   if (btn) btn.textContent = on ? "Card Aerials: ON" : "Card Aerials: OFF";
 }
 
+
+
+function extractPods(size) {
+  if (!size) return "2 Pods";
+  const m = size.match(/(\d+[\-\d]*\s*Pods?)/i);
+  if (m) return m[1].replace("-", "–");
+  const m2 = size.match(/([\d\.]+)\s*MW/i);
+  if (m2) {
+    const pods = Math.round(parseFloat(m2[1]) / 1.5);
+    return (pods || 2) + " Pods";
+  }
+  return "2 Pods";
+}
+
+function extractMwLabel(size) {
+  if (!size) return "3.0 MW";
+  const m = size.match(/([\d\.\-]+)\s*MW/i);
+  if (m) return m[1].replace("-", "–") + " MW";
+  const m2 = size.match(/(\d+[\-\d]*)\s*Pods?/i);
+  if (m2) return (parseInt(m2[1]) * 1.5).toFixed(1) + " MW";
+  return "3.0 MW";
+}
+
+function isDowntownLoopSite(s) {
+  if (!s) return false;
+  if (s.rank >= 304 && s.rank <= 316) return true;
+  if (s.cluster === 100) return true;
+  const hay = (s.name + " " + s.address + " " + (s.corridor || "")).toLowerCase();
+  if (hay.includes("downtown") || hay.includes("commerce") || hay.includes("chavez") || hay.includes("medina") || hay.includes("probandt") || hay.includes("lone star") || hay.includes("navarro")) return true;
+  const downtownZips = ["78205", "78204", "78207", "78215", "78202"];
+  return downtownZips.includes(String(s.zip).trim());
+}
+
+function toggleMapLegend(forceState) {
+  const el = document.getElementById("map-legend");
+  const btn = document.getElementById("legend-pill-btn");
+  if (!el) return;
+  const isHidden = (el.style.display === "none" || !el.style.display);
+  const show = typeof forceState === "boolean" ? forceState : isHidden;
+  el.style.display = show ? "flex" : "none";
+  if (btn) btn.classList.toggle("active", show);
+}
+
+function switchDrawerTab(tab) {
+  const overviewTab = document.getElementById("btn-tab-overview");
+  const internalTab = document.getElementById("btn-tab-internal");
+  const overviewPane = document.getElementById("pane-drawer-overview");
+  const internalPane = document.getElementById("pane-drawer-internal");
+  if (overviewTab) overviewTab.classList.toggle("active", tab === "overview");
+  if (internalTab) internalTab.classList.toggle("active", tab === "internal");
+  if (overviewPane) overviewPane.style.display = tab === "overview" ? "block" : "none";
+  if (internalPane) internalPane.style.display = tab === "internal" ? "block" : "none";
+}
+
+function copySiteShareLink() {
+  const url = window.location.origin + window.location.pathname + "?site=" + selectedRank;
+  if (navigator.clipboard && navigator.clipboard.writeText) {
+    navigator.clipboard.writeText(url).then(() => {
+      showToast("✓ Copied direct link to Site #" + selectedRank);
+    }).catch(() => {
+      prompt("Direct link to this site:", url);
+    });
+  } else {
+    prompt("Direct link to this site:", url);
+  }
+}
+
+function setMobileView(view) {
+  const app = document.getElementById("map-app");
+  const btnMap = document.getElementById("btn-m-map");
+  const btnList = document.getElementById("btn-m-list");
+  if (!app) return;
+  if (view === "map") {
+    app.classList.remove("show-list");
+    app.classList.add("show-map");
+    if (btnMap) btnMap.classList.add("active");
+    if (btnList) btnList.classList.remove("active");
+    if (map) setTimeout(() => map.invalidateSize(), 100);
+  } else {
+    app.classList.remove("show-map");
+    app.classList.add("show-list");
+    if (btnMap) btnMap.classList.remove("active");
+    if (btnList) btnList.classList.add("active");
+  }
+}
+
 function isEagleFordSite(s) {
   const hay = (s.name + " " + s.address + " " + (s.corridor || "")).toLowerCase();
   return hay.includes("eagle ford") || hay.includes("halliburton") || hay.includes("weatherford") || hay.includes("baker hughes") || hay.includes("elmendorf") || hay.includes("southton") || hay.includes("pleasanton") || hay.includes("refinery") || hay.includes("alamo junction") || hay.includes("twin eagle");
@@ -8321,29 +8675,81 @@ function openSiteDrawer(rank, panMap) {
   if (!s) return;
   const st = getSiteCrm(rank);
 
-  document.getElementById("d-kicker").textContent = `#${s.rank} · TIER ${s.tier} · ${s.fiber_label.toUpperCase()}`;
-  document.getElementById("d-addr").textContent = `${s.address} (${s.zip})`;
-  document.getElementById("d-name").textContent = `${s.name} · ${s.size}`;
-  document.getElementById("d-signal").textContent = `${s.signal}`;
+  // Kicker and Headings
+  const kicker = document.getElementById("d-kicker");
+  if (kicker) kicker.textContent = `#${s.rank} · TIER ${s.tier} · ${s.fiber_label ? s.fiber_label.toUpperCase() : "FIBER"}`;
+  
+  const addr = document.getElementById("d-addr");
+  if (addr) addr.textContent = `${s.address} (${s.zip})`;
+  
+  const nameEl = document.getElementById("d-name");
+  if (nameEl) nameEl.textContent = `${s.name} · ${s.size}`;
+  
+  const sig = document.getElementById("d-signal");
+  if (sig) sig.textContent = `${s.signal}`;
 
-  document.getElementById("d-stage").value = st.stage || "Uncontacted";
-  document.getElementById("d-owner").value = st.owner || "Alan";
-  document.getElementById("d-notes").value = st.notes || "";
-  document.getElementById("d-p1").checked = !!st.p1;
-  document.getElementById("d-p2").checked = !!st.p2;
-  document.getElementById("d-p3").checked = !!st.p3;
-  document.getElementById("d-kva").value = st.kva || "";
-  document.getElementById("d-peak").value = st.peak || "";
+  // Overview Tab Fields (Easy for a Stranger)
+  const mwLabel = extractMwLabel(s.size);
+  const specMw = document.getElementById("d-spec-mw");
+  if (specMw) specMw.textContent = mwLabel;
 
-  document.getElementById("d-contact").textContent = s.contact;
+  const specFiber = document.getElementById("d-spec-fiber");
+  if (specFiber) specFiber.textContent = s.fiber_label || `Grade ${s.fiber_grade}`;
+
+  const specFoot = document.getElementById("d-spec-footprint");
+  if (specFoot) specFoot.textContent = s.size;
+
+  const specSig = document.getElementById("d-spec-signal");
+  if (specSig) specSig.textContent = s.signal;
+
+  const specContact = document.getElementById("d-spec-contact");
+  if (specContact) specContact.textContent = s.contact || "Direct Property Owner";
+
   const ph = document.getElementById("d-phone");
-  ph.textContent = s.phone;
-  ph.href = "tel:" + s.phone.replace(/[^0-9]/g, "");
-  document.getElementById("d-gmaps").href = "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(s.address + ", San Antonio, TX");
+  if (ph) {
+    ph.textContent = s.phone || "Request via Broker";
+    ph.href = s.phone ? "tel:" + s.phone.replace(/[^0-9]/g, "") : "#";
+  }
+
+  const gmaps = document.getElementById("d-gmaps");
+  if (gmaps) gmaps.href = "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(s.address + ", San Antonio, TX");
+
   const aImg = document.getElementById("d-aerial-img");
   if (aImg) aImg.src = getAerialUrl(s.lat, s.lng, currentAerialDelta, 680, 360);
 
+  // Internal Tab Fields (For Team)
+  const stageEl = document.getElementById("d-stage");
+  if (stageEl) stageEl.value = st.stage || "Uncontacted";
+
+  const ownerEl = document.getElementById("d-owner");
+  if (ownerEl) ownerEl.value = st.owner || "Alan";
+
+  const notesEl = document.getElementById("d-notes");
+  if (notesEl) notesEl.value = st.notes || "";
+
+  const p1 = document.getElementById("d-p1");
+  if (p1) p1.checked = !!st.p1;
+
+  const p2 = document.getElementById("d-p2");
+  if (p2) p2.checked = !!st.p2;
+
+  const p3 = document.getElementById("d-p3");
+  if (p3) p3.checked = !!st.p3;
+
+  const kvaEl = document.getElementById("d-kva");
+  if (kvaEl) kvaEl.value = st.kva || "";
+
+  const peakEl = document.getElementById("d-peak");
+  if (peakEl) peakEl.value = st.peak || "";
+
+  const contactEl = document.getElementById("d-contact");
+  if (contactEl) contactEl.textContent = s.contact;
+
   calcSpareMw();
+
+  // Always default to stranger-friendly Overview tab on open
+  switchDrawerTab("overview");
+
   document.getElementById("site-drawer").classList.add("open");
   if (map) {
     setTimeout(() => {
@@ -8360,6 +8766,11 @@ function openSiteDrawer(rank, panMap) {
 
 function closeDrawer() {
   document.getElementById("site-drawer").classList.remove("open");
+  try {
+    const url = new URL(window.location.href);
+    url.searchParams.delete("site");
+    history.replaceState(null, "", url.pathname + (url.search ? url.search : ""));
+  } catch (e) {}
   if (map) setTimeout(() => map.invalidateSize(), 50);
 }
 
@@ -9104,6 +9515,14 @@ function runAiSearch() {
 });
 
 window.addEventListener("keydown", e => {
+  if (e.key === "Escape") {
+    closeDrawer();
+    toggleMapLegend(false);
+    const ai = document.getElementById("ai-dialog");
+    if (ai && ai.open) ai.close();
+    const lb = document.getElementById("lightbox-dialog");
+    if (lb && lb.open) lb.close();
+  }
   if ((e.metaKey || e.ctrlKey) && e.key.toLowerCase() === "k") {
     e.preventDefault();
     openAiModal();
