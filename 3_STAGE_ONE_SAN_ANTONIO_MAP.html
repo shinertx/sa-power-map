@@ -1084,6 +1084,182 @@
     .mobile-view-toggle { display: none !important; }
   }
 
+
+  /* ZILLOW-STYLE FLOATING PREVIEW CARD */
+  .zillow-preview-card {
+    position: absolute;
+    bottom: 24px;
+    right: 24px;
+    z-index: 1500;
+    width: min(440px, calc(100vw - 32px));
+    background: #FFFFFF;
+    border: 1px solid #CBD5E1;
+    border-radius: 12px;
+    box-shadow: 0 12px 36px rgba(15, 23, 42, 0.22);
+    overflow: hidden;
+    animation: slideUp 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  @keyframes slideUp {
+    from { opacity: 0; transform: translateY(12px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .preview-close-btn {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: rgba(15, 23, 42, 0.7);
+    color: #FFFFFF;
+    border: none;
+    font-size: 14px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+    transition: background 0.15s ease;
+  }
+  .preview-close-btn:hover {
+    background: #0F172A;
+  }
+
+  .preview-card-body {
+    display: flex;
+    padding: 12px;
+    gap: 12px;
+  }
+
+  .preview-thumb-wrap {
+    position: relative;
+    width: 120px;
+    height: 110px;
+    border-radius: 8px;
+    overflow: hidden;
+    flex-shrink: 0;
+    background: #0F172A;
+    cursor: pointer;
+  }
+
+  .preview-thumb-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .preview-badge {
+    position: absolute;
+    bottom: 6px;
+    left: 6px;
+    background: #2563EB;
+    color: #FFFFFF;
+    font-family: var(--mono);
+    font-size: 10.5px;
+    font-weight: 700;
+    padding: 2px 7px;
+    border-radius: 9999px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+  }
+
+  .preview-info {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .preview-kicker {
+    font-family: var(--mono);
+    font-size: 9.5px;
+    font-weight: 700;
+    color: #2563EB;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .preview-title {
+    font-size: 14px;
+    font-weight: 800;
+    color: #0F172A;
+    line-height: 1.25;
+    margin-top: 2px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .preview-sub {
+    font-size: 11.5px;
+    color: #64748B;
+    margin-top: 2px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .preview-tags {
+    display: flex;
+    gap: 4px;
+    margin-top: 6px;
+    flex-wrap: wrap;
+  }
+
+  .preview-tag {
+    font-size: 10px;
+    font-weight: 600;
+    padding: 2px 6px;
+    border-radius: 4px;
+    border: 1px solid transparent;
+  }
+  .preview-tag.fiber { background: #EFF6FF; color: #1D4ED8; border-color: #BFDBFE; }
+  .preview-tag.util { background: #F8FAFC; color: #334155; border-color: #CBD5E1; }
+  .preview-tag.rep { background: #F1F5F9; color: #475569; }
+
+  .preview-actions {
+    display: flex;
+    gap: 6px;
+    margin-top: 8px;
+  }
+
+  .pv-btn {
+    padding: 5px 10px;
+    font-size: 11.5px;
+    font-weight: 700;
+    border-radius: 6px;
+    border: 1px solid #CBD5E1;
+    background: #FFFFFF;
+    color: #0F172A;
+    text-decoration: none;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.15s ease;
+  }
+  .pv-btn:hover { background: #F1F5F9; }
+  .pv-btn.primary {
+    background: #2563EB;
+    border-color: #2563EB;
+    color: #FFFFFF;
+    flex: 1;
+  }
+  .pv-btn.primary:hover {
+    background: #1D4ED8;
+  }
+
+  @media (max-width: 600px) {
+    .zillow-preview-card {
+      bottom: 16px;
+      left: 12px;
+      right: 12px;
+      width: auto;
+    }
+  }
+
 </style>
 </head>
 <body class="show-card-aerials">
@@ -1213,6 +1389,30 @@
       </div>
 
       
+          <!-- ZILLOW FLOATING PROPERTY PREVIEW CARD -->
+      <div id="zillow-preview-card" class="zillow-preview-card" style="display:none;">
+        <button type="button" class="preview-close-btn" onclick="closeSitePreview()" title="Close Card (ESC)">✕</button>
+        <div class="preview-card-body">
+          <div class="preview-thumb-wrap" onclick="openAerialLightbox()">
+            <img id="pv-img" src="" alt="Satellite Aerial" />
+            <span class="preview-badge" id="pv-mw">3.0 MW</span>
+          </div>
+          <div class="preview-info">
+            <div class="preview-kicker" id="pv-kicker">SITE #1 · TIER 1</div>
+            <div class="preview-title" id="pv-title">Property Name</div>
+            <div class="preview-sub" id="pv-sub">Address · Size</div>
+            <div class="preview-tags">
+              <span class="preview-tag fiber" id="pv-fiber">Fiber A+</span>
+              <span class="preview-tag util" id="pv-util">480V 3-Phase</span>
+              <span class="preview-tag rep" id="pv-rep">Direct Owner</span>
+            </div>
+            <div class="preview-actions">
+              <a id="pv-gmaps" href="#" target="_blank" rel="noopener" class="pv-btn">🗺 Maps</a>
+              <button type="button" class="pv-btn primary" onclick="openFullDrawer(selectedRank)">Full Specs &amp; CRM ▸</button>
+            </div>
+          </div>
+        </div>
+      </div>
     </main>
     <!-- SLIDE-OVER SITE CRM & EXECUTION DRAWER -->
           <!-- SLIDE-OVER SITE CRM & EXECUTION DRAWER -->
@@ -8669,6 +8869,68 @@ function renderList() {
   if (kpiEl) kpiEl.textContent = shown;
 }
 
+
+function showSitePreview(rank, panMap) {
+  selectedRank = rank;
+  const s = SITES.find(x => x.rank === rank);
+  if (!s) return;
+
+  const card = document.getElementById("zillow-preview-card");
+  if (!card) return;
+
+  const mwLabel = extractMwLabel(s.size);
+  document.getElementById("pv-mw").textContent = mwLabel;
+  document.getElementById("pv-kicker").textContent = `#${s.rank} · TIER ${s.tier}`;
+  document.getElementById("pv-title").textContent = s.name;
+  document.getElementById("pv-sub").textContent = `${s.address} (${s.zip})`;
+  document.getElementById("pv-fiber").textContent = s.fiber_label || `Grade ${s.fiber_grade}`;
+  document.getElementById("pv-rep").textContent = s.contact || "Broker / Owner";
+  document.getElementById("pv-img").src = getAerialUrl(s.lat, s.lng, 0.0022, 240, 220);
+  document.getElementById("pv-gmaps").href = "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent(s.address + ", San Antonio, TX");
+
+  // Highlight pill marker on map
+  document.querySelectorAll(".zillow-map-pill").forEach(p => p.classList.remove("selected"));
+  const pill = document.getElementById("map-pill-" + rank);
+  if (pill) pill.classList.add("selected");
+
+  // Highlight in sidebar list
+  document.querySelectorAll(".site-card").forEach(c => c.classList.remove("selected"));
+  const cardEl = document.getElementById("card-" + rank);
+  if (cardEl) {
+    cardEl.classList.add("selected");
+    cardEl.scrollIntoView({ behavior: "smooth", block: "nearest" });
+  }
+
+  // Show card, ensure full drawer is closed so map is wide open
+  card.style.display = "block";
+  document.getElementById("site-drawer").classList.remove("open");
+
+  if (map && panMap) {
+    setMapStyle("sat", document.getElementById("btn-sat"));
+    map.setView([s.lat, s.lng], 18, { animate: true });
+    setTimeout(() => map.invalidateSize(), 100);
+  }
+  try { history.replaceState(null, "", "?site=" + rank); } catch (e) {}
+}
+
+function closeSitePreview() {
+  const card = document.getElementById("zillow-preview-card");
+  if (card) card.style.display = "none";
+  selectedRank = null;
+  document.querySelectorAll(".zillow-map-pill").forEach(p => p.classList.remove("selected"));
+  document.querySelectorAll(".site-card").forEach(c => c.classList.remove("selected"));
+  try {
+    const url = new URL(window.location.href);
+    url.searchParams.delete("site");
+    history.replaceState(null, "", url.pathname + (url.search ? url.search : ""));
+  } catch (e) {}
+}
+
+function openFullDrawer(rank) {
+  closeSitePreview();
+  openSiteDrawer(rank, false);
+}
+
 function openSiteDrawer(rank, panMap) {
   selectedRank = rank;
   const s = SITES.find(x => x.rank === rank);
@@ -8750,6 +9012,7 @@ function openSiteDrawer(rank, panMap) {
   // Always default to stranger-friendly Overview tab on open
   switchDrawerTab("overview");
 
+  const pvCard = document.getElementById("zillow-preview-card"); if (pvCard) pvCard.style.display = "none";
   document.getElementById("site-drawer").classList.add("open");
   if (map) {
     setTimeout(() => {
@@ -8765,6 +9028,7 @@ function openSiteDrawer(rank, panMap) {
 }
 
 function closeDrawer() {
+  closeSitePreview();
   document.getElementById("site-drawer").classList.remove("open");
   try {
     const url = new URL(window.location.href);
@@ -9540,8 +9804,8 @@ window.addEventListener("DOMContentLoaded", () => {
     const targetSite = SITES.find(x => x.rank === siteParam);
     if (targetSite) {
       setTimeout(() => {
-        openSiteDrawer(targetSite.rank, true);
-      }, 200);
+        showSitePreview(targetSite.rank, true);
+      }, 300);
     }
   }
 });
