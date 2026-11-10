@@ -7,7 +7,7 @@ Keeps 4_STAGE_ONE_MASTER_CRM_303_SITES.xlsx (Google Sheets / Excel) and
 import openpyxl
 from pathlib import Path
 
-BASE = Path("/Users/benjijmac/Projects/Stage One Power")
+BASE = Path(__file__).resolve().parent  # the folder this script sits in
 XLSX_PATH = BASE / "4_STAGE_ONE_MASTER_CRM_303_SITES.xlsx"
 MD_PATH = BASE / "4_STAGE_ONE_MASTER_CRM_303_SITES.md"
 
@@ -18,8 +18,10 @@ def export_xlsx_to_md():
     if not rows:
         return
     headers = [str(h or "").replace("\n", " ").strip() for h in rows[0]]
+    n_sites = sum(1 for r in rows[1:] if str(r[0] or "").strip().isdigit())
+    n_other = len(rows) - 1 - n_sites
     lines = [
-        "# Stage One Power — Single-Page Master CRM (312 Rows: 9 Portfolio + 303 Sites)",
+        f"# Stage One Power — Single-Page Master CRM ({len(rows) - 1} Rows: {n_other} Portfolio + {n_sites} Sites)",
         "",
         "> **Auto-Synced Mirror of `4_STAGE_ONE_MASTER_CRM_303_SITES.xlsx` (`Stage_One_Master_CRM` tab).**",
         "> LLMs (`Muse / Hank`, `Antigravity`, `Google Gemini`) can read this `.md` file directly without parsing binary `.xlsx`.",
