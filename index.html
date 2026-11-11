@@ -271,6 +271,7 @@ dialog::backdrop{background:rgba(9,9,11,.4)}
     <div class="prog-text"><b class="num" id="p-ok">0</b> of <span class="num" id="p-all">0</span> potential sites validated</div>
     <div class="prog-bar"><i class="b-ok" id="pb-ok"></i><i class="b-prog" id="pb-prog"></i><i class="b-out" id="pb-out"></i></div>
   </div>
+  <button type="button" class="btn primary" id="btn-status"><svg class="i" viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>Executive Update</button>
   <button type="button" class="btn ghost hide-m" id="btn-how"><svg class="i" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M9.1 9a3 3 0 0 1 5.8 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg>How it works</button>
   <button type="button" class="btn hide-m" id="btn-export"><svg class="i" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5"/><path d="M12 15V3"/></svg>Export results</button>
 </header>
@@ -370,6 +371,58 @@ dialog::backdrop{background:rgba(9,9,11,.4)}
     <div style="display:flex;justify-content:flex-end;gap:8px">
       <button type="button" class="btn" id="how-export">Export results</button>
       <button type="button" class="btn primary" id="how-close">Got it</button>
+    </div>
+  </div>
+</dialog>
+
+<dialog id="status-dlg" style="width:min(640px,calc(100vw - 24px));max-height:88vh">
+  <div class="dlg" style="max-height:88vh;overflow-y:auto">
+    <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:8px">
+      <h2 style="margin:0">Stage One Power — Done to Date</h2>
+      <span class="tag t-replied">Updated Nov 11, 2026</span>
+    </div>
+    <p style="font-size:13px;color:var(--fg-3);margin:0 0 14px">Live executive summary across San Antonio site origination, broker replies, and deal infrastructure.</p>
+
+    <div class="eyebrow" style="margin-top:8px">1. Live Replies (2 Active)</div>
+    <ul style="margin:0 0 14px;padding-left:18px;font-size:13.5px;line-height:1.55">
+      <li><b>Birnbaum Property (Joe Aycock, EVP &amp; Wes Kimball):</b> Replied with multiple fit sites; call offered for today.</li>
+      <li><b>Alamo Junction Rail Park (Lory Whitley, Rail Logix):</b> Replied asking for specs; sent pod photo + offered site walk.</li>
+    </ul>
+
+    <div class="eyebrow">2. Warm Executive &amp; Whale Outreach Sent (Nov 10)</div>
+    <ul style="margin:0 0 14px;padding-left:18px;font-size:13.5px;line-height:1.55">
+      <li><b>Port San Antonio (Juan Antonio Flores, EVP):</b> Warm email sent (<code>#11</code> + 5 campus sites).</li>
+      <li><b>Brooks City Base (Connie Gonzalez, CSO):</b> Follow-up bump sent (<code>8000 S. Presa</code>).</li>
+      <li><b>146 Navarro St (600-Car Garage):</b> Sent to Amber Austin (<code>CBRE</code>).</li>
+      <li><b>1617 E. Commerce (Friedrich Mfg):</b> Sent to Matt Michelson (<code>Newmark</code>).</li>
+      <li><b>1220 E. Commerce (RK Group HQ):</b> Sent to Quadrant Investments.</li>
+      <li><b>726 Probandt (Newell Trust):</b> Sent to Trust attorney Bill Kaufman.</li>
+    </ul>
+
+    <div class="eyebrow">3. Cold Pipeline &amp; CRM</div>
+    <ul style="margin:0 0 14px;padding-left:18px;font-size:13.5px;line-height:1.55">
+      <li><b>55 Sites + 5 Brokerages Contacted</b> across Waves 1–7 (<code>1</code> pass: Leon Springs).</li>
+      <li><b>326 San Antonio Sites Mapped</b> on this live Site Finder.</li>
+      <li><b>1-Page Cloud CRM</b> live on <a href="https://docs.google.com/spreadsheets/d/1ok5yuVhP96zVpZFMNQaxFAYDPRKoQhwl/edit" target="_blank" rel="noopener">Google Sheets</a> and shared with Alan (<code>alan@kanecs.ie</code>).</li>
+      <li><b>Holds Locked:</b> <code>1010 N. St. Mary's</code> (Hixon) and <code>600 Lone Star</code> (Southstar) marked Do Not Contact.</li>
+      <li><b>Pricing Updated:</b> Removed <code>$7,500/mo</code>; now quoting <b><code>$175–$250/spot/mo</code></b> or <b><code>$1.25–$1.50/SF/mo</code></b>.</li>
+      <li><b>Email Spam Fixed:</b> <code>_dmarc.jockeyvc.com</code> live in DNS.</li>
+    </ul>
+
+    <div class="eyebrow">4. Docs, Legal &amp; Capital</div>
+    <ul style="margin:0 0 18px;padding-left:18px;font-size:13.5px;line-height:1.55">
+      <li><b>Contracts Built:</b> <code>$100</code> 90-Day Landlord Option (<code>Bexar LLC</code>), Customer LOI, and Landlord Pad Spec Sheet.</li>
+      <li><b>Unit Economics &amp; 50-State Research:</b> Complete (<code>5</code> financial models + Dell/TD SYNNEX <code>3%–5%</code> fee math).</li>
+      <li><b>Equipment Lenders (Mike Whitaker):</b> Sent unit economics (<code>Nov 10</code>); <code>$30M</code> Blackwell brief ready.</li>
+      <li><b>Company Agreement (Dub REV5):</b> Audited; edits staged and held for your word.</li>
+    </ul>
+
+    <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;border-top:1px solid var(--border);padding-top:14px">
+      <button type="button" class="btn" id="status-copy">Copy Share Link</button>
+      <div style="display:flex;gap:8px">
+        <a class="btn" href="https://docs.google.com/spreadsheets/d/1ok5yuVhP96zVpZFMNQaxFAYDPRKoQhwl/edit" target="_blank" rel="noopener">Open Google Sheet CRM</a>
+        <button type="button" class="btn primary" id="status-close">Close</button>
+      </div>
     </div>
   </div>
 </dialog>
@@ -946,6 +999,13 @@ function wire() {
   $('btn-how').addEventListener('click', () => $('how').showModal());
   $('how-close').addEventListener('click', () => $('how').close());
   $('how').addEventListener('click', e => { if (e.target === e.currentTarget) e.currentTarget.close(); });
+  $('btn-status').addEventListener('click', () => $('status-dlg').showModal());
+  $('status-close').addEventListener('click', () => $('status-dlg').close());
+  $('status-dlg').addEventListener('click', e => { if (e.target === e.currentTarget) e.currentTarget.close(); });
+  $('status-copy').addEventListener('click', () => {
+    const u = location.origin + location.pathname + '#status';
+    (navigator.clipboard ? navigator.clipboard.writeText(u) : Promise.reject()).then(() => toast('Status link copied!'), () => toast(u));
+  });
   document.querySelector('.prog').addEventListener('click', () => $('how').showModal());
 
   document.addEventListener('keydown', e => {
@@ -970,6 +1030,7 @@ function wire() {
   initMap(); wire(); refresh(); updateToggle();
   const m = /[?&]site=(\d+)/.exec(location.search);
   if (m && BY_ID.has(+m[1])) openSite(+m[1], {instant: true});
+  if (location.hash === '#status' || /[?&]status=1/.test(location.search)) $('status-dlg').showModal();
 })();
 </script>
 </body>
