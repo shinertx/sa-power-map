@@ -145,3 +145,20 @@
      - **`#287` (`Leon Springs Business Park`):** Marked `PASSED` per `9:16 AM` reply from `adam@valcorcre.com` (no `1.5 MW` spare power or space).
      - **`#304` (`726 Probandt St` & `530 Steves Ave` — Newell Family Trust / CMC Recycling):** Verified **NOT dormant** (`726 Probandt` is an active **CMC Recycling** electric shredder yard `Mon–Sat`, `210-227-3141`), with `5.95`-ac fee land held by **Newell Nano Family LP / Winifred Newell Irrevocable John R. Newell Family Trust** (`PO Box 830808`, no public family-office email). At `8:35 PM`, per Ben's approval of the Pre-Send Verification Proof Table, dispatched outreach from `ben@jockeyvc.com` (`$1.25–$1.50/SF/mo NNN`) to the Newell Family Trust's registered San Antonio real-estate counsel on `sanantonio.gov` filings: **William T. ("Bill") Kaufman**, President & Attorney, **The Kaufman Group** (`bill@tkg-lawfirm.com`, `210-227-2007`).
      - **Dub Sutherland:** Held (`0` sent, per Ben). **Mike Whitaker:** Held for projection review (`ben@jockeyvc.com` sent `"the units data"` at `12:09 PM`).
+- **2026-11-11 (07:50–08:00 AM — 5-Unit Turnkey NVIDIA Blackwell Modular Pod RFQs Dispatched Across All 10 Vendors + Live Landlord Replies Logged):**
+  1. **10 Modular Blackwell Pod OEMs / Distributors Contacted (`ben@jockeyvc.com` Sent-Verified + `crusoe.ai` Confirmation; `Giga Energy` Explicitly Held / Skipped per Ben):**
+     - **Dell Technologies (`PowerEdge XE9712` / `Dell Modular Data Center MDC`, Round Rock, TX):** Sent to `Joann.Tamez@Dell.com` (TX Enterprise Program Mgr; `premier@dell.com` returned mailbox-full) + `DellDIRSales@Dell.com` (with `Bcc: alan@kanecs.ie, neal@equityx.co, dsutherland@kslawllp.com`).
+     - **TD SYNNEX (`#1` NA NVIDIA Distributor across Dell/HPE/Supermicro/Vertiv):** Sent to `Shiloh.Raquet@tdsynnex.com`, cc `data-iot@tdsynnex.com`.
+     - **Supermicro (`Liquid-Cooled AI SuperCluster / DCBBS`):** Sent to `Sales-USA@supermicro.com`.
+     - **Armada (`Galleon` Outdoor Modular Pods):** Sent to `galleonexperience@armada.ai`, cc `government@armada.ai`.
+     - **HPE (`HPE AI Mod POD`, Austin/Houston, TX):** Sent to `us.directorders@hpe.com` (auto-created **HPE Case `#5406661825`**).
+     - **GIGABYTE / Advanced HPC (`GADU` Containerized Blackwell Pods):** Sent to `sales@advancedhpc.com`.
+     - **Vertiv (`MegaMod HDX / SmartMod Max`):** Sent to `federalsales@vertiv.com` (`Bcc: Alan, Neal, Dub`).
+     - **Schneider Electric (`EcoStruxure Modular AI Pods`, Red Oak, TX):** Sent to `Bill.Ryan@secritical.com` (`Bcc: Alan, Neal, Dub`).
+     - **Eaton (`xModular` Data Center Enclosures):** Sent to `CPDISalesEngineering@eaton.com` (`Bcc: Alan, Neal, Dub`).
+     - **Crusoe (`Crusoe Edge Zones / Spark Liquid`):** Submitted live at `https://www.crusoe.ai/contact-sales` -> confirmed `/contact-sales/confirmation` (`Thank you for your submission`).
+     - *(Note: `Delta Electronics Americas` web form at `delta-americas.com/en-US/customer-service` is gated by Google reCAPTCHA — left unsubmitted per zero-CAPTCHA rule; Plano TX phone `+1-214-437-7900`.)*
+     - **Partner Sync:** Dispatched full 10-vendor recap email to **Alan Hickey (`alan@kanecs.ie`), Neal Cobb (`neal@equityx.co`), and Dub Sutherland (`dsutherland@kslawllp.com`)**.
+  2. **2 New Live San Antonio Landlord Replies Logged:**
+     - **`#316` (`146 Navarro St` — 600-Car Garage):** **Amber Austin** (`Amber.Austin@cbre.com`) replied Nov 10 at `10:20 PM`: *"Hello, Ben! Let me get with ownership and see if this is something they would be interested in. I will be back in touch."* (Ben already forwarded to Alan at `11:31 PM`.)
+     - **`#298` (`7010 NE Loop 410`):** **Erik** at **Crossed Sabers CRE** (`+1-210-792-3992`) texted Nov 10 at `4:40 PM` and scheduled a call with Ben for today (`Nov 11`).
