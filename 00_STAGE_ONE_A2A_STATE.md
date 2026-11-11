@@ -91,6 +91,7 @@
 | `8` | `8_STAGE_ONE_MODULAR_POD_UNIT_ECONOMICS_DEEP_RESEARCH.pdf` (`.md`) | 5-Model Unit Economics Matrix & TD SYNNEX / Dell `3%–5%` Referral Playbook | Nov 7, 2026 |
 | `9` | `9_STAGE_ONE_50_STATE_INDUSTRY_DEEP_RESEARCH.pdf` (`.md`) | 50-State BTM Regulatory & Competitor Teardown | Nov 7, 2026 |
 | `10` | `10_TYPE_ONE_LLC_COMPANY_AGREEMENT_DRAFT_REV5.docx` | Dub Sutherland's Draft Company Agreement (`REV5`) | Nov 8, 2026 |
+| `11` | `11_STAGE_ONE_LANDLORD_PAD_SPEC_SHEET.pdf` | **Landlord-Safe 1-Page Physical Equipment & Pad Cut-Sheet** (zero NVIDIA/arbitrage leaks; `pad-spec.pdf`) | Nov 10, 2026 |
 
 ---
 
