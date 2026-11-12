@@ -30,6 +30,7 @@
 
 ### B. Capital & Equipment Lenders — Mike Whitaker (`mikewhitaker012@gmail.com`)
 - **Status:** Mike Whitaker reached out to equipment lenders for the `$30M` NVIDIA Blackwell Modular Pod lease (`8x NVL72 racks / 576 GPUs`), has lenders ready for calls, and asked Nov 6 for **financial projections**.
+- **Update Nov 11 (`4:55 PM`):** Projections **sent** to Mike from `ben@jockeyvc.com` (see Live Action Log). The items under "Ready to Send" below were **not** what went out. No customer contract is signed; the rates in this section are targets, not contracted.
 - **Ready to Send:**
   - Attach [`7_STAGE_ONE_BLACKWELL_LENDER_1PAGER.pdf`](file:///Users/benjijmac/Projects/Stage%20One%20Power/7_STAGE_ONE_BLACKWELL_LENDER_1PAGER.pdf) and [`8_STAGE_ONE_MODULAR_POD_UNIT_ECONOMICS_DEEP_RESEARCH.pdf`](file:///Users/benjijmac/Projects/Stage%20One%20Power/8_STAGE_ONE_MODULAR_POD_UNIT_ECONOMICS_DEEP_RESEARCH.pdf).
   - Include the 3 contracted Blackwell revenue scenarios (`$17.2M/yr` at `$4.00/GPU-hr`, `$23.6M/yr` at `$5.50/GPU-hr`, `$30.1M/yr` at `$7.00/GPU-hr` at `85%` utilization) plus the 5-Model Unit Economics Matrix.
@@ -162,3 +163,24 @@
   2. **2 New Live San Antonio Landlord Replies Logged:**
      - **`#316` (`146 Navarro St` — 600-Car Garage):** **Amber Austin** (`Amber.Austin@cbre.com`) replied Nov 10 at `10:20 PM`: *"Hello, Ben! Let me get with ownership and see if this is something they would be interested in. I will be back in touch."* (Ben already forwarded to Alan at `11:31 PM`.)
      - **`#298` (`7010 NE Loop 410`):** **Erik** at **Crossed Sabers CRE** (`+1-210-792-3992`) texted Nov 10 at `4:40 PM` and scheduled a call with Ben for today (`Nov 11`).
+- **2026-11-11 (`4:55 PM` — Financial projections sent to Mike Whitaker; Sent-verified in `ben@jockeyvc.com` by Claude Code session):**
+  1. **What went out:** Reply in the Nov 5 thread `Jockey Ventures — $30M NVIDIA Blackwell Modular Pod Equipment Lease` to `mikewhitaker012@gmail.com`, attaching `12_STAGE_ONE_TURNKEY_POD_FINANCIAL_MODEL.xlsx` (corrected five-year version). Text drafted by Claude Code; sent from Ben's side. This answers Mike's Nov 6 request for projections.
+  2. **What the email tells Mike:** it is a projection and **no customer contract is signed**; `$5.50/GPU-hr` on a five-year take-or-pay is a **target** (source: CoreWeave Q3 2026 call, `$20–25M` per MW per year for new 4–5 year contracts), with a downside case at `$4.25` (`1.37x` coverage); pod = `8` NVL72 racks (`576` GPUs) + `10` network/storage racks, about `1.2 MW` IT load (Vertiv reference design); `$30M` is an estimate because no vendor quote is back; the Nov 10 `NVIDIA DSX POD` PDF is background only (it describes the Vera Rubin pod); the Nov 5 "backed by a long-term contract" line is restated as the structure being pursued.
+  3. **Model figures per pod (as sent):** revenue `$23.6M/yr`, `$21.7M/yr` before debt service, `1.82x` coverage on a 36-month, `12%`, `$30M` loan.
+  4. **Ask to lenders:** indication of advance rate and terms, conditional on a signed customer contract and a firm hardware quote.
+  5. **Status:** no reply from Mike as of `5:30 PM`. Two older unsent Nov 5 drafts to Mike remain in the mailbox. Model fixes made before sending: loan-payment sign error, Vertiv rack count and power draw, labels changed from "Contracted" to "Target, no contract signed".
+- **2026-11-12 (PM — Vertiv / Rep Meeting Notes + Brooks + 4300 Centerview + Mike/Anthony Sync):**
+  1. **Downtown SA Vertiv / Rep Meeting (`10:00 AM` — Ben + Neal Cobb):**
+     - Met **Jim Greene** (Director, Technical Sales — AC Power North America, **Vertiv**, `jim.greene@vertiv.com`) and **Will Oldham** (**Bud Griffin & Associates / BGA**, `802 Austin St., San Antonio`, official Local Vertiv Office; LinkedIn connected Nov 11; verify `willoldham@bgasales.com` vs `willholham@bgasales.com` before emailing).
+     - **What they pitched:** `18-month` build timeline for a SuperPod setup; talked ~`2.5 MW`, **indoor / inside-a-building** deployments, and **natural gas / turbines** — did **not** have a single outdoor modular pod spec matching **Vera Rubin DSX (`800V DC`)** (Jim Greene's lane is AC Power North America, not turnkey outdoor modular enclosures).
+     - **Next step they gave:** Put requirements in front of **engineering / IT** to spec out.
+     - **Strategic note:** Keep local rep engineering (**Bud Griffin & Associates**) from pulling Stage One into custom indoor/turbine builds; drive modular outdoor **MegaMod / SmartMod / DSX** specs and **`DPAS` priority lead-time compression** through **Tony Evans's national/federal Solution Architects**.
+  2. **Tony Evans / Vertiv Federal (`11:29 AM` Gmail):** Replied that Solution Architects **can support Stage One's needs** and scheduled a **solution-framing + ROM call for Friday, Nov 13 at `2:00 PM ET` (`1:00 PM CST`)** (requested forwarding invite to **Alan H.** and **Dub S.**).
+  3. **Will Oldham Offtake Lead (`Nov 11` LinkedIn + `Nov 12` Meeting):** Connected on LinkedIn Nov 11 (`Critical Infrastructure Solutions` / `bgasales.com`); flagged power bottleneck and **potential offtake** (follow-up pending).
+  4. **Real Estate & Sites (`Stage One` WhatsApp + Gmail):**
+     - **Brooks City Base (`11:32 AM` Gmail):** CSO **Connie Gonzalez** (`Connie@livebrooks.com`) confirmed interest and CC'd **Raul Hernandez** (Senior IT Manager / Innovation lead) to schedule next steps.
+     - **4300 Centerview, San Antonio (`10:30–11:58 AM` WhatsApp):** `REOC San Antonio` (C. Michael Morse) — owners are speaking directly with **CPS Energy** and believe there is large power capacity on site; **Neal Cobb** available for walk.
+     - **2 Sites Ready for Walk (`1:59 PM` WhatsApp):** Realtor confirmed 2 sites want to proceed pending confirmation email, **site walk**, and **deployment timeline** + pod capacity check. Ben set **Wed, Nov 18** target to get sites tentatively optioned.
+  5. **Capital & Offtake (`iMessage`):**
+     - **Mike Whitaker (`10:20–10:25 AM`):** Expects lender update by EOD; asked whether end user will sign **5-year take-or-pay** vs **3-year GPU market standard** (reply pending).
+     - **Anthony Kenisky (`8:24 AM, 12:13 PM`):** Sent 6 DSX site-prep questions (`800 VDC`, `45 °C` cooling, ICD/RACI, MaxLPS/Flex); syncing after calls.
