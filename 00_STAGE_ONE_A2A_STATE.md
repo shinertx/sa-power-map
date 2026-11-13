@@ -184,3 +184,15 @@
   5. **Capital & Offtake (`iMessage`):**
      - **Mike Whitaker (`10:20–10:25 AM`):** Expects lender update by EOD; asked whether end user will sign **5-year take-or-pay** vs **3-year GPU market standard** (reply pending).
      - **Anthony Kenisky (`8:24 AM, 12:13 PM`):** Sent 6 DSX site-prep questions (`800 VDC`, `45 °C` cooling, ICD/RACI, MaxLPS/Flex); syncing after calls.
+- **`2026-11-13` (Morning `v3` Zero-Trust Availability Audit + `"I Will Build the Pod"` Execution):**
+  1. **Live Morning Emails & Calls (`Nov 13`):**
+     - **`5:22 AM` (`REOC San Antonio` — `C. Michael Morse <mmorse@reocsanantonio.com>` & `Cindy Jacoel`):** Sent leasing flyers and requested tour times for **two sites willing to host Stage One modules**: **`#331` `4300 Centerview Dr`** (`6–8 MW` reported by Alan/REOC, vacant `~64k SF` shell) and **`#332` `1305 S. Brazos St`** (`I-1` cold storage, published **`2,400A` `480V` 3-phase**, `2.6 km` to Downtown Carrier Hotel). Alan looped in Ben & Neal (Neal OOO thru Nov 15).
+     - **`6:12 AM` (`Vertiv` — `Tony.Evans@vertiv.com` + 4 Solution Architects):** Confirmed **1:00 PM CST (`2:00 PM ET`) call TODAY** on 5-unit modular ROM, `480V` cutover, and `DPAS` lead-time compression.
+     - **`8:49–8:50 AM` (`Anthony Kenisky` `+1-512-751-2713`):** Confirmed factory NVIDIA DSX pods are on `12+ month` lead time and moved call to **1:30 PM CST TODAY**; Ben replied **`"I will build the pod"`**.
+     - **`10:00 AM CST TODAY`:** Call scheduled with **Clay Holliday (`+1-210-797-2797`, `Property Research Partners` ROW/Land Options + `Giga Energy` Houston `480V` `GigaPod` connection)**.
+  2. **Zero-Trust Property Availability Shifts Synced to Map (`497` sites) & CRM (`342` rows):**
+     - **Upgraded `#4` (`1 Windcrest Dr`):** Verified active JLL/ICP listing (`639,627 SF` available) with **`21 MW` published heavy power** + `0.0 km` I-35 Rackspace fiber vaults.
+     - **Verified `#327` (`766 FM 306`):** Active Birnbaum sale/lease (`9,000–10,000A` / `6+6 MW` NBU; AutoZone took small front corner pad only).
+     - **Added `#332` (`1305 S. Brazos St`):** REOC live tour lead (`I-1`, `2,400A` `480V`).
+     - **Clarified `#13` (`Brooks`):** Former Nexolon bldg (`8000 S Presa`) is occupied by **Mission Solar Energy**; retargeted to **vacant BDA shovel-ready industrial pads** next to **IEM's `$200M` switchgear campus**.
+     - **Excluded Occupied/Redev Traps:** `#10` (`Tower Semiconductor`), `#32` (`Navistar`), `#38` (`Lone Star Brewery` `$575M` residential redev).
