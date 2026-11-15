@@ -83,11 +83,11 @@
 
 | # | Filename | Purpose | Last Updated |
 |---|---|---|---|
-| `00` | `00_STAGE_ONE_A2A_STATE.md` | **Canonical A2A Live State & Action Log** for Antigravity, Muse, and Gemini | Nov 10, 2026 |
+| `00` | `00_STAGE_ONE_A2A_STATE.md` | **Canonical A2A Live State & Action Log** for Antigravity, Muse, and Gemini | Nov 15, 2026 |
 | `0` | `0_STAGE_ONE_MASTER_DOC.pdf` (`STAGE_ONE_MASTER_DOC.md`) | Master Execution Playbook, 5-Model Unit Economics, 50-State Research & Entity Strategy | Nov 7, 2026 |
 | `1` | `1_STAGE_ONE_1_PAGE_CUSTOMER_LOI.pdf` | 1-Page Customer Offtake LOI Template | Nov 4, 2026 |
-| `2` | `2_BEXAR_90_DAY_LANDLORD_OPTION.pdf` | `$100` 90-Day Stealth Landlord Option (`Bexar Commercial Utility Easements LLC`) | Nov 4, 2026 |
-| `3` | `3_STAGE_ONE_SAN_ANTONIO_MAP.html` (`index.html`) | Interactive 303-Site Map (`San Antonio + Eagle Ford + Pleasanton + Karnes + Wilson/Guadalupe`) | Nov 7, 2026 |
+| `2` | `2_BEXAR_90_DAY_LANDLORD_OPTION.pdf` | 90-Day Stealth Landlord Option (`Bexar Commercial Utility Easements LLC`) | Nov 4, 2026 |
+| `3` | `3_STAGE_ONE_SAN_ANTONIO_MAP.html` (`index.html`) | Interactive 337-Site San Antonio Finder (`12` Zero-SUP / `UZROW` CPS Energy Priority Whales) | Nov 15, 2026 |
 | `4` | `4_STAGE_ONE_ALL_264_SITES.csv` (`_LIST.md`) | Master 303-Site Database with Verified Emails & Outreach Statuses | Nov 7, 2026 |
 | `5` | `5_ANTHONY_TEXAS_POD_BUYERS.xlsx` | Anthony Kenisky's 18 Texas Pod Buyer Prospects | Nov 4, 2026 |
 | `6` | `6_NVIDIA_DSX_POD_OFFICIAL_SPEC.pdf` | Official NVIDIA DSX Modular Reference Design Spec | Nov 4, 2026 |
@@ -199,3 +199,14 @@
      - **Added `#332` (`1305 S. Brazos St`):** REOC live tour lead (`I-1`, `2,400A` `480V`).
      - **Clarified `#13` (`Brooks`):** Former Nexolon bldg (`8000 S Presa`) is occupied by **Mission Solar Energy**; retargeted to **vacant BDA shovel-ready industrial pads** next to **IEM's `$200M` switchgear campus**.
      - **Excluded Occupied/Redev Traps:** `#10` (`Tower Semiconductor`), `#32` (`Navistar`), `#38` (`Lone Star Brewery` `$575M` residential redev).
+
+- **`2026-11-15` (Full GIS Boundary, Municipal Ordinance & Carrier Dark-Fiber Audit + Live Repo Sync):**
+  1. **Primary-Source Municipal Ordinance Filtering (`Zero-SUP Fast-Track Gate`):**
+     - Audited all `332` SA-region pins + `92` outside-CoSA `BCAD_Parcels` (`F1/F2`) against `COSABoundary`, `COSA_Zoning`, `New Braunfels Legistar File 26-1266`, `City of Schertz Ord. 26-S-020`, and Dub Sutherland's Nov 13 & Nov 15 memos (`SA-Data-Center-Ordinance-Team-Memo-20261113-1352.pdf` & `Site-Selection-Pad-Design-Criteria-20261115-0904.pdf`).
+     - **Blocked / Gated Jurisdictions Demoted from Priority (`sh: 0` / `x`):** **City of San Antonio** (`280` pins — Oct 29 Ord. requires 6–9 mo Council `"S"` SUA; `#331` `4300 Centerview` zoned `C-3/O-2` lost SWBC grandfathering due to Valor charter school occupancy; `#332` `1305 S Brazos` inside CoSA `I-1` & `~1.6 MW` ceiling; `#265` `19685 I-37 S` strip-annexed CoSA `I-2`), **City of New Braunfels** (`#327` `766 FM 306` & `#328` `302 E San Antonio` — blocked Nov 16 by `Ord. 26-1266` requiring `M-2/M-2A` + `50-ac` min + `0` existing-building grandfathering), and **City of Schertz** (`7` pins — gated Oct 20 by `Ord. 26-S-020` requiring Council `SUP`). Marked synthetic v1 pins `#40` & `#42` ruled out per BCAD tax roll.
+  2. **Verified Zero-SUP CPS Energy + Carrier Dark-Fiber Campus Clusters (`12` Priority Sites Starred in `index.html`):**
+     - Verified live polyline distances across **LOGIX**, **FiberLight** (`Dark_and_Lit_20250918_1`), and **UPN / Segra** (`Segra_Fiber_Network_Complete`) FeatureServers:
+       - **`#4` Windcrest Ex-Rackspace HQ (`1 Fanatical Pl / 7880 N IH-35`, fixed coords `29.50765, -98.39342`):** Verified inside City of Windcrest (outside CoSA), `21 MW` published, `639,627 SF` indoor `36'` clear via ICP (`asemarjian@icpllc.com`) / JLL (`ben.jordan@jll.com`, `mark.krenger@jll.com`) / Windcrest EDC (`marioh@windcrest-tx.gov`), **`0 m` LOGIX On-Net Data Center**, `443 m` FiberLight Lit, `723 m` UPN/Segra.
+       - **NE I-35 Multi-Meter Dark-Fiber Spine (`<39 MW` per CPS meter -> zero CPS Large-Load study):** Added **`#333` EastGroup Eisenhauer** (`4829 & 5101 Eisenhauer Rd, Windcrest`, `749,013 SF`, `~200 m` Lumen SA1, `ljordan@cavenderhill.com`), upgraded **`#91` `8900 Fourwinds`** (`44 m` UPN/Segra, `49 m` FiberLight), added **`#334` Interchange at Live Oak** (`13552 Toepperwein Rd`, `490,283 SF`, `689 m` UPN/Segra, `ljordan@cavenderhill.com`), added **`#335` Americold Kirby** (`5711 FM 78`, `371,863 SF`, `327 m` UPN/Segra), and upgraded **`#28` Retama Park Selma** (`330 m` LOGIX On-Net, `jcasias@ci.selma.tx.us`), **`#26` Ben E. Keith Selma**, & **`#337` `16887 Lookout Rd` Selma** (`36.70 ac`).
+       - **Unincorporated Bexar `ETJ` + Enclaves:** Added **`#336` ET Elmendorf** (`15720 Old Corpus Christi Hwy`, `414,300 SF` on `53.04 ac` in Unincorporated Bexar `ETJ` — zero municipal zoning, `jg@turcotteres.com`) adjacent to **`#267` Alamo Junction Rail Park** (`lwhitley@rail-logix.com`), upgraded **`#6` Wonderland Mall** (`Balcones Heights` indoor anchor vaults, `203 m` FiberLight, `info@wonderlandamericas.com`), and flagged **`#11` Port San Antonio** (`UZROW` unzoned Ch. 379B across `1,373.9 ac`).
+  3. **Pricing Anchor Cleanup & Live GitHub Pages Sync:** Stripped remaining `$100` / `$175-$250/spot` / `$1.25-$1.50/SF` strings across `index.html`, `3_STAGE_ONE_SAN_ANTONIO_MAP.html`, `status.html`, and `00_STAGE_ONE_A2A_STATE.md`.
