@@ -198,12 +198,53 @@ svg.i{width:16px;height:16px;flex:none;stroke:currentColor;fill:none;stroke-widt
 .facts dd{margin:0;color:var(--fg-2);overflow-wrap:anywhere}
 .facts dd b{color:var(--fg)}
 .note-guess{font-size:12px;color:var(--fg-3);margin:0 0 10px}
-textarea.notes{width:100%;min-height:76px;border:1px solid var(--border-2);border-radius:8px;padding:9px 11px;resize:vertical;font-size:13.5px;line-height:1.5;background:var(--card)}
+textarea.notes{width:100%;min-height:80px;border:1px solid var(--border-2);border-radius:8px;padding:10px 12px;resize:vertical;font-size:max(1rem,1em);line-height:1.5;background:var(--card)}
 textarea.notes:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px rgba(2,132,199,.14)}
 .out-row{display:flex;align-items:center;gap:8px;margin-top:12px;flex-wrap:wrap}
 .out-row select{height:32px;border:1px solid var(--border-2);border-radius:7px;background:var(--card);padding:0 8px;font-size:13px;font-weight:500;max-width:100%}
 .d-foot{display:flex;gap:8px;margin-top:22px}
-.d-foot .btn{flex:1;justify-content:center;height:40px}
+.d-foot .btn{flex:1;justify-content:center;height:44px}
+
+/* Mobile-first Quick Update & Add Site */
+.btn.lg{min-height:48px;height:48px;padding:0 16px;font-size:15px;font-weight:700;border-radius:9px;justify-content:center}
+.q-card{margin-top:16px;padding:14px;border:1.5px solid var(--border-2);border-radius:12px;background:var(--bg);display:flex;flex-direction:column;gap:12px}
+.q-card .sec-h{margin-bottom:0}
+.q-saved{font-size:12px;font-weight:600;color:var(--ok-fg)}
+.f-grp{display:flex;flex-direction:column;gap:5px}
+.f-grp label,.f-lbl{font-size:12.5px;font-weight:700;color:var(--fg-2)}
+.f-grp .opt{font-weight:400;color:var(--fg-3)}
+.f-grp .req{color:var(--bad)}
+.f-row2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.q-inp,.f-grp input,.f-grp select{width:100%;min-height:48px;height:48px;border:1px solid var(--border-2);border-radius:8px;background:var(--card);padding:0 12px;font-size:max(1rem,1em);font-weight:500;color:var(--fg)}
+.q-inp:focus,.f-grp input:focus,.f-grp select:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px rgba(2,132,199,.14)}
+.q-inp:user-invalid,.f-grp input:user-invalid{border-color:var(--bad);background:var(--bad-bg)}
+.mw-input-row{display:flex;align-items:center;gap:10px}
+.field.lg{min-height:48px;height:48px;border-radius:8px;flex:1;max-width:200px}
+.field.lg input{width:100%;height:46px;font-size:max(1.1rem,18px);font-weight:700;padding:0 12px}
+.field.lg span{font-size:14px;font-weight:700;padding-right:12px;color:var(--fg-2)}
+.mw-pods{font-size:13px;font-weight:600;color:var(--ok-fg);background:var(--ok-bg);padding:6px 10px;border-radius:99px;white-space:nowrap}
+.mw-pods:empty{display:none}
+.pill-grid{display:grid;grid-template-columns:1fr 1fr;gap:7px}
+.pill-btn{min-height:44px;padding:6px 10px;border:1px solid var(--border-2);border-radius:8px;background:var(--card);font-size:13.5px;font-weight:600;color:var(--fg-2);display:inline-flex;align-items:center;justify-content:center;gap:6px;text-align:center;transition:background .12s,border-color .12s,color .12s}
+.pill-btn:hover{background:var(--muted)}
+.pill-btn[aria-pressed="true"]{background:var(--primary);border-color:var(--primary);color:#FAFAFA}
+.pill-btn[data-qst="ok"][aria-pressed="true"],.pill-btn[data-qout="replied"][aria-pressed="true"]{background:var(--ok);border-color:var(--ok);color:#fff}
+.pill-btn[data-qst="prog"][aria-pressed="true"],.pill-btn[data-qout="sent"][aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:#fff}
+.pill-btn[data-qst="out"][aria-pressed="true"],.pill-btn[data-qout="hold"][aria-pressed="true"]{background:var(--bad);border-color:var(--bad);color:#fff}
+.q-actions{display:flex;gap:8px;margin-top:2px}
+.q-actions #q-submit{flex:2}
+.q-actions #q-share{flex:1}
+.q-confirm{padding:10px 12px;border-radius:8px;background:var(--ok-bg);color:var(--ok-fg);font-size:13px;font-weight:600;display:flex;align-items:center;justify-content:space-between;gap:8px}
+.adv-sec{border:1px solid var(--border);border-radius:10px;padding:0 12px;background:var(--card)}
+.adv-sum{cursor:pointer;padding:12px 0;font-size:13.5px;font-weight:700;color:var(--fg-2);display:flex;align-items:center;justify-content:space-between;list-style:none}
+.adv-sum::-webkit-details-marker{display:none}
+.adv-sum::after{content:'▾';font-size:13px;color:var(--fg-3);margin-left:6px}
+.adv-sec[open] .adv-sum{border-bottom:1px solid var(--border)}
+.adv-sec[open] .adv-sum::after{content:'▴'}
+.adv-body{padding:12px 0}
+.q-form{display:flex;flex-direction:column;gap:12px}
+.dlg-actions{display:flex;justify-content:flex-end;gap:8px;margin-top:6px}
+.dlg-actions .btn{flex:1}
 
 /* Map chrome */
 .layers{position:absolute;top:12px;left:12px;z-index:500;display:flex;background:var(--card);border:1px solid var(--border);border-radius:8px;padding:3px;box-shadow:0 2px 6px rgba(9,9,11,.1)}
@@ -221,9 +262,9 @@ textarea.notes:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3p
 .m-toggle{display:none;position:fixed;left:50%;bottom:calc(18px + env(safe-area-inset-bottom));transform:translateX(-50%);z-index:900;height:44px;padding:0 20px;border-radius:99px;border:0;background:var(--primary);color:#FAFAFA;font-weight:700;font-size:14px;align-items:center;gap:8px;box-shadow:0 6px 18px rgba(9,9,11,.28)}
 .toast{position:fixed;left:50%;bottom:24px;transform:translate(-50%,20px);background:var(--primary);color:#FAFAFA;padding:9px 16px;border-radius:8px;font-size:13px;font-weight:600;opacity:0;pointer-events:none;transition:opacity .2s,transform .2s var(--ease);z-index:1000}
 .toast.on{opacity:1;transform:translate(-50%,0)}
-dialog{border:1px solid var(--border);border-radius:14px;padding:0;width:min(480px,calc(100vw - 32px));box-shadow:0 20px 50px rgba(9,9,11,.25);color:var(--fg)}
+dialog{border:1px solid var(--border);border-radius:14px;padding:0;width:min(480px,calc(100vw - 24px));box-shadow:0 20px 50px rgba(9,9,11,.25);color:var(--fg)}
 dialog::backdrop{background:rgba(9,9,11,.4)}
-.dlg{padding:22px}
+.dlg{padding:20px;max-height:90dvh;overflow-y:auto}
 .dlg h2{font-size:19px;font-weight:800;letter-spacing:-.02em;margin:0 0 4px}
 .dlg p{margin:0 0 14px;color:var(--fg-2)}
 .how{list-style:none;margin:0 0 18px;padding:0;display:flex;flex-direction:column;gap:12px}
@@ -236,9 +277,10 @@ dialog::backdrop{background:rgba(9,9,11,.4)}
 @media (max-width:1080px){ :root{--side:390px} .brand-sub{display:none} }
 @media (max-width:820px){
   :root{--side:100%}
-  .top{gap:10px;padding:0 12px}
-  .prog{min-width:0;flex:1}
-  .top-space,.top .hide-m{display:none}
+  .top{gap:8px;padding:0 10px}
+  .prog{display:none}
+  .top-space{display:block}
+  .top .hide-m{display:none}
   .side{border-right:0}
   .mapwrap{display:none}
   body.m-map .side{display:none}
@@ -256,6 +298,10 @@ dialog::backdrop{background:rgba(9,9,11,.4)}
   .search input{font-size:16px}
   .field input,textarea.notes,.filters select,.out-row select{font-size:16px}
 }
+@media (pointer:coarse){
+  .btn.lg,.q-inp,.f-grp input,.f-grp select{min-height:50px}
+  .pill-btn{min-height:48px;font-size:14px}
+}
 @media (prefers-reduced-motion:reduce){*{transition:none!important}}
 </style>
 </head>
@@ -271,7 +317,8 @@ dialog::backdrop{background:rgba(9,9,11,.4)}
     <div class="prog-text"><b class="num" id="p-ok">0</b> of <span class="num" id="p-all">0</span> potential sites validated</div>
     <div class="prog-bar"><i class="b-ok" id="pb-ok"></i><i class="b-prog" id="pb-prog"></i><i class="b-out" id="pb-out"></i></div>
   </div>
-  <button type="button" class="btn primary" id="btn-status"><svg class="i" viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>Executive Update</button>
+  <button type="button" class="btn primary" id="btn-add"><svg class="i" viewBox="0 0 24 24"><path d="M12 5v14"/><path d="M5 12h14"/></svg>Add Site</button>
+  <button type="button" class="btn" id="btn-status"><svg class="i" viewBox="0 0 24 24"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg><span class="hide-m">Executive </span>Update</button>
   <button type="button" class="btn ghost hide-m" id="btn-how"><svg class="i" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M9.1 9a3 3 0 0 1 5.8 1c0 2-3 3-3 3"/><path d="M12 17h.01"/></svg>How it works</button>
   <button type="button" class="btn hide-m" id="btn-export"><svg class="i" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5"/><path d="M12 15V3"/></svg>Export results</button>
 </header>
@@ -281,7 +328,7 @@ dialog::backdrop{background:rgba(9,9,11,.4)}
 
     <!-- LIST VIEW -->
     <section class="view" id="view-list">
-      <div class="finder">
+      <search class="finder" aria-label="Filter and search sites">
         <div class="region" role="group" aria-label="Region">
           <button type="button" data-region="sa" aria-pressed="true">San Antonio <span class="num" id="rg-sa"></span></button>
           <button type="button" data-region="tx" aria-pressed="false">Rest of Texas (ERCOT) <span class="num" id="rg-tx"></span></button>
@@ -303,26 +350,26 @@ dialog::backdrop{background:rgba(9,9,11,.4)}
           <button type="button" class="btn sm" id="btn-filters" aria-expanded="false"><svg class="i" viewBox="0 0 24 24"><path d="M3 6h18"/><path d="M7 12h10"/><path d="M10 18h4"/></svg>Filters <span class="badge-n" id="f-n" hidden></span></button>
         </div>
         <div class="filters" id="filters" hidden>
-          <label>Estimated size
+          <label for="f-size">Estimated size
             <select id="f-size"><option value="any">Any size</option><option value="1">1 pod (up to 1.5 MW)</option><option value="2">2–3 pods (up to 4.5 MW)</option><option value="4">4+ pods (over 4.5 MW)</option></select>
           </label>
-          <label>Fiber
+          <label for="f-fiber">Fiber
             <select id="f-fiber"><option value="any">Any fiber</option><option value="A+">A+ · at the curb</option><option value="B">B · street bore</option><option value="C">C · trench needed</option><option value="?">Not screened</option></select>
           </label>
-          <label>Outreach
+          <label for="f-out">Outreach
             <select id="f-out"><option value="any">Any</option><option value="none">Not contacted</option><option value="contacted">Contacted</option><option value="dnc">Do not contact</option></select>
           </label>
-          <label>Availability
+          <label for="f-av">Availability
             <select id="f-av"><option value="any">Any</option><option value="either">Vacant or for lease/sale</option><option value="vac">Vacant</option><option value="list">For lease or sale</option><option value="unknown">Not known yet</option></select>
           </label>
-          <label>Property type
+          <label for="f-type">Property type
             <select id="f-type"><option value="any">Any type</option></select>
           </label>
-          <label class="chk"><input type="checkbox" id="f-direct"> Only sites with a direct contact on file</label>
-          <label class="chk"><input type="checkbox" id="f-permit"> Only sites with a city electrical permit on file</label>
+          <label class="chk" for="f-direct"><input type="checkbox" id="f-direct"> Only sites with a direct contact on file</label>
+          <label class="chk" for="f-permit"><input type="checkbox" id="f-permit"> Only sites with a city electrical permit on file</label>
           <button type="button" class="btn sm ghost" id="f-clear" style="justify-self:start">Clear filters</button>
         </div>
-      </div>
+      </search>
       <div class="list" id="list"></div>
     </section>
 
@@ -358,16 +405,58 @@ dialog::backdrop{background:rgba(9,9,11,.4)}
 <button type="button" class="m-toggle" id="m-toggle"></button>
 <div class="toast" id="toast" role="status"></div>
 
-<dialog id="how">
+<dialog id="add-dlg" closedby="any" aria-labelledby="add-title">
   <div class="dlg">
-    <h2>How it works</h2>
+    <h2 id="add-title">Add a Site</h2>
+    <p>Type any address and megawatts. It pins to the map right away and gives you a shareable link.</p>
+    <form id="add-form" class="q-form">
+      <div class="f-grp">
+        <label for="add-addr">Street address <span class="req">*</span></label>
+        <input type="text" id="add-addr" name="address" required autocomplete="street-address" enterkeyhint="next" placeholder="e.g. 5001 Eisenhauer Rd, Windcrest, TX">
+      </div>
+      <div class="f-row2">
+        <div class="f-grp">
+          <label for="add-mw">Megawatts (MW)</label>
+          <input type="text" id="add-mw" name="mw" inputmode="decimal" autocomplete="off" enterkeyhint="next" placeholder="e.g. 3.0">
+        </div>
+        <div class="f-grp">
+          <label for="add-rg">Region</label>
+          <select id="add-rg" name="region" autocomplete="off">
+            <option value="sa">San Antonio</option>
+            <option value="tx">Rest of Texas (ERCOT)</option>
+          </select>
+        </div>
+      </div>
+      <div class="f-grp">
+        <label for="add-name">Building or site name <span class="opt">(optional)</span></label>
+        <input type="text" id="add-name" name="site-name" autocomplete="organization" enterkeyhint="next" placeholder="Uses street address if left blank">
+      </div>
+      <div class="f-grp">
+        <label for="add-ct">Contact / broker &amp; phone <span class="opt">(optional)</span></label>
+        <input type="text" id="add-ct" name="contact" autocomplete="name" enterkeyhint="next" placeholder="e.g. Ben Jordan (210) 293-6840">
+      </div>
+      <div class="f-grp">
+        <label for="add-notes">Notes <span class="opt">(optional)</span></label>
+        <textarea class="notes" id="add-notes" name="notes" autocomplete="off" placeholder="Pad space, transformer, vacant SF, or broker notes"></textarea>
+      </div>
+      <div class="dlg-actions">
+        <button type="button" class="btn lg" id="add-cancel">Cancel</button>
+        <button type="submit" class="btn primary lg" id="add-submit">Add &amp; Save Site</button>
+      </div>
+    </form>
+  </div>
+</dialog>
+
+<dialog id="how" closedby="any" aria-labelledby="how-title">
+  <div class="dlg">
+    <h2 id="how-title">How it works</h2>
     <p>Every site here is a guess until someone checks it. Your job is to turn guesses into proof.</p>
     <ol class="how">
-      <li><i>1</i><div><b>Find a site</b><span>Search by address, building, broker or ZIP. Or click any dot on the map.</span></div></li>
-      <li><i>2</i><div><b>Do the desk checks</b><span>Look at the satellite view, Street View and the listing sites. Answer yes or no. It takes a few minutes.</span></div></li>
-      <li><i>3</i><div><b>Get the proof</b><span>Ask the building for the transformer tag, the main breaker tag and a summer electric bill, and confirm fiber. Type in the numbers. The page does the maths.</span></div></li>
+      <li><i>1</i><div><b>Find or add a site</b><span>Search by address, building, broker or ZIP, click any dot on the map, or tap <b>+ Add Site</b> to add a new address.</span></div></li>
+      <li><i>2</i><div><b>Quick Update &amp; Megawatts</b><span>Enter the Megawatts (MW), tap a status pill, add your notes, and tap <b>Submit Update</b>.</span></div></li>
+      <li><i>3</i><div><b>Share or verify</b><span>Tap <b>Share Link</b> to text your update to the team, or open the optional transformer &amp; breaker calculator for full electrical proof.</span></div></li>
     </ol>
-    <p class="rules">A site is <b>validated</b> when the transformer is at least <span class="num" id="r-kva"></span> kVA, the main breaker is at least <span class="num" id="r-amps"></span> A at 480V 3-phase, spare power is at least <span class="num" id="r-mw"></span> MW, and fiber is confirmed. CPS Energy must still approve the added load. Your answers are saved in this browser. Use <b>Export results</b> to share them.</p>
+    <p class="rules">A site is <b>validated</b> when you mark it Validated or when the transformer is at least <span class="num" id="r-kva"></span> kVA, the main breaker is at least <span class="num" id="r-amps"></span> A at 480V 3-phase, spare power is at least <span class="num" id="r-mw"></span> MW, and fiber is confirmed. Your updates are saved on your phone and can be texted via <b>Share Link</b>.</p>
     <div style="display:flex;justify-content:flex-end;gap:8px">
       <button type="button" class="btn" id="how-export">Export results</button>
       <button type="button" class="btn primary" id="how-close">Got it</button>
@@ -375,10 +464,10 @@ dialog::backdrop{background:rgba(9,9,11,.4)}
   </div>
 </dialog>
 
-<dialog id="status-dlg" style="width:min(640px,calc(100vw - 24px));max-height:88vh">
+<dialog id="status-dlg" closedby="any" aria-labelledby="status-title" style="width:min(640px,calc(100vw - 24px));max-height:88vh">
   <div class="dlg" style="max-height:88vh;overflow-y:auto">
     <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:8px">
-      <h2 style="margin:0">Stage One Power — Done to Date</h2>
+      <h2 id="status-title" style="margin:0">Stage One Power — Done to Date</h2>
       <span class="tag t-replied">Updated Nov 15, 2026</span>
     </div>
     <p style="font-size:13px;color:var(--fg-3);margin:0 0 14px">Live executive summary across municipal ordinance filtering, verified dark-fiber clusters, landlord replies, and pod engineering.</p>
@@ -445,9 +534,22 @@ const CPS_KVA = [150, 300, 500, 750, 1000, 1500, 2000, 2500];
 // The FCC map link needs the current data release name. Update it when the FCC publishes a new one.
 const FCC_VERSION = 'jun2026';
 
-// Priority sites are the top 20 from the evidence audit (s.sh), best score first.
+const CUSTOM_KEY = 'stage_one_custom_sites_v1';
+let customSites = [];
+(function loadCustomSites() {
+  try {
+    const raw = localStorage.getItem(CUSTOM_KEY);
+    if (raw) {
+      customSites = JSON.parse(raw) || [];
+      customSites.forEach(s => { if (s && s.id && !SITES.some(x => x.id === s.id)) SITES.push(s); });
+    }
+  } catch (e) { customSites = []; }
+})();
+function persistCustom() { try { localStorage.setItem(CUSTOM_KEY, JSON.stringify(customSites)); } catch (e) {} }
+
+// Priority sites are the top sites from the evidence audit (s.sh), best score first.
 // Anyone can star or unstar a site; that choice is saved in their browser.
-const PRI_ORDER = SITES.filter(s => s.sh).sort((a, b) => b.sc - a.sc || a.id - b.id).map(s => s.id);
+const PRI_ORDER = SITES.filter(s => s.sh).sort((a, b) => (b.custom ? 1 : 0) - (a.custom ? 1 : 0) || b.sc - a.sc || a.id - b.id).map(s => s.id);
 const PRIORITY = new Set(PRI_ORDER);
 
 const STATUS = {
@@ -495,6 +597,8 @@ function setV(id, patch) {
   delete v.t;
   if (Object.keys(v).length) { v.t = new Date().toISOString().slice(0, 16); store[id] = v; } else delete store[id];
   persist();
+  const s = BY_ID && BY_ID.get(id);
+  if (s) indexHay(s);
 }
 
 function toNum(x) {
@@ -503,16 +607,16 @@ function toNum(x) {
 }
 function evaluate(v) {
   v = v || {};
-  const kva = toNum(v.kva), amps = toNum(v.amps), peak = toNum(v.peak);
+  const kva = toNum(v.kva), amps = toNum(v.amps), peak = toNum(v.peak), mwOverride = toNum(v.mw);
   const maxKw = kva != null ? kva * PF : null;
-  const spareKw = kva != null && peak != null ? kva * PF - peak : null;
+  let spareKw = kva != null && peak != null ? kva * PF - peak : (mwOverride != null ? mwOverride * 1000 : null);
   const fails = [];
   if (v.c1 === 'n') fails.push('No building at this address');
   if (v.c2 === 'n') fails.push('No room for the pad');
   if (kva != null && kva < NEED_KVA) fails.push('Transformer is too small');
   if (amps != null && amps < NEED_AMPS) fails.push('Main breaker is too small');
   if (v.v480 === 'n') fails.push('Service is not 480V 3-phase');
-  if (spareKw != null && spareKw < NEED_SPARE_KW) fails.push('Not enough spare power');
+  if (kva != null && peak != null && spareKw < NEED_SPARE_KW) fails.push('Not enough spare power');
   if (v.fb === 'n') fails.push('No fiber at the building');
   let done = 0;
   for (const c of DESK) if (v[c.k]) done++;
@@ -521,16 +625,25 @@ function evaluate(v) {
   if (peak != null) done++;
   if (v.fb) done++;
   let status = 'todo';
-  if (v.out || fails.length) status = 'out';
+  if (v.st && STATUS[v.st]) status = v.st;
+  else if (v.out || fails.length) status = 'out';
   else if (kva != null && amps != null && v.v480 === 'y' && spareKw != null && v.fb === 'y') status = 'ok';
-  else if (done > 0) status = 'prog';
-  return {status, done, total: DESK.length + 4, fails, reason: v.out || fails[0] || '', kva, amps, peak, maxKw, spareKw};
+  else if (done > 0 || mwOverride != null || v.notes) status = 'prog';
+  return {status, done, total: DESK.length + 4, fails, reason: v.out || fails[0] || (status === 'out' ? 'Ruled out via Quick Update' : ''), kva, amps, peak, maxKw, spareKw};
 }
-// A site with s.x has a record proving it is too small. It is ruled out for everyone and parked off the working list.
-const statusOf = id => BY_ID.get(id).x ? 'out' : evaluate(getV(id)).status;
+// A site with s.x has a record proving it is too small unless overridden in Quick Update.
+const statusOf = id => {
+  const v = getV(id);
+  if (v.st && STATUS[v.st]) return v.st;
+  const s = BY_ID.get(id);
+  return s && s.x ? 'out' : evaluate(v).status;
+};
+const outOf = s => getV(s.id).o || s.o || 'none';
+const mwValOf = s => toNum(getV(s.id).mw);
+const mwHiOf = s => { const m = mwValOf(s); return m != null ? m : s.hi; };
 const isVac = s => { const a = getV(s.id).cv; return a ? a === 'y' : !!s.v; };
 const isListed = s => { const a = getV(s.id).cl; return a ? a === 'y' : !!s.l; };
-const avLabel = s => [s.en ? 'Power off' : '', isVac(s) ? 'Vacant' : '', isListed(s) ? (s.l === 'sale' ? 'For sale' : s.l === 'lease' ? 'For lease' : 'For lease or sale') : '', s.occ ? 'Potentially occupied' : ''].filter(Boolean).join(' · ');
+const avLabel = s => [s.custom ? 'Added site' : '', s.en ? 'Power off' : '', isVac(s) ? 'Vacant' : '', isListed(s) ? (s.l === 'sale' ? 'For sale' : s.l === 'lease' ? 'For lease' : 'For lease or sale') : '', s.occ ? 'Potentially occupied' : ''].filter(Boolean).join(' · ');
 const isPri = id => { const v = store[id]; return v && v.star ? v.star === 'y' : PRIORITY.has(id); };
 
 /* ============================== HELPERS ============================== */
@@ -550,20 +663,34 @@ const IC = {
   next: svg('<path d="M5 12h14"/><path d="m12 5 7 7-7 7"/>'),
   star: svg('<path d="M12 2.5l2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.4l-5.9 3.1 1.2-6.5L2.5 9.4l6.6-.9z"/>')
 };
-const mwText = s => s.lo == null ? '' : (s.lo === s.hi ? s.lo.toFixed(1) : s.lo.toFixed(1) + '–' + s.hi.toFixed(1)) + ' MW';
-const podsText = s => { if (s.lo == null) return ''; const a = Math.max(1, Math.round(s.lo / 1.5)), b = Math.max(1, Math.round(s.hi / 1.5)); return a === b ? a + (a === 1 ? ' pod' : ' pods') : a + '–' + b + ' pods'; };
+const mwText = s => {
+  const m = mwValOf(s);
+  if (m != null) return m.toFixed(1) + ' MW';
+  return s.lo == null ? '' : (s.lo === s.hi ? s.lo.toFixed(1) : s.lo.toFixed(1) + '–' + s.hi.toFixed(1)) + ' MW';
+};
+const podsText = s => {
+  const m = mwValOf(s);
+  if (m != null) { const p = Math.max(1, Math.round(m / 1.5)); return p + (p === 1 ? ' pod' : ' pods'); }
+  if (s.lo == null) return '';
+  const a = Math.max(1, Math.round(s.lo / 1.5)), b = Math.max(1, Math.round(s.hi / 1.5));
+  return a === b ? a + (a === 1 ? ' pod' : ' pods') : a + '–' + b + ' pods';
+};
 const fmtMw = kw => (kw / 1000).toFixed(2) + ' MW';
 const isMobile = () => window.matchMedia('(max-width:820px)').matches;
 let toastTimer;
-function toast(msg) { const t = $('toast'); t.textContent = msg; t.classList.add('on'); clearTimeout(toastTimer); toastTimer = setTimeout(() => t.classList.remove('on'), 2400); }
+function toast(msg) { const t = $('toast'); t.textContent = msg; t.classList.add('on'); clearTimeout(toastTimer); toastTimer = setTimeout(() => t.classList.remove('on'), 2600); }
 
 // Search ignores case and punctuation and matches the start of words,
 // so "att" finds "AT&T" and "st marys" finds "St. Mary's".
 const norm = t => String(t).toLowerCase().replace(/[&'\u2019]/g, '').replace(/[^a-z0-9#]+/g, ' ').trim();
-SITES.forEach(s => { s.hay = ' ' + norm([s.id, '#' + s.id, s.n, s.a, s.z, s.ar, s.c, s.ct, s.sg, s.em].join(' ')); });
+function indexHay(s) {
+  const v = store[s.id] || {};
+  s.hay = ' ' + norm([s.id, '#' + s.id, s.n, s.a, s.z, s.ar, s.c, s.ct, s.sg, s.em, v.ct, v.notes, v.mw].join(' '));
+}
+SITES.forEach(indexHay);
 const BY_ID = new Map(SITES.map(s => [s.id, s]));
 const rgOf = s => s.rg || 'sa';
-const liveN = () => SITES.filter(s => !s.x && rgOf(s) === F.region).length;
+const liveN = () => SITES.filter(s => (!s.x || getV(s.id).st) && rgOf(s) === F.region).length;
 
 /* ============================== STATE ============================== */
 const F = {region: 'sa', q: '', status: 'all', size: 'any', fiber: 'any', out: 'any', type: 'any', direct: false, pri: false, permit: false, av: 'any', sort: 'rank'};
@@ -574,21 +701,23 @@ function applyFilters() {
   const words = norm(F.q).split(' ').filter(Boolean);
   results = SITES.filter(s => {
     if (rgOf(s) !== F.region) return false;
-    if (s.x && F.status === 'all' && !words.length) return false;
+    if (s.x && !getV(s.id).st && F.status === 'all' && !words.length) return false;
     if (words.length && !words.every(w => s.hay.includes(' ' + w))) return false;
     if (F.status !== 'all' && statusOf(s.id) !== F.status) return false;
     if (F.size !== 'any') {
-      if (s.hi == null) return false;
-      if (F.size === '1' && s.hi > 1.5) return false;
-      if (F.size === '2' && (s.hi <= 1.5 || s.hi > 4.5)) return false;
-      if (F.size === '4' && s.hi <= 4.5) return false;
+      const hi = mwHiOf(s);
+      if (hi == null) return false;
+      if (F.size === '1' && hi > 1.5) return false;
+      if (F.size === '2' && (hi <= 1.5 || hi > 4.5)) return false;
+      if (F.size === '4' && hi <= 4.5) return false;
     }
     if (F.fiber !== 'any' && s.f !== F.fiber) return false;
-    if (F.out === 'none' && s.o !== 'none') return false;
-    if (F.out === 'contacted' && !['sent', 'replied', 'bounced', 'firm'].includes(s.o)) return false;
-    if (F.out === 'dnc' && s.o !== 'hold') return false;
+    const o = outOf(s);
+    if (F.out === 'none' && o !== 'none') return false;
+    if (F.out === 'contacted' && !['sent', 'replied', 'bounced', 'firm'].includes(o)) return false;
+    if (F.out === 'dnc' && o !== 'hold') return false;
     if (F.type !== 'any' && s.c !== F.type) return false;
-    if (F.direct && !s.dc) return false;
+    if (F.direct && !s.dc && !getV(s.id).ct) return false;
     if (F.pri && !isPri(s.id)) return false;
     if (F.permit && !s.pm) return false;
     if (F.av === 'vac' && !isVac(s)) return false;
@@ -597,11 +726,11 @@ function applyFilters() {
     if (F.av === 'unknown') { const v = getV(s.id); if (s.v || s.l || v.cv || v.cl) return false; }
     return true;
   });
-  if (F.sort === 'mw') results.sort((a, b) => (b.hi || 0) - (a.hi || 0) || a.id - b.id);
+  if (F.sort === 'mw') results.sort((a, b) => (mwHiOf(b) || 0) - (mwHiOf(a) || 0) || a.id - b.id);
   else if (F.sort === 'az') results.sort((a, b) => a.n.localeCompare(b.n));
   else {
     // Priority sites first, then the rest by audit score, best first.
-    const key = s => !isPri(s.id) ? 1e6 + (20 - (s.sc || 0)) * 1e3 + s.id : PRI_ORDER.includes(s.id) ? PRI_ORDER.indexOf(s.id) : 1e3 + s.id;
+    const key = s => !isPri(s.id) ? 1e6 + (20 - (s.sc || 0)) * 1e3 + s.id : s.custom ? -s.id : PRI_ORDER.includes(s.id) ? PRI_ORDER.indexOf(s.id) : 1e3 + s.id;
     results.sort((a, b) => key(a) - key(b));
   }
 }
@@ -622,25 +751,27 @@ function renderTabs() {
 function rowHtml(s) {
   const st = statusOf(s.id);
   const mw = mwText(s);
+  const o = outOf(s);
+  const hasUserMw = mwValOf(s) != null;
   return `<button type="button" class="row${selected === s.id ? ' is-sel' : ''}" data-id="${s.id}">
     <span class="dot s-${st}" title="${STATUS[st].label}"></span>
     <span class="row-main"><span class="row-name">${isPri(s.id) ? IC.star.replace('class="i"', 'class="i row-star"') : ''}${esc(s.n)}</span><span class="row-sub">${esc(s.a)}${s.z ? ' · ' + esc(s.z) : ''}${avLabel(s) ? ' · <span class="av">' + avLabel(s) + '</span>' : ''}</span></span>
-    <span class="row-side">${mw ? `<span class="mw"><small>est.</small>${mw}</span>` : ''}${s.o !== 'none' ? `<span class="tag t-${s.o}">${OUT_TAG[s.o]}</span>` : ''}</span>
+    <span class="row-side">${mw ? `<span class="mw">${hasUserMw ? '' : '<small>est.</small>'}${mw}</span>` : ''}${o !== 'none' && OUT_TAG[o] ? `<span class="tag t-${o}">${OUT_TAG[o]}</span>` : ''}</span>
   </button>`;
 }
 function renderList() {
   const n = results.length;
   $('count').innerHTML = `<b class="num">${n}</b> ${n === 1 ? 'site' : 'sites'}${n < liveN() ? ' of <span class="num">' + liveN() + '</span>' : ''}`;
   $('list').innerHTML = n ? results.map(rowHtml).join('') :
-    `<div class="empty"><b>No sites match</b>Try a shorter search, or clear the filters.<div style="margin-top:14px"><button type="button" class="btn" id="empty-reset">Show all sites</button></div></div>`;
+    `<div class="empty"><b>No sites match</b>Try a shorter search, clear filters, or add this address as a new site.<div style="margin-top:14px;display:flex;gap:8px;justify-content:center;flex-wrap:wrap"><button type="button" class="btn primary" id="empty-add">+ Add as new site</button><button type="button" class="btn" id="empty-reset">Show all sites</button></div></div>`;
   const active = (F.size !== 'any') + (F.fiber !== 'any') + (F.out !== 'any') + (F.type !== 'any') + (F.av !== 'any') + (F.direct ? 1 : 0) + (F.permit ? 1 : 0);
   $('f-n').hidden = !active; $('f-n').textContent = active;
   $('q-clear').hidden = !F.q;
   $('btn-pri').setAttribute('aria-pressed', F.pri);
   $('pri-n').textContent = SITES.filter(s => rgOf(s) === F.region && isPri(s.id)).length;
   document.querySelectorAll('.region button').forEach(b => b.setAttribute('aria-pressed', b.dataset.region === F.region));
-  $('rg-sa').textContent = SITES.filter(s => !s.x && rgOf(s) === 'sa').length;
-  $('rg-tx').textContent = SITES.filter(s => !s.x && rgOf(s) === 'tx').length;
+  $('rg-sa').textContent = SITES.filter(s => (!s.x || getV(s.id).st) && rgOf(s) === 'sa').length;
+  $('rg-tx').textContent = SITES.filter(s => (!s.x || getV(s.id).st) && rgOf(s) === 'tx').length;
 }
 function refresh(opts) {
   applyFilters(); renderTabs(); renderList(); syncMarkers();
@@ -662,6 +793,22 @@ const M_STYLE = {
   ok:   {radius: 8, fillColor: '#16A34A', fillOpacity: 1, color: '#fff', weight: 2},
   out:  {radius: 5, fillColor: '#DC2626', fillOpacity: .6, color: '#fff', weight: 1}
 };
+function markerTipHtml(s) {
+  const mw = mwText(s);
+  const hasUserMw = mwValOf(s) != null;
+  return `${esc(s.n)}<small>#${s.id}${mw ? ' · ' + (hasUserMw ? '' : 'est. ') + mw : ''}</small>`;
+}
+function addSiteMarker(s) {
+  if (!canvas) return;
+  const m = L.circleMarker([s.la, s.ln], Object.assign({renderer: canvas}, M_STYLE.todo));
+  m.bindTooltip(markerTipHtml(s), {direction: 'top', offset: [0, -6]});
+  m.on('click', () => openSite(s.id));
+  markers.set(s.id, m);
+}
+function updateMarkerTip(s) {
+  const m = markers.get(s.id);
+  if (m) m.setTooltipContent(markerTipHtml(s));
+}
 function initMap() {
   map = L.map('map', {zoomControl: false, preferCanvas: true, maxZoom: 20}).setView(HOME.center, HOME.zoom);
   L.control.zoom({position: 'bottomright'}).addTo(map);
@@ -674,13 +821,7 @@ function initMap() {
     L.tileLayer(esri + 'Reference/World_Boundaries_and_Places/MapServer/tile/{z}/{y}/{x}', {maxNativeZoom: 19, maxZoom: 20})
   ]);
   layerStreet.addTo(map);
-  SITES.forEach(s => {
-    const m = L.circleMarker([s.la, s.ln], Object.assign({renderer: canvas}, M_STYLE.todo));
-    const mw = mwText(s);
-    m.bindTooltip(`${esc(s.n)}<small>#${s.id}${mw ? ' · est. ' + mw : ''}</small>`, {direction: 'top', offset: [0, -6]});
-    m.on('click', () => openSite(s.id));
-    markers.set(s.id, m);
-  });
+  SITES.forEach(addSiteMarker);
   ring = L.circleMarker(HOME.center, {renderer: canvas, radius: 14, color: '#0284C7', weight: 3, fill: false, interactive: false});
 }
 function setLayer(name) {
@@ -715,8 +856,12 @@ function checkShell(n, key, q, help, body) {
     <div class="c-body"><div class="c-q">${q}</div><div class="c-help">${help}</div>${body}</div></div>`;
 }
 function contactHtml(s) {
+  const v = getV(s.id);
   const rows = [];
-  if (!s.dc) {
+  if (v.ct) {
+    rows.push(`<dt>Updated contact</dt><dd><b>${esc(v.ct)}</b></dd>`);
+  }
+  if (!s.dc && !v.ct) {
     rows.push(`<dt>Contact</dt><dd><b>No direct contact on file yet.</b> Find the owner or leasing broker before reaching out.</dd>`);
     if (s.ct) rows.push(`<dt>Lead source</dt><dd>${esc(s.ct)}</dd>`);
   } else {
@@ -731,23 +876,27 @@ function contactHtml(s) {
   return `<dl class="facts">${rows.join('')}</dl>`;
 }
 function bannerHtml(s) {
+  const o = outOf(s);
   const B = {
     hold: ['Do not contact', 'This site is in the partner lane. Only Ben reaches out.'],
     firm: ['Firm already contacted', 'Follow up on the existing thread. Do not send a new cold message.'],
     sent: ['Already contacted', 'Wait for a reply or follow up on the same thread.'],
     replied: ['They replied', 'Check the thread before you do anything else.'],
     bounced: ['Email bounced', 'The published mailbox does not work. Phone only.']
-  }[s.o];
+  }[o];
   if (!B) return '';
-  return `<div class="banner ${s.o}">${IC.alert}<div><b>${B[0]}</b>${B[1]}${s.ot ? `<small>${esc(s.ot)}</small>` : ''}</div></div>`;
+  return `<div class="banner ${o}">${IC.alert}<div><b>${B[0]}</b>${B[1]}${s.ot ? `<small>${esc(s.ot)}</small>` : ''}</div></div>`;
 }
 function renderDetail(id) {
   const s = BY_ID.get(id), v = getV(id);
   const q = encodeURIComponent(s.q || [s.a, s.z, 'TX'].filter(Boolean).join(' '));
-  const util = s.wc || 'CPS Energy';
   const d = .0016;
   const sat = `https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/export?bbox=${(s.ln - d).toFixed(6)},${(s.la - d * .52).toFixed(6)},${(s.ln + d).toFixed(6)},${(s.la + d * .52).toFixed(6)}&bboxSR=4326&size=900,540&imageSR=3857&format=jpg&f=image`;
   const mw = mwText(s);
+  const mwInputVal = v.mw != null ? v.mw : (s.hi != null ? s.hi : '');
+  const curSt = statusOf(id);
+  const curOut = outOf(s);
+  const ctInputVal = v.ct != null ? v.ct : [s.ct, s.ph].filter(Boolean).join(' · ');
   const fiber = s.f === '?' ? 'Not screened yet' : `<b>${esc(s.f)}</b> · ${esc(s.fl)}`;
   let n = 0;
   const note = {cv: s.vr ? 'The city vacant building registry lists this address.' : s.v ? 'Our notes say it is vacant or closed. Confirm it.' : '', cl: s.l ? `Our notes say it is for ${s.l}. Confirm it.` : ''};
@@ -774,27 +923,84 @@ function renderDetail(id) {
       <a class="btn sm" target="_blank" rel="noopener" href="https://www.crexi.com/properties?search=${q}">Find listing ${IC.ext}</a>
     </div>
     <div class="satwrap"><img class="sat" alt="Satellite view of the site" loading="lazy" src="${sat}"></div>
-    ${bannerHtml(s)}
+    <div id="d-banner">${bannerHtml(s)}</div>
 
-    <div class="sec">
-      <div class="sec-h"><h2>Validate this site</h2><span class="num" id="v-count"></span></div>
-      <div class="verdict" id="verdict"></div>
-      <div class="steps"><i id="v-bar"></i></div>
-      <div class="eyebrow">Step 1 · From your desk</div>
-      ${desk}
-      <div class="eyebrow">Step 2 · Proof from the building</div>
-      ${proof}
-      <div class="out-row" id="out-row"></div>
-    </div>
+    <form id="quick-form" class="q-card" aria-labelledby="qf-h">
+      <div class="sec-h">
+        <h2 id="qf-h">Quick Update &amp; Megawatts</h2>
+        <span class="q-saved" id="saved"></span>
+      </div>
 
-    <div class="sec">
-      <div class="sec-h"><h2>Notes</h2><span id="saved"></span></div>
-      <textarea class="notes" id="notes" placeholder="Who you spoke to, what they said, what is still missing.">${esc(v.notes || '')}</textarea>
-    </div>
+      <div class="f-grp">
+        <label for="q-mw">Megawatts (MW) at this site</label>
+        <div class="mw-input-row">
+          <span class="field lg">
+            <input type="text" id="q-mw" name="mw" inputmode="decimal" autocomplete="off" enterkeyhint="done" value="${esc(mwInputVal)}" placeholder="e.g. 3.0">
+            <span>MW</span>
+          </span>
+          <span class="mw-pods num" id="q-pods">${esc(podsText(s))}</span>
+        </div>
+      </div>
 
-    <div class="sec">
+      <div class="f-grp">
+        <span class="f-lbl" id="lbl-qst">Site status</span>
+        <div class="pill-grid" role="group" aria-labelledby="lbl-qst">
+          <button type="button" class="pill-btn" data-qst="todo" aria-pressed="${curSt === 'todo'}">To check</button>
+          <button type="button" class="pill-btn" data-qst="prog" aria-pressed="${curSt === 'prog'}">In progress</button>
+          <button type="button" class="pill-btn" data-qst="ok" aria-pressed="${curSt === 'ok'}">Validated</button>
+          <button type="button" class="pill-btn" data-qst="out" aria-pressed="${curSt === 'out'}">Ruled out</button>
+        </div>
+      </div>
+
+      <div class="f-grp">
+        <span class="f-lbl" id="lbl-qout">Outreach status</span>
+        <div class="pill-grid" role="group" aria-labelledby="lbl-qout">
+          <button type="button" class="pill-btn" data-qout="none" aria-pressed="${curOut === 'none'}">Not contacted</button>
+          <button type="button" class="pill-btn" data-qout="sent" aria-pressed="${curOut === 'sent' || curOut === 'firm'}">Contacted</button>
+          <button type="button" class="pill-btn" data-qout="replied" aria-pressed="${curOut === 'replied'}">Replied</button>
+          <button type="button" class="pill-btn" data-qout="hold" aria-pressed="${curOut === 'hold'}">Do not contact</button>
+        </div>
+      </div>
+
+      <div class="f-grp">
+        <label for="q-ct">Contact / broker &amp; phone</label>
+        <input type="text" id="q-ct" name="contact" class="q-inp" autocomplete="name" enterkeyhint="next" value="${esc(ctInputVal)}" placeholder="Name, phone, or email">
+      </div>
+
+      <div class="f-grp">
+        <label for="notes">Notes</label>
+        <textarea class="notes" id="notes" name="notes" autocomplete="off" placeholder="Who you spoke to, available MW, what is still needed...">${esc(v.notes || '')}</textarea>
+      </div>
+
+      <div class="q-actions">
+        <button type="submit" class="btn primary lg" id="q-submit">${IC.ok} Submit Update</button>
+        <button type="button" class="btn lg" id="q-share" title="Share or text this update link">${IC.ext} Share Link</button>
+      </div>
+      <div class="q-confirm" id="q-confirm" hidden>
+        <span>Update saved!</span>
+        <button type="button" class="btn sm primary" id="q-share2">Text / Copy Update Link</button>
+      </div>
+    </form>
+
+    <details class="sec adv-sec">
+      <summary class="adv-sum">
+        <span>Detailed transformer &amp; breaker calculator (optional)</span>
+        <span class="num" id="v-count"></span>
+      </summary>
+      <div class="adv-body">
+        <div class="verdict" id="verdict"></div>
+        <div class="steps"><i id="v-bar"></i></div>
+        <div class="eyebrow">Step 1 · From your desk</div>
+        ${desk}
+        <div class="eyebrow">Step 2 · Proof from the building</div>
+        ${proof}
+        <div class="out-row" id="out-row"></div>
+      </div>
+    </details>
+
+    <div class="sec" id="d-contact-sec">
       <div class="sec-h"><h2>Contact</h2></div>
-      ${contactHtml(s)}
+      <div id="d-contact-body">${contactHtml(s)}</div>
     </div>
 
     <div class="sec">
@@ -811,7 +1017,7 @@ function renderDetail(id) {
       <div class="sec-h"><h2>What we think we know</h2></div>
       <p class="note-guess">These are desk-research guesses. None of it is confirmed until the checks above pass.</p>
       <dl class="facts">
-        <dt>Est. capacity</dt><dd>${mw ? `<b class="num">${mw}</b> · ${podsText(s)}` : 'Not estimated'}</dd>
+        <dt>Est. capacity</dt><dd id="d-cap-dd">${mw ? `<b class="num">${mw}</b> · ${podsText(s)}` : 'Not estimated'}</dd>
         ${s.sz ? `<dt>Building</dt><dd>${esc(s.sz)}</dd>` : ''}
         ${s.sg ? `<dt>Power clue</dt><dd>${esc(s.sg)}</dd>` : ''}
         ${s.pm ? `<dt>City permit</dt><dd>${s.pm.a ? `<b class="num">${s.pm.a.toLocaleString()} A</b> named. ` : ''}"${esc(s.pm.t)}"${s.pm.d ? ' · ' + esc(s.pm.d) : ''} · <a target="_blank" rel="noopener" href="${esc(s.pm.u)}">Open record</a><br><span style="color:var(--fg-3)">Shows installed gear, not spare power.</span></dd>` : ''}
@@ -836,9 +1042,18 @@ function setHint(key, cls, text) {
 }
 function paintChecks() {
   if (!selected) return;
-  const v = getV(selected), r = evaluate(v);
-  const sx = BY_ID.get(selected).x;
-  if (sx) { r.status = 'out'; r.reason = sx; }
+  const s = BY_ID.get(selected), v = getV(selected), r = evaluate(v);
+  const sx = s.x;
+  if (sx && !v.st) { r.status = 'out'; r.reason = sx; }
+  const curSt = statusOf(selected);
+  const curOut = outOf(s);
+  document.querySelectorAll('[data-qst]').forEach(b => b.setAttribute('aria-pressed', b.dataset.qst === curSt));
+  document.querySelectorAll('[data-qout]').forEach(b => b.setAttribute('aria-pressed', b.dataset.qout === curOut || (b.dataset.qout === 'sent' && curOut === 'firm')));
+  const qp = $('q-pods'); if (qp) qp.textContent = podsText(s);
+  const dc = $('d-cap-dd'); if (dc) { const mw = mwText(s); dc.innerHTML = mw ? `<b class="num">${mw}</b> · ${podsText(s)}` : 'Not estimated'; }
+  const db = $('d-banner'); if (db) db.innerHTML = bannerHtml(s);
+  const dcb = $('d-contact-body'); if (dcb) dcb.innerHTML = contactHtml(s);
+
   document.querySelectorAll('[data-yn]').forEach(g => {
     const val = v[g.dataset.yn] || '';
     g.querySelectorAll('button').forEach(b => b.setAttribute('aria-pressed', b.dataset.v === val));
@@ -847,7 +1062,7 @@ function paintChecks() {
   // p1 transformer
   if (r.kva == null) { setCheck('p1', ''); setHint('p1'); }
   else if (r.kva < NEED_KVA) { setCheck('p1', 'fail'); setHint('p1', 'bad', `Too small. It needs ${NEED_KVA.toLocaleString()} kVA or more.`); }
-  else if (!BY_ID.get(selected).wc && !CPS_KVA.includes(r.kva)) { setCheck('p1', 'pass'); setHint('p1', 'info', `Check the tag. CPS Energy sizes are ${CPS_KVA.slice(-3).map(x => x.toLocaleString()).join(', ')} kVA. For two transformers, enter the total.`); }
+  else if (!s.wc && !CPS_KVA.includes(r.kva)) { setCheck('p1', 'pass'); setHint('p1', 'info', `Check the tag. CPS Energy sizes are ${CPS_KVA.slice(-3).map(x => x.toLocaleString()).join(', ')} kVA. For two transformers, enter the total.`); }
   else { setCheck('p1', 'pass'); setHint('p1', 'good', `Big enough. It can deliver up to ${fmtMw(r.maxKw)}.`); }
   // p2 breaker
   if (r.amps == null && !v.v480) { setCheck('p2', ''); setHint('p2'); }
@@ -864,30 +1079,109 @@ function paintChecks() {
 
   // verdict
   let title, sub, ico;
-  if (r.status === 'ok') { const pods = Math.floor(r.spareKw / POD_KW); title = 'Validated'; sub = `${fmtMw(r.spareKw)} spare. Room for ${pods} ${pods === 1 ? 'pod' : 'pods'}. Next: ${BY_ID.get(selected).wc || 'CPS Energy'} must approve the added load.`; ico = IC.ok; }
-  else if (r.status === 'out') { title = 'Ruled out'; sub = r.reason + '.'; ico = IC.x; }
+  if (r.status === 'ok') {
+    const sp = r.spareKw != null ? r.spareKw : (mwHiOf(s) || 1.5) * 1000;
+    const pods = Math.max(1, Math.floor(sp / POD_KW));
+    title = 'Validated';
+    sub = `${fmtMw(sp)} capacity (${pods} ${pods === 1 ? 'pod' : 'pods'}). Next: ${s.wc || 'CPS Energy'} load approval.`;
+    ico = IC.ok;
+  } else if (r.status === 'out') { title = 'Ruled out'; sub = (r.reason || 'Marked ruled out') + '.'; ico = IC.x; }
   else if (r.status === 'prog') {
     title = 'In progress';
     const deskLeft = DESK.filter(c => !v[c.k]).length;
     sub = deskLeft ? `${deskLeft} desk ${deskLeft === 1 ? 'check' : 'checks'} left.` : r.kva == null ? 'Next: get the transformer tag.' : (r.amps == null || !v.v480) ? 'Next: get the main breaker tag.' : r.peak == null ? 'Next: get a summer electric bill.' : 'Next: confirm fiber.';
     ico = IC.dots;
-  } else { title = 'Not checked yet'; sub = `Start with the ${DESK.length} desk checks. They take a few minutes.`; ico = IC.q; }
+  } else { title = 'Not checked yet'; sub = `Use Quick Update above, or step through the ${DESK.length} desk checks.`; ico = IC.q; }
   const vd = $('verdict');
-  vd.className = 'verdict s-' + r.status;
-  vd.innerHTML = `<div class="v-ico">${ico}</div><div><b>${title}</b><span>${esc(sub)}</span></div>`;
-  $('v-count').textContent = `${r.done} of ${r.total} done`;
-  $('v-bar').style.width = (r.done / r.total * 100) + '%';
-  $('out-row').innerHTML = sx ? '' : v.out
-    ? `<button type="button" class="btn sm" id="out-undo">Put this site back</button>`
-    : `<select id="out-sel" aria-label="Rule out this site"><option value="">Rule out this site because…</option>${OUT_REASONS.map(x => `<option>${esc(x)}</option>`).join('')}</select>` +
-      (Object.keys(v).length ? `<button type="button" class="btn sm ghost" id="out-reset">Clear all answers</button>` : '');
+  if (vd) {
+    vd.className = 'verdict s-' + r.status;
+    vd.innerHTML = `<div class="v-ico">${ico}</div><div><b>${title}</b><span>${esc(sub)}</span></div>`;
+  }
+  const vc = $('v-count'); if (vc) vc.textContent = `${r.done} of ${r.total} done`;
+  const vb = $('v-bar'); if (vb) vb.style.width = (r.done / r.total * 100) + '%';
+  const orow = $('out-row');
+  if (orow) {
+    orow.innerHTML = sx && !v.st ? '' : v.out
+      ? `<button type="button" class="btn sm" id="out-undo">Put this site back</button>`
+      : `<select id="out-sel" aria-label="Rule out this site"><option value="">Rule out this site because…</option>${OUT_REASONS.map(x => `<option>${esc(x)}</option>`).join('')}</select>` +
+        (Object.keys(v).length ? `<button type="button" class="btn sm ghost" id="out-reset">Clear all answers</button>` : '');
+  }
+}
+function buildShareUrl(id) {
+  const s = BY_ID.get(id);
+  if (!s) return location.origin + location.pathname;
+  const payload = {id: s.id, v: getV(id)};
+  if (s.custom) payload.s = s;
+  const enc = encodeURIComponent(btoa(unescape(encodeURIComponent(JSON.stringify(payload)))));
+  return `${location.origin}${location.pathname}?site=${id}&u=${enc}`;
+}
+function syncUrlState(id) {
+  if (!id) return;
+  try {
+    const v = getV(id), s = BY_ID.get(id);
+    if ((v && Object.keys(v).length) || (s && s.custom)) {
+      const payload = {id, v};
+      if (s && s.custom) payload.s = s;
+      const enc = encodeURIComponent(btoa(unescape(encodeURIComponent(JSON.stringify(payload)))));
+      history.replaceState(null, '', `?site=${id}&u=${enc}`);
+    } else {
+      history.replaceState(null, '', `?site=${id}`);
+    }
+  } catch (e) {}
+}
+function shareCurrentSite() {
+  if (!selected) return;
+  saveQuickForm(false);
+  const s = BY_ID.get(selected);
+  const url = buildShareUrl(selected);
+  const mw = mwText(s);
+  const st = STATUS[statusOf(selected)].label;
+  const text = `${s.n} (${s.a}) — ${mw || 'MW TBD'} · ${st}`;
+  if (navigator.share) {
+    navigator.share({title: `Stage One · ${s.n}`, text, url}).catch(() => {});
+  } else if (navigator.clipboard) {
+    navigator.clipboard.writeText(url).then(() => toast('Update link copied! Text it to share.'), () => toast(url));
+  } else {
+    toast(url);
+  }
+}
+function saveQuickForm(showBanner) {
+  if (!selected) return;
+  const s = BY_ID.get(selected);
+  const mwEl = $('q-mw'), ctEl = $('q-ct'), notesEl = $('notes');
+  const patch = {};
+  if (mwEl) {
+    const rawMw = mwEl.value.trim();
+    const numMw = toNum(rawMw);
+    patch.mw = numMw != null ? String(numMw) : '';
+  }
+  if (ctEl) {
+    const rawCt = ctEl.value.trim();
+    const defaultCt = [s.ct, s.ph].filter(Boolean).join(' · ');
+    patch.ct = rawCt && rawCt !== defaultCt ? rawCt : (rawCt ? rawCt : '');
+  }
+  if (notesEl) {
+    const rawNotes = notesEl.value.trim();
+    patch.notes = rawNotes || '';
+  }
+  setV(selected, patch);
+  updateMarkerTip(s);
+  afterChange();
+  syncUrlState(selected);
+  if (showBanner) {
+    const cf = $('q-confirm');
+    if (cf) { cf.hidden = false; }
+    toast('Update saved!');
+  }
 }
 function afterChange() {
+  if (selected) { const s = BY_ID.get(selected); if (s) updateMarkerTip(s); }
   paintChecks();
   renderTabs();
   applyFilters();
   renderList(); syncMarkers(); updatePos();
-  const s = $('saved'); if (s) { s.textContent = 'Saved'; clearTimeout(afterChange.t); afterChange.t = setTimeout(() => { if ($('saved')) $('saved').textContent = ''; }, 1500); }
+  if (selected) syncUrlState(selected);
+  const s = $('saved'); if (s) { s.textContent = 'Saved ✓'; clearTimeout(afterChange.t); afterChange.t = setTimeout(() => { if ($('saved')) $('saved').textContent = ''; }, 1800); }
 }
 function updatePos() {
   const i = results.findIndex(s => s.id === selected);
@@ -908,7 +1202,7 @@ function openSite(id, opts) {
   map.invalidateSize();
   map.setView([s.la, s.ln], 18, {animate: false});
   document.querySelectorAll('.row.is-sel').forEach(r => r.classList.remove('is-sel'));
-  try { history.replaceState(null, '', '?site=' + id); } catch (e) {}
+  syncUrlState(id);
 }
 function closeSite() {
   const id = selected; selected = null;
@@ -926,19 +1220,126 @@ function step(dir) {
   if (next) openSite(next.id);
 }
 
+/* ============================== ADD SITE ============================== */
+function openAddModal(prefillAddr) {
+  $('add-rg').value = F.region || 'sa';
+  if (typeof prefillAddr === 'string' && prefillAddr) $('add-addr').value = prefillAddr;
+  $('add-dlg').showModal();
+  setTimeout(() => $('add-addr').focus(), 50);
+}
+async function handleAddSubmit(e) {
+  e.preventDefault();
+  const addr = $('add-addr').value.trim();
+  if (!addr) { $('add-addr').focus(); return; }
+  const mwRaw = $('add-mw').value.trim();
+  const mwNum = toNum(mwRaw);
+  const rg = $('add-rg').value || 'sa';
+  const nameRaw = $('add-name').value.trim();
+  const ctRaw = $('add-ct').value.trim();
+  const notesRaw = $('add-notes').value.trim();
+
+  const btn = $('add-submit');
+  const origTxt = btn.textContent;
+  btn.disabled = true;
+  btn.textContent = 'Locating address…';
+
+  let la = HOMES[rg].center[0], ln = HOMES[rg].center[1], z = '', ar = rg === 'tx' ? 'ERCOT Texas' : 'San Antonio Area';
+  try {
+    const q = addr.toLowerCase().includes('tx') || addr.toLowerCase().includes('texas') ? addr : `${addr}, TX`;
+    const res = await fetch(`https://geocode.arcgis.com/arcgis/rest/services/World/GeocodeServer/findAddressCandidates?SingleLine=${encodeURIComponent(q)}&f=json&maxLocations=1&outFields=Postal,City,Subregion`);
+    const data = await res.json();
+    if (data && data.candidates && data.candidates.length) {
+      const c = data.candidates[0];
+      if (c.location) { la = +c.location.y.toFixed(6); ln = +c.location.x.toFixed(6); }
+      if (c.attributes) {
+        if (c.attributes.Postal) z = String(c.attributes.Postal).slice(0, 5);
+        if (c.attributes.City) ar = c.attributes.City;
+      }
+    }
+  } catch (err) {}
+
+  const maxId = SITES.reduce((m, s) => Math.max(m, s.id), 2000);
+  const newId = maxId + 1;
+  const newSite = {
+    id: newId,
+    custom: 1,
+    rg: rg === 'tx' ? 'tx' : undefined,
+    n: nameRaw || addr.split(',')[0].trim(),
+    a: addr,
+    z: z,
+    ar: ar,
+    t: 1,
+    c: mwNum != null && mwNum >= 4.5 ? 'Multi-Pod Whales (3–6 Pods)' : 'Custom Added Site',
+    la,
+    ln,
+    sz: '',
+    lo: mwNum != null ? mwNum : null,
+    hi: mwNum != null ? mwNum : null,
+    sg: notesRaw ? `Field update: ${notesRaw}` : 'Added via mobile Site Finder',
+    ct: ctRaw,
+    ph: '',
+    em: '',
+    dc: ctRaw ? 1 : 0,
+    f: '?',
+    fl: 'To be verified',
+    o: 'none',
+    ot: '',
+    v: 0,
+    l: '',
+    vr: 0,
+    sc: 9,
+    sh: 1,
+    au: {
+      p: ['Added directly via Stage One Site Finder', ...(mwNum != null ? [`Estimated ${mwNum.toFixed(1)} MW entered`] : [])],
+      n: [],
+      act: 'Added ' + new Date().toISOString().slice(0, 10)
+    },
+    x: '',
+    pm: null
+  };
+
+  customSites.push(newSite);
+  persistCustom();
+  SITES.push(newSite);
+  BY_ID.set(newId, newSite);
+  PRI_ORDER.unshift(newId);
+  PRIORITY.add(newId);
+  setV(newId, {
+    mw: mwNum != null ? String(mwNum) : '',
+    ct: ctRaw || '',
+    notes: notesRaw || '',
+    star: 'y',
+    st: 'prog'
+  });
+  indexHay(newSite);
+  addSiteMarker(newSite);
+
+  btn.disabled = false;
+  btn.textContent = origTxt;
+  $('add-form').reset();
+  $('add-dlg').close();
+
+  F.region = rg;
+  refresh();
+  openSite(newId);
+  const cf = $('q-confirm'); if (cf) cf.hidden = false;
+  toast(`Added Site #${newId}! Tap "Share Link" to text it.`);
+}
+
 /* ============================== EXPORT ============================== */
 function exportCsv() {
   const yn = x => x === 'y' ? 'Yes' : x === 'n' ? 'No' : '';
-  const rows = [['Site #', 'Name', 'Address', 'ZIP', 'Priority', 'Status', 'Reason', 'Building there', 'Room for pad', 'Transformer visible', 'Vacant', 'Listed', 'Real contact', 'Transformer kVA', 'Breaker amps', '480V 3-phase', 'Peak kW', 'Spare MW', 'Fiber', 'Notes', 'Updated']];
+  const rows = [['Site #', 'Name', 'Address', 'ZIP', 'Priority', 'Status', 'Megawatts (MW)', 'Outreach', 'Contact', 'Reason', 'Building there', 'Room for pad', 'Transformer visible', 'Vacant', 'Listed', 'Real contact', 'Transformer kVA', 'Breaker amps', '480V 3-phase', 'Peak kW', 'Spare MW', 'Fiber', 'Notes', 'Updated']];
   SITES.forEach(s => {
-    const v = store[s.id]; if (!v) return;
-    const r = evaluate(v);
-    rows.push([s.id, s.n, s.a, s.z, isPri(s.id) ? 'Yes' : '', STATUS[r.status].label, r.reason, yn(v.c1), yn(v.c2), yn(v.c3), yn(v.cv), yn(v.cl), yn(v.c4), v.kva || '', v.amps || '', yn(v.v480), v.peak || '', r.spareKw != null ? (r.spareKw / 1000).toFixed(2) : '', yn(v.fb), v.notes || '', v.t || '']);
+    const v = store[s.id]; if (!v && !s.custom) return;
+    const r = evaluate(v || {});
+    const st = statusOf(s.id);
+    rows.push([s.id, s.n, s.a, s.z, isPri(s.id) ? 'Yes' : '', STATUS[st].label, mwText(s), outOf(s), (v && v.ct) || s.ct || '', r.reason, yn(v && v.c1), yn(v && v.c2), yn(v && v.c3), yn(v && v.cv), yn(v && v.cl), yn(v && v.c4), (v && v.kva) || '', (v && v.amps) || '', yn(v && v.v480), (v && v.peak) || '', r.spareKw != null ? (r.spareKw / 1000).toFixed(2) : '', yn(v && v.fb), (v && v.notes) || '', (v && v.t) || '']);
   });
-  if (rows.length === 1) { toast('Nothing to export yet. Check a site first.'); return; }
+  if (rows.length === 1) { toast('Nothing to export yet. Update or add a site first.'); return; }
   const csv = rows.map(r => r.map(c => { c = String(c); if (/^[=+\-@]/.test(c)) c = "'" + c; return /[",\n]/.test(c) ? '"' + c.replace(/"/g, '""') + '"' : c; }).join(',')).join('\r\n');
   const a = document.createElement('a');
-  a.href = URL.createObjectURL(new Blob(['﻿' + csv], {type: 'text/csv;charset=utf-8'}));
+  a.href = URL.createObjectURL(new Blob(['\uFEFF' + csv], {type: 'text/csv;charset=utf-8'}));
   a.download = 'stage-one-site-validation-' + new Date().toISOString().slice(0, 10) + '.csv';
   document.body.appendChild(a); a.click(); a.remove();
   setTimeout(() => URL.revokeObjectURL(a.href), 1000);
@@ -949,6 +1350,15 @@ function exportCsv() {
 function updateToggle() {
   const onMap = document.body.classList.contains('m-map');
   $('m-toggle').innerHTML = onMap ? (selected ? IC.list + 'Back to site' : IC.list + 'List') : IC.map + 'Map';
+}
+function wireLightDismiss(dlg) {
+  if (!('closedBy' in HTMLDialogElement.prototype)) {
+    dlg.addEventListener('click', e => {
+      const rect = dlg.getBoundingClientRect();
+      const inDialog = e.clientY >= rect.top && e.clientY <= rect.bottom && e.clientX >= rect.left && e.clientX <= rect.right;
+      if (!inDialog) dlg.close();
+    });
+  }
 }
 function wire() {
   let qt;
@@ -965,6 +1375,7 @@ function wire() {
   $('f-clear').addEventListener('click', () => { const q = F.q, st = F.status; resetAll(); F.q = q; F.status = st; $('q').value = q; refresh({fit: true}); });
   $('list').addEventListener('click', e => {
     if (e.target.closest('#empty-reset')) { resetAll(); return; }
+    if (e.target.closest('#empty-add')) { openAddModal(F.q); return; }
     const r = e.target.closest('.row'); if (r) openSite(+r.dataset.id);
   });
   $('list').addEventListener('mouseover', e => { const r = e.target.closest('.row'); if (!r || isMobile()) return; const m = markers.get(+r.dataset.id); if (m && map.hasLayer(m)) m.openTooltip(); });
@@ -974,13 +1385,36 @@ function wire() {
   $('d-prev').addEventListener('click', () => step(-1));
   $('d-next').addEventListener('click', () => step(1));
   const ds = $('d-scroll');
+  ds.addEventListener('submit', e => {
+    if (e.target.id === 'quick-form') {
+      e.preventDefault();
+      saveQuickForm(true);
+    }
+  });
   ds.addEventListener('click', e => {
+    const qst = e.target.closest('[data-qst]');
+    if (qst) {
+      const st = qst.dataset.qst;
+      setV(selected, {st, out: st === 'out' ? (getV(selected).out || 'Ruled out via Quick Update') : ''});
+      afterChange();
+      return;
+    }
+    const qout = e.target.closest('[data-qout]');
+    if (qout) {
+      setV(selected, {o: qout.dataset.qout});
+      afterChange();
+      return;
+    }
+    if (e.target.closest('#q-share') || e.target.closest('#q-share2')) {
+      shareCurrentSite();
+      return;
+    }
     const yb = e.target.closest('[data-yn] button');
     if (yb) { const k = yb.parentElement.dataset.yn; setV(selected, {[k]: getV(selected)[k] === yb.dataset.v ? '' : yb.dataset.v}); afterChange(); return; }
     if (e.target.closest('#d-next2')) { step(1); return; }
     if (e.target.closest('#d-map')) { $('m-toggle').click(); return; }
     if (e.target.closest('#d-star')) { const on = !isPri(selected); setV(selected, {star: on === PRIORITY.has(selected) ? '' : on ? 'y' : 'n'}); $('d-star').setAttribute('aria-pressed', on); afterChange(); return; }
-    if (e.target.closest('#out-undo')) { setV(selected, {out: ''}); afterChange(); return; }
+    if (e.target.closest('#out-undo')) { setV(selected, {out: '', st: ''}); afterChange(); return; }
     if (e.target.closest('#out-reset')) { if (confirm('Clear every answer and note for this site?')) { delete store[selected]; persist(); renderDetail(selected); afterChange(); } return; }
     if (e.target.closest('#d-copy')) {
       const s = BY_ID.get(selected), txt = s.q || [s.a, s.z, 'TX'].filter(Boolean).join(', ');
@@ -990,29 +1424,43 @@ function wire() {
   ds.addEventListener('input', e => {
     const k = e.target.dataset && e.target.dataset.k;
     if (k) { setV(selected, {[k]: e.target.value.trim()}); afterChange(); }
-    else if (e.target.id === 'notes') { clearTimeout(wire.nt); const id = selected, val = e.target.value; wire.nt = setTimeout(() => { setV(id, {notes: val.trim() ? val : ''}); if (selected === id) afterChange(); }, 300); }
+    else if (e.target.id === 'q-mw') {
+      const numMw = toNum(e.target.value.trim());
+      setV(selected, {mw: numMw != null ? String(numMw) : ''});
+      afterChange();
+    } else if (e.target.id === 'q-ct') {
+      clearTimeout(wire.ct);
+      const id = selected, val = e.target.value.trim();
+      wire.ct = setTimeout(() => { setV(id, {ct: val}); if (selected === id) afterChange(); }, 250);
+    } else if (e.target.id === 'notes') {
+      clearTimeout(wire.nt);
+      const id = selected, val = e.target.value;
+      wire.nt = setTimeout(() => { setV(id, {notes: val.trim() ? val : ''}); if (selected === id) afterChange(); }, 250);
+    }
   });
-  ds.addEventListener('change', e => { if (e.target.id === 'out-sel' && e.target.value) { setV(selected, {out: e.target.value}); afterChange(); } });
+  ds.addEventListener('change', e => { if (e.target.id === 'out-sel' && e.target.value) { setV(selected, {out: e.target.value, st: 'out'}); afterChange(); } });
 
   document.querySelectorAll('.layers button').forEach(b => b.addEventListener('click', () => setLayer(b.dataset.layer)));
   $('m-toggle').addEventListener('click', () => { document.body.classList.toggle('m-map'); updateToggle(); map.invalidateSize(); if (document.body.classList.contains('m-map')) { if (selected) { const s = BY_ID.get(selected); map.setView([s.la, s.ln], 18, {animate: false}); } else fitResults(); } });
   $('btn-export').addEventListener('click', exportCsv);
   $('how-export').addEventListener('click', exportCsv);
+  $('btn-add').addEventListener('click', () => openAddModal(''));
+  $('add-cancel').addEventListener('click', () => $('add-dlg').close());
+  $('add-form').addEventListener('submit', handleAddSubmit);
   $('btn-how').addEventListener('click', () => $('how').showModal());
   $('how-close').addEventListener('click', () => $('how').close());
-  $('how').addEventListener('click', e => { if (e.target === e.currentTarget) e.currentTarget.close(); });
   $('btn-status').addEventListener('click', () => $('status-dlg').showModal());
   $('status-close').addEventListener('click', () => $('status-dlg').close());
-  $('status-dlg').addEventListener('click', e => { if (e.target === e.currentTarget) e.currentTarget.close(); });
   $('status-copy').addEventListener('click', () => {
     const u = location.origin + location.pathname + '#status';
     (navigator.clipboard ? navigator.clipboard.writeText(u) : Promise.reject()).then(() => toast('Status link copied!'), () => toast(u));
   });
+  ['add-dlg', 'how', 'status-dlg'].forEach(id => wireLightDismiss($(id)));
   document.querySelector('.prog').addEventListener('click', () => $('how').showModal());
 
   document.addEventListener('keydown', e => {
     const typing = /^(INPUT|TEXTAREA|SELECT)$/.test(document.activeElement.tagName);
-    if (e.key === 'Escape') { if ($('how').open) return; if (typing) document.activeElement.blur(); else if (selected) closeSite(); return; }
+    if (e.key === 'Escape') { if ($('how').open || $('add-dlg').open || $('status-dlg').open) return; if (typing) document.activeElement.blur(); else if (selected) closeSite(); return; }
     if (typing || e.metaKey || e.ctrlKey || e.altKey) return;
     if (e.key === '/') { e.preventDefault(); if (selected) closeSite(); $('q').focus(); $('q').select(); }
     else if (selected && e.key === 'ArrowRight') step(1);
@@ -1029,9 +1477,34 @@ function wire() {
   const types = [...new Set(SITES.filter(s => rgOf(s) === 'sa').map(s => s.c))].sort();
   $('f-type').insertAdjacentHTML('beforeend', types.map(t => `<option>${esc(t)}</option>`).join(''));
   if (isMobile()) $('q').placeholder = 'Search address, name or ZIP';
+
+  // Import shared site or update payload if present in URL (?u=...)
+  let imported = false;
+  try {
+    const uParam = new URLSearchParams(location.search).get('u');
+    if (uParam) {
+      const payload = JSON.parse(decodeURIComponent(escape(atob(uParam))));
+      if (payload && payload.s && payload.s.id && !BY_ID.has(payload.s.id)) {
+        const ns = payload.s;
+        customSites.push(ns);
+        persistCustom();
+        SITES.push(ns);
+        BY_ID.set(ns.id, ns);
+        PRI_ORDER.unshift(ns.id);
+        PRIORITY.add(ns.id);
+        indexHay(ns);
+      }
+      if (payload && payload.id && payload.v) {
+        setV(+payload.id, payload.v);
+        imported = true;
+      }
+    }
+  } catch (e) {}
+
   initMap(); wire(); refresh(); updateToggle();
   const m = /[?&]site=(\d+)/.exec(location.search);
   if (m && BY_ID.has(+m[1])) openSite(+m[1], {instant: true});
+  if (imported) toast('Imported shared site update!');
   if (location.hash === '#status' || /[?&]status=1/.test(location.search)) $('status-dlg').showModal();
 })();
 </script>
