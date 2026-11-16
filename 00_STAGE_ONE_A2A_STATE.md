@@ -3,10 +3,10 @@
 > **PERMANENT PRICING RULE (Nov 15, 2026 — HARD BAN):** Flat pad-rent anchoring is permanently retired and banned everywhere. Never quote, pitch, draft, or reference fixed flat monthly parking rent on any site, option, LOI, or email. All host compensation is structured strictly on site-specific NNN / energized-MW revenue-share terms (`$0` until commercial energization).
 
 
-> **A2A Protocol (Antigravity + Muse/Hank + Google Gemini):**
+> **A2A & Multi-Chat Dedup Protocol (Chats `82391234` & `5e3bfa01` + Claude + Muse/Hank + Gemini):**
 > This folder (`/Users/benjijmac/Projects/Stage One Power/`, auto-synced via `com.stageone.jockeyvcsync` to Google Drive `02_Business/JockeyVC Studio/Stage One Power/`) is the **Single Source of Truth**.
-> - **Before acting:** Every agent must read `00_STAGE_ONE_A2A_STATE.md` and `4_STAGE_ONE_ALL_264_SITES.csv`.
-> - **After acting:** Any agent that sends outreach, adds sites, stages drafts, or updates legal/financial terms must append to the **Live Action Log** below and update `4_STAGE_ONE_ALL_264_SITES.csv` in place.
+> - **Before ANY file edit or email send (MANDATORY):** Run `git log -n 3 --oneline`, read the bottom 30 lines of `00_STAGE_ONE_A2A_STATE.md`, check `/Users/benjijmac/.local/bin/agy-search "<target>"`, and check `ben@jockeyvc.com` `#sent` so parallel chats never overwrite commits or double-send outreach.
+> - **After acting:** Append to the **Live Action Log** below, run `python3 sync_crm.py` when sites change, push cleanly, and run `/Users/benjijmac/.local/bin/agy-search --sync`.
 
 ---
 
