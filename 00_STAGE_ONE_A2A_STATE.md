@@ -87,7 +87,7 @@
 | `0` | `0_STAGE_ONE_MASTER_DOC.pdf` (`STAGE_ONE_MASTER_DOC.md`) | Master Execution Playbook, 5-Model Unit Economics, 50-State Research & Entity Strategy | Nov 7, 2026 |
 | `1` | `1_STAGE_ONE_1_PAGE_CUSTOMER_LOI.pdf` | 1-Page Customer Offtake LOI Template | Nov 4, 2026 |
 | `2` | `2_BEXAR_90_DAY_LANDLORD_OPTION.pdf` | 90-Day Stealth Landlord Option (`Bexar Commercial Utility Easements LLC`) | Nov 4, 2026 |
-| `3` | `3_STAGE_ONE_SAN_ANTONIO_MAP.html` (`index.html`) | Interactive 345-Site San Antonio Finder (`15` Confirmed Outside-City-Limits Zero-SUP / `UZROW` Priority Whales; Occupied Dead-Ends Purged) | Nov 16, 2026 |
+| `3` | `3_STAGE_ONE_SAN_ANTONIO_MAP.html` (`index.html`) | Interactive 347-Site San Antonio Finder (`22` Outside-City-Limits Zero-SUP / `UZROW` Priority Whales: `15` Vacant/Available + `7` Tagged `Potentially occupied`) | Nov 16, 2026 |
 | `4` | `4_STAGE_ONE_ALL_264_SITES.csv` (`_LIST.md`) | Master 303-Site Database with Verified Emails & Outreach Statuses | Nov 7, 2026 |
 | `5` | `5_ANTHONY_TEXAS_POD_BUYERS.xlsx` | Anthony Kenisky's 18 Texas Pod Buyer Prospects | Nov 4, 2026 |
 | `6` | `6_NVIDIA_DSX_POD_OFFICIAL_SPEC.pdf` | Official NVIDIA DSX Modular Reference Design Spec | Nov 4, 2026 |
