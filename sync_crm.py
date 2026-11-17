@@ -77,7 +77,7 @@ def sync_all():
         is_tx = "ercot" in rg_txt or "texas" in rg_txt or sid >= 1000
         pri_txt = str(r[col.get("priority star", 2)] or "").strip().lower()
         sh = 1 if pri_txt in ("yes", "y", "1", "true", "star", "priority") else 0
-        gov_col = col.get("government / public host")
+        gov_col = col.get("government / doe track") if col.get("government / doe track") is not None else col.get("government / public host")
         gov_raw = str(r[gov_col] or "").strip() if gov_col is not None else ""
         gov_l = gov_raw.lower()
         gov_on = 1 if (gov_l.startswith(("yes", "y", "1", "true", "gov", "rule 1")) or "rule 1" in gov_l) else 0
@@ -191,6 +191,8 @@ def sync_all():
                 "vr": 0,
                 "sc": 8 if sh else 3,
                 "sh": sh,
+                **({"gov": 1, "gt": gov_gt or "Government Land"} if gov_on else {}),
+                **({"sci": 1} if sci_on else {}),
                 **({"gov": 1, "gt": gov_gt or "Government Host"} if gov_on else {}),
                 "au": {"p": [notes] if notes else ["Added via Master CRM"], "n": [], "act": "Synced from Master CRM"},
                 "x": (notes or "Ruled out in Master CRM") if st_txt == "ruled out" else "",
