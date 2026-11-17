@@ -18,12 +18,13 @@
 }
 *{box-sizing:border-box}
 body{margin:0;font-family:var(--sans);font-size:14.5px;line-height:1.55;color:var(--fg);background:var(--bg);-webkit-font-smoothing:antialiased;padding:28px 16px 64px}
-.wrap{max-width:780px;margin:0 auto;background:var(--card);border:1px solid var(--border);border-radius:14px;padding:28px;box-shadow:0 4px 20px rgba(9,9,11,.05)}
+.wrap{max-width:800px;margin:0 auto;background:var(--card);border:1px solid var(--border);border-radius:14px;padding:28px;box-shadow:0 4px 20px rgba(9,9,11,.05)}
 .hdr{display:flex;align-items:center;justify-content:space-between;gap:12px;border-bottom:1px solid var(--border);padding-bottom:16px;margin-bottom:18px;flex-wrap:wrap}
 .brand{display:flex;align-items:center;gap:10px}
 .badge{width:30px;height:30px;border-radius:7px;background:var(--primary);color:#fff;display:grid;place-items:center;font:700 12px var(--mono)}
 h1{font-size:20px;font-weight:800;letter-spacing:-.02em;margin:0}
 .pill{font-size:11.5px;font-weight:700;padding:3px 10px;border-radius:99px;background:var(--ok-bg);color:var(--ok-fg)}
+.gov-tag{font-size:10.5px;font-weight:700;padding:1px 7px;border-radius:99px;background:#EEF2FF;color:#3730A3;border:1px solid #C7D2FE;white-space:nowrap}
 .kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:10px;margin-bottom:20px}
 .kpi{background:var(--muted);border:1px solid var(--border);border-radius:9px;padding:12px 14px}
 .kpi b{font:800 20px var(--mono);display:block;color:var(--fg)}
@@ -34,9 +35,11 @@ li{margin-bottom:6px;color:var(--fg-2)}
 li b{color:var(--fg)}
 code,.num{font-family:var(--mono);font-variant-numeric:tabular-nums}
 code{font-size:12.5px;font-weight:600;background:var(--muted);padding:1px 6px;border-radius:5px;color:var(--fg)}
+.visually-hidden:where(:not(:focus-within,:active)){position:absolute!important;clip-path:inset(50%)!important;overflow:hidden!important;width:1px!important;height:1px!important;margin:-1px!important;padding:0!important;border:0!important;white-space:nowrap!important}
 .table-responsive{overflow-x:auto;border:1px solid var(--border);border-radius:9px}
-table{width:100%;border-collapse:collapse;font-size:13px;text-align:left}
-th{background:var(--muted);border-bottom:1px solid var(--border);padding:8px 10px;font:700 11px var(--mono);text-transform:uppercase;color:var(--fg-3)}
+table{width:100%;border-collapse:separate;border-spacing:0;font-size:13px;text-align:left}
+thead{position:sticky;inset-block-start:0;z-index:1}
+th{background:var(--muted);border-bottom:1px solid var(--border);padding:8px 10px;font:700 11px var(--mono);text-transform:uppercase;color:var(--fg-3);white-space:nowrap}
 td{padding:8px 10px;border-bottom:1px solid var(--border);color:var(--fg-2)}
 tr:last-child td{border-bottom:0}
 a{color:var(--accent);text-decoration:none;font-weight:600}
@@ -44,64 +47,77 @@ a:hover{text-decoration:underline}
 .bar{display:flex;gap:10px;flex-wrap:wrap;margin-top:24px;padding-top:16px;border-top:1px solid var(--border)}
 .btn{height:36px;padding:0 14px;border-radius:7px;border:1px solid var(--border);background:var(--card);font-size:13px;font-weight:600;display:inline-flex;align-items:center;color:var(--fg)}
 .btn.primary{background:var(--primary);border-color:var(--primary);color:#fff}
+.btn.gov{background:#EEF2FF;border-color:#A5B4FC;color:#312E81}
 </style>
 </head>
 <body>
-<div class="wrap">
-  <div class="hdr">
+<main class="wrap">
+  <header class="hdr">
     <div class="brand">
       <div class="badge">S1</div>
       <h1>Stage One Power — Plain-English Summary</h1>
     </div>
     <span class="pill">Updated Nov 16, 2026</span>
-  </div>
+  </header>
 
   <div class="kpis">
     <div class="kpi"><b>16–22 MW</b><span>Published in writing today (<code>#4</code> + <code>#333</code>)</span></div>
-    <div class="kpi"><b style="color:var(--accent)">33 Sites</b><span>Open sites outside gated cities (<code>157–301 MW</code> est.)</span></div>
-    <div class="kpi"><b>12 Plants</b><span>Occupied heavy plants to check (<code>48–92 MW</code> est.)</span></div>
-    <div class="kpi"><b style="color:var(--ok)">361 Total</b><span>San Antonio &amp; 8-county pipeline (<code>500+ MW</code> est.)</span></div>
+    <div class="kpi"><b style="color:var(--accent)">49 Priority</b><span>Outside city bans or Federal/State exempt</span></div>
+    <div class="kpi"><b style="color:#3730A3">28 Gov Sites</b><span>Federal, Defense, State Univ &amp; Municipal</span></div>
+    <div class="kpi"><b style="color:var(--ok)">366 Total</b><span>San Antonio &amp; 8-county pipeline (+165 ERCOT)</span></div>
   </div>
 
-  <h2>1. Top Open Sites Outside Gated Cities (Click Any Site to Open Map)</h2>
-  <div class="table-responsive">
+  <h2 id="h-open">1. Top Open Sites Outside Gated Cities (Click Any Site to Open Map)</h2>
+  <div tabindex="0" role="region" aria-labelledby="h-open" class="table-responsive">
     <table>
+      <caption class="visually-hidden">Top open commercial and industrial sites outside gated cities</caption>
       <thead>
-        <tr><th>Site</th><th>Area (No City Ban)</th><th>Power</th><th>Fiber</th><th>Broker / Contact</th></tr>
+        <tr><th scope="col">Site</th><th scope="col">Area (No City Ban)</th><th scope="col">Power</th><th scope="col">Fiber</th><th scope="col">Broker / Contact</th></tr>
       </thead>
       <tbody>
-        <tr><td><a href="./?site=4">#4 Ex-Rackspace HQ</a></td><td>Windcrest</td><td class="num"><b>15–21 MW</b> (Published)</td><td class="num">0 m LOGIX</td><td>JLL (Ben Jordan)</td></tr>
+        <tr><td><a href="./?site=4">#4 Ex-Rackspace HQ</a> <span class="gov-tag">Gov EDC</span></td><td>Windcrest</td><td class="num"><b>15–21 MW</b> (Published)</td><td class="num">0 m LOGIX</td><td>JLL / Windcrest EDC</td></tr>
         <tr><td><a href="./?site=348">#348 Citibank Tech Campus</a></td><td>78245 County Land</td><td class="num">9–15 MW (Est.)</td><td class="num">365 m FiberLight</td><td>CBRE (For Sale)</td></tr>
         <tr><td><a href="./?site=333">#333 Eisenhauer Point (4 Bldgs)</a></td><td>Windcrest</td><td class="num">4.5–9 MW (2,000A+)</td><td class="num">200 m Lumen</td><td>Cavender &amp; Hill</td></tr>
         <tr><td><a href="./?site=349">#349 15355 Lambda Dr</a></td><td>78245 Research Park</td><td class="num">4.5–9 MW (Est.)</td><td class="num">82 m FiberLight</td><td>Walan / CBRE</td></tr>
         <tr><td><a href="./?site=338">#338–#340 Selma Shell Parks</a></td><td>Selma (3 Parks)</td><td class="num">10.5–19.5 MW (Est.)</td><td class="num">398–521 m Segra</td><td>Stream / Partners RE</td></tr>
-        <tr><td><a href="./?site=334">#334 Interchange at Live Oak</a></td><td>Live Oak</td><td class="num">4.5–7.5 MW (Est.)</td><td class="num">689 m Segra</td><td>Cavender &amp; Hill</td></tr>
-        <tr><td><a href="./?site=344">#344 &amp; #350 East I-10 Parks</a></td><td>East Bexar County</td><td class="num">6–12 MW (Est.)</td><td class="num">2.3–3.4 km Segra</td><td>Cavender / Stream</td></tr>
-        <tr><td><a href="./?site=351">#351–#353 Seguin Mfg Parks</a></td><td>Seguin (GVEC Power)</td><td class="num">28–66 MW (Land/Park)</td><td class="num">I-10 + GVEC</td><td>Cavender / Seguin EDC</td></tr>
-        <tr><td><a href="./?site=354">#354 &amp; #355 Hondo &amp; Castroville</a></td><td>Medina Co. US-90</td><td class="num">25–50 MW (Land/Park)</td><td class="num">US-90 Trunk</td><td>Hondo &amp; Castroville EDC</td></tr>
+        <tr><td><a href="./?site=351">#351–#353 Seguin Mfg Parks</a> <span class="gov-tag">Gov EDC</span></td><td>Seguin (GVEC Power)</td><td class="num">28–66 MW (Land/Park)</td><td class="num">I-10 + GVEC</td><td>Cavender / Seguin EDC</td></tr>
+        <tr><td><a href="./?site=354">#354 &amp; #355 Hondo &amp; Castroville</a> <span class="gov-tag">Gov Base</span></td><td>Medina Co. US-90</td><td class="num">25–50 MW (Land/Park)</td><td class="num">US-90 Trunk</td><td>Hondo &amp; Castroville EDC</td></tr>
       </tbody>
     </table>
   </div>
 
-  <h2>2. City Permit Rules (Where We Can Build Now)</h2>
-  <ul>
-    <li><b>Fast Track (<code>45</code> Starred Priority Sites):</b> Windcrest, Selma, Live Oak, Universal City, Converse, China Grove, Seguin, Hondo, Castroville, and unincorporated county land have <b>no data-center zoning vote</b>.</li>
-    <li><b>Slow Track (<code>282</code> Sites Inside San Antonio):</b> San Antonio's Oct 29 rule requires a <b>6–9 month City Council vote</b>. Keep for Phase 2 (led by <a href="./?site=13">#13 Brooks</a> at <code>30 MW</code>).</li>
-    <li><b>Ruled Out for Fast Track (<code>9</code> Sites):</b> <b>New Braunfels</b> (<code>#327, #328</code> — requires 50+ acres) and <b>Schertz</b> (requires City Council vote).</li>
-  </ul>
+  <h2 id="h-gov">2. Government, Defense &amp; State University Track (28 Sites — Inside &amp; Outside City Limits)</h2>
+  <div tabindex="0" role="region" aria-labelledby="h-gov" class="table-responsive">
+    <table>
+      <caption class="visually-hidden">Government, Defense, Federal EUL, and State University sites inside and outside city limits</caption>
+      <thead>
+        <tr><th scope="col">Site / Campus</th><th scope="col">Public Host</th><th scope="col">City Limit / Zoning Rule</th><th scope="col">Power</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><a href="./?site=4">#4 Windcrest Ex-Rackspace + 42-Ac EDC</a></td><td>Windcrest Municipal EDC</td><td>Outside CoSA (Zero SUP)</td><td class="num"><b>15–21 MW</b> (Published)</td></tr>
+        <tr><td><a href="./?site=365">#365 JBSA-Lackland / AFCEC AI EUL</a></td><td>U.S. Air Force (AFCEC HQ)</td><td>Federal Enclave (10 U.S.C. § 2667 Exempt)</td><td class="num">15–35 MW (Est.)</td></tr>
+        <tr><td><a href="./?site=362">#362–#364 &amp; #311 UTSA, UT Health &amp; TAMUSA</a></td><td>State of Texas (UT &amp; A&amp;M Systems)</td><td>Inside CoSA · <b>State § 211.013(c) Exempt</b></td><td class="num">22.5–49 MW (4 Sites)</td></tr>
+        <tr><td><a href="./?site=11">#11, #12, #44, #45, #96, #134 Port SA</a></td><td>Defense Base Authority (Ch. 379B)</td><td>Unzoned Defense Base (SCIF / Cyber)</td><td class="num">21–30 MW (6 Sites)</td></tr>
+        <tr><td><a href="./?site=13">#13, #14, #46, #135, #286 Brooks Base</a></td><td>Brooks Dev Authority (Ch. 379B)</td><td>Inside CoSA (Call Active · IEM Plant)</td><td class="num"><b>15–30 MW</b> (6–8 Mos)</td></tr>
+        <tr><td><a href="./?site=354">#354, #355, #351, #28 Regional Municipal</a></td><td>Hondo USAF Base, Castroville, Seguin, Selma</td><td>Outside CoSA (Zero Data-Center Ban)</td><td class="num">47.5–97 MW (5 Sites)</td></tr>
+        <tr><td><a href="./?site=264">#264, #308–#310, #312, #366 SwRI &amp; City</a></td><td>SwRI (DoD SCIF), CPS, VIA, CoSA, Stinson</td><td>Inside CoSA (Tagged Gov for Visibility)</td><td class="num">25.5–47 MW (6 Sites)</td></tr>
+      </tbody>
+    </table>
+  </div>
 
-  <h2>3. Site Setup, Hardware &amp; Capital</h2>
+  <h2>3. Operating, Hardware &amp; Capital Rules</h2>
   <ul>
     <li><b>Stay Under <code>39 MW</code> Per Meter:</b> Skips CPS Energy's <code>40 MW</code> study and ERCOT's <code>75 MW</code> review freeze.</li>
-    <li><b>Simple Equipment Setup:</b> Place gear indoors in Windcrest and Balcones Heights; use removable skids with zero diesel generators on county land.</li>
+    <li><b>State &amp; Federal Sovereign Exemption:</b> Under <code>Tex. Loc. Gov't Code § 211.013(c)</code>, State university &amp; federal land (UTSA, UT Health, TAMUSA, JBSA) is exempt from municipal zoning even inside San Antonio city limits.</li>
     <li><b>Landlord Pay:</b> Pay landlords a share per live megawatt (<code>$0</code> rent until power turns on) and reimburse power at exact utility cost.</li>
     <li><b>Pods &amp; Financing:</b> <code>480V</code> pod quotes active with <b>Vertiv, Dell, HPE, Eaton, and Torus</b>; 5-year pod model live with <b>Mike Whitaker's</b> lender group and <b>Dell Financial Services</b>.</li>
   </ul>
 
   <div class="bar">
     <a class="btn primary" href="./">Open Interactive Site Map</a>
+    <a class="btn gov" href="./?gov=1">Open 28 Government Sites on Map</a>
     <a class="btn" href="https://docs.google.com/spreadsheets/d/1ok5yuVhP96zVpZFMNQaxFAYDPRKoQhwl/edit" target="_blank" rel="noopener">Open Google Sheet CRM</a>
   </div>
-</div>
+</main>
 </body>
 </html>
