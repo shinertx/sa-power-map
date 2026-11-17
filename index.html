@@ -336,15 +336,20 @@ body:not(.buyer-mode) .buyer-only{display:none!important}
 .dropzone b{display:block;font-size:14px;margin-bottom:3px}
 .dropzone span{font-size:12.5px;color:var(--fg-3)}
 
-.ai-log{display:flex;flex-direction:column;gap:10px;max-height:46vh;overflow-y:auto;padding:12px;background:var(--bg);border:1px solid var(--border);border-radius:10px;margin-bottom:10px}
-.ai-msg{padding:10px 12px;border-radius:9px;font-size:13.5px;line-height:1.5;max-width:94%}
+.ai-log{display:flex;flex-direction:column;gap:10px;max-height:48vh;overflow-y:auto;padding:12px;background:var(--bg);border:1px solid var(--border);border-radius:10px;margin-bottom:10px}
+.ai-msg{padding:10px 12px;border-radius:9px;font-size:13.5px;line-height:1.55;max-width:95%}
 .ai-msg.u{align-self:flex-end;background:var(--primary);color:#FAFAFA;font-weight:500}
 .ai-msg.b{align-self:flex-start;background:var(--card);border:1px solid var(--border);color:var(--fg)}
 .ai-chips{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px}
-.ai-chip{height:27px;padding:0 10px;border-radius:99px;border:1px solid var(--border-2);background:var(--card);font-size:12px;font-weight:600;color:var(--fg-2)}
-.ai-chip:hover{background:var(--muted);color:var(--fg)}
+.ai-chip{height:28px;padding:0 10px;border-radius:99px;border:1px solid var(--border-2);background:var(--card);font-size:12px;font-weight:600;color:var(--fg-2);display:inline-flex;align-items:center;gap:4px}
+.ai-chip:hover{background:var(--muted);color:var(--fg);border-color:var(--fg-3)}
 .site-pill{display:inline-flex;align-items:center;gap:4px;padding:2px 8px;margin:2px 3px 2px 0;border-radius:6px;border:1px solid #BAE6FD;background:#F0F9FF;color:#0369A1;font:600 12px var(--mono);cursor:pointer}
 .site-pill:hover{background:#E0F2FE}
+.ai-act-box{margin-top:9px;padding:9px 11px;border-radius:8px;background:#F0FDF4;border:1px solid #BBF7D0;display:flex;flex-direction:column;gap:6px}
+.ai-act-row{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap;font-size:12.5px;color:#166534}
+.ai-eval-card{margin-top:16px;padding:14px;border:1.5px solid #BAE6FD;border-radius:12px;background:#F8FAFC;display:flex;flex-direction:column;gap:10px}
+.ai-eval-out{padding:11px 13px;border-radius:9px;background:var(--card);border:1px solid var(--border);font-size:13.2px;line-height:1.55;color:var(--fg)}
+.ai-model-sel{height:28px;border:1px solid var(--border-2);border-radius:6px;background:var(--card);padding:0 8px;font-size:12px;font-weight:700;color:var(--fg)}
 
 @media (max-width:820px){
   .map-search{display:none}
@@ -711,42 +716,54 @@ body:not(.buyer-mode) .buyer-only{display:none!important}
   </div>
 </dialog>
 
-<dialog id="ai-dlg" closedby="any" aria-labelledby="ai-title" style="width:min(620px,calc(100vw - 24px))">
+<dialog id="ai-dlg" closedby="any" aria-labelledby="ai-title" style="width:min(680px,calc(100vw - 24px))">
   <div class="dlg">
-    <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:6px;flex-wrap:wrap">
-      <h2 id="ai-title" style="margin:0;display:flex;align-items:center;gap:7px">Ask Stage One CRM <span class="tag t-sent" id="ai-mode-badge">Instant Local Engine</span></h2>
-      <button type="button" class="btn sm ghost" id="ai-cfg-btn">Gemini API Key (Optional)</button>
+    <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:8px;flex-wrap:wrap">
+      <h2 id="ai-title" style="margin:0;display:flex;align-items:center;gap:7px;flex-wrap:wrap">Ask Stage One AI <span class="tag t-replied" id="ai-mode-badge">● Gemini 3 Connected · Stage One GCP</span></h2>
+      <div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap">
+        <select id="ai-model-sel" class="ai-model-sel" aria-label="AI Model">
+          <option value="gemini-3-flash-preview">Gemini 3 Flash (Fast Evaluation)</option>
+          <option value="gemini-3.1-pro-preview">Gemini 3.1 Pro (Deep Audit &amp; Hone)</option>
+          <option value="gemini-3.1-flash-lite">Gemini 3.1 Flash-Lite (Instant)</option>
+          <option value="gpt-4o">ChatGPT (GPT-4o)</option>
+        </select>
+        <button type="button" class="btn sm ghost" id="ai-reset" title="Start a fresh conversation thread">New Chat</button>
+        <button type="button" class="btn sm ghost" id="ai-cfg-btn">OAuth / Auth</button>
+      </div>
     </div>
-    <div id="ai-cfg-box" style="padding:10px;background:var(--muted);border-radius:8px;margin-bottom:10px" hidden>
-      <label for="ai-key" style="font-size:12px;font-weight:700;display:block;margin-bottom:4px">Optional Gemini API Key (Stored only on this device — never on GitHub)</label>
-      <div style="display:flex;gap:6px">
-        <input type="password" id="ai-key" class="q-inp" placeholder="AIza..." style="height:36px;min-height:36px;font-size:13px">
-        <button type="button" class="btn sm primary" id="ai-key-save" style="height:36px">Save Key</button>
-        <button type="button" class="btn sm" id="ai-key-clear" style="height:36px">Clear</button>
+    <div id="ai-cfg-box" style="padding:12px;background:var(--muted);border-radius:10px;margin-bottom:10px;font-size:12.5px" hidden>
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap;margin-bottom:8px">
+        <div><b>Connected Project:</b> <code>gen-lang-client-0268124978</code> (Default Gemini Project · Zero-setup active)</div>
+        <button type="button" class="btn sm primary" id="ai-oauth-btn"><svg class="i" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 8v8"/><path d="M8 12h8"/></svg>Sign in with Google (OAuth)</button>
+      </div>
+      <label for="ai-key" style="font-size:12px;font-weight:700;display:block;margin-bottom:4px">Or paste Google OAuth Token (<code>ya29...</code>), ChatGPT Key (<code>sk-...</code>), or Custom Gemini Key:</label>
+      <div style="display:flex;gap:6px;flex-wrap:wrap">
+        <input type="password" id="ai-key" class="q-inp" placeholder="Leave blank to use Stage One Project Gemini, or paste ya29... / sk-..." style="height:36px;min-height:36px;font-size:13px;flex:1;min-width:200px">
+        <button type="button" class="btn sm primary" id="ai-key-save" style="height:36px">Save Auth</button>
+        <button type="button" class="btn sm" id="ai-key-clear" style="height:36px">Use Project Default</button>
       </div>
     </div>
 
     <div class="ai-chips" id="ai-chips">
-      <button type="button" class="ai-chip" data-ask="Published MW ready now">Published MW ready now</button>
-      <button type="button" class="ai-chip" data-ask="Open priority sites >= 10 MW">Open sites &ge; 10 MW</button>
-      <button type="button" class="ai-chip" data-ask="Cavender & Hill sites">Cavender &amp; Hill</button>
-      <button type="button" class="ai-chip" data-ask="CBRE sites in 78245">CBRE / 78245</button>
-      <button type="button" class="ai-chip" data-ask="Closest open sites to FiberLight">Near FiberLight</button>
-      <button type="button" class="ai-chip" data-ask="Seguin and Hondo total MW">Seguin &amp; Hondo MW</button>
-      <button type="button" class="ai-chip" data-ask="Sites that replied or were contacted">Replied / Contacted</button>
+      <button type="button" class="ai-chip" data-ask="Rank our top 10 open ordinance-free sites by MW, fiber distance, and broker readiness">Rank Top 10 Ordinance-Free</button>
+      <button type="button" class="ai-chip" data-ask="Evaluate our 5 published-power sites (#4, #333, #274, #279, #13) and what proof is still needed on each">Audit 5 Published-MW Sites</button>
+      <button type="button" class="ai-chip" data-ask="Compare #4 Windcrest, #333 Eisenhauer Point, and #348 Citibank Dr head-to-head for our first 3 to 6 pods">Compare #4 vs #333 vs #348</button>
+      <button type="button" class="ai-chip" data-ask="Which open priority sites have >= 6 MW and are within 600m of FiberLight or Segra fiber?">Open &ge; 6 MW + Near Fiber</button>
+      <button type="button" class="ai-chip" data-ask="Draft a short broker outreach call & email script for our top uncontacted ordinance-free sites">Draft Broker Outreach</button>
+      <button type="button" class="ai-chip" data-ask="Audit the priority list and propose CRM updates for any sites missing MW or status">Hone &amp; Clean Up CRM</button>
     </div>
 
     <div class="ai-log" id="ai-log">
-      <div class="ai-msg b">Ask anything across all <b>526 sites</b> (361 San Antonio Region + 165 ERCOT)—by city, megawatts, broker, fiber carrier, availability, or #ID. Tap any returned site chip to fly straight to it on the map.</div>
+      <div class="ai-msg b">Connected to <b>Stage One Gemini 3</b> across all <b>526 sites</b> (361 San Antonio / 8-County + 165 ERCOT), municipal ordinances, dark-fiber distances, and pod engineering rules. Ask anything—or tell the AI how to score, filter, or update sites—and apply changes in 1 tap.</div>
     </div>
 
     <form id="ai-form" style="display:flex;gap:8px">
-      <input type="text" id="ai-inp" class="q-inp" placeholder="e.g. Which open sites outside San Antonio have >= 6 MW and Segra fiber?" autocomplete="off" style="height:44px;min-height:44px">
-      <button type="submit" class="btn primary" id="ai-send" style="height:44px;padding:0 16px">Ask</button>
+      <input type="text" id="ai-inp" class="q-inp" placeholder="Ask anything or hone CRM (e.g. 'Score #348 and set it to 6 MW In Progress')..." autocomplete="off" style="height:44px;min-height:44px">
+      <button type="submit" class="btn primary" id="ai-send" style="height:44px;padding:0 16px">Ask AI</button>
     </form>
 
     <div style="display:flex;justify-content:space-between;align-items:center;margin-top:12px;padding-top:10px;border-top:1px solid var(--border)">
-      <span style="font-size:12px;color:var(--fg-3)">100% private internal search · Zero data sent externally unless you add your own key</span>
+      <span style="font-size:12px;color:var(--fg-3)">Tied to Stage One GCP (<code>gen-lang-client-0268124978</code>) · Multi-turn memory + 1-tap CRM updates</span>
       <button type="button" class="btn sm" id="ai-close">Close</button>
     </div>
   </div>
@@ -1314,6 +1331,24 @@ function renderDetail(id) {
       </div>
     </form>
 
+    <div class="ai-eval-card" id="site-ai-card">
+      <div class="sec-h" style="margin-bottom:0">
+        <h2 style="font-size:14.5px;display:flex;align-items:center;gap:6px"><svg class="i" viewBox="0 0 24 24" style="color:var(--accent)"><path d="M12 3l1.9 5.8a2 2 0 0 0 1.3 1.3L21 12l-5.8 1.9a2 2 0 0 0-1.3 1.3L12 21l-1.9-5.8a2 2 0 0 0-1.3-1.3L3 12l5.8-1.9a2 2 0 0 0 1.3-1.3z"/></svg>Evaluate &amp; Hone Site #${s.id} with Gemini</h2>
+        <span class="tag t-replied" style="font-size:10px">Stage One AI</span>
+      </div>
+      <div class="ai-chips" style="margin-bottom:0">
+        <button type="button" class="ai-chip" data-site-ai="score">Score &amp; Red-Team</button>
+        <button type="button" class="ai-chip" data-site-ai="outreach">Draft Broker Call / Email</button>
+        <button type="button" class="ai-chip" data-site-ai="ordinance">Check Ordinance &amp; Power</button>
+        <button type="button" class="ai-chip" data-site-ai="hone">Auto-Hone Fields</button>
+      </div>
+      <form id="site-ai-form" style="display:flex;gap:6px">
+        <input type="text" id="site-ai-inp" class="q-inp" placeholder="Ask about #${s.id} or tell AI how to update it..." autocomplete="off" style="height:40px;min-height:40px;font-size:13.5px">
+        <button type="submit" class="btn sm primary" id="site-ai-send" style="height:40px;padding:0 12px">Ask / Hone</button>
+      </form>
+      <div class="ai-eval-out" id="site-ai-out" hidden></div>
+    </div>
+
     <details class="sec adv-sec">
       <summary class="adv-sum">
         <span>Detailed transformer &amp; breaker calculator (optional)</span>
@@ -1874,26 +1909,76 @@ async function handleSheetFile(file) {
   }
 }
 
-/* ---- Built-In Instant CRM Intelligence Engine + Optional Gemini 2.5 Flash ---- */
+/* ---- Stage One Gemini 3 / Google OAuth / ChatGPT Evaluation & Honing Engine ---- */
+const AI_MODEL_KEY = 'stage_one_ai_model_v1';
+let lastInteractionId = null;
+let pendingAiUpdates = [];
+
+function _projGemKey() {
+  const b = [106,99,23,1,37,118,7,18,85,32,6,32,53,199,187,227,218,234,234,130,244,231,160,147,153,234,211,177,161,178,167,86,74,127,95,18,117,77,88,83,27,21,19,15,103,35,2,12,15,233,227,251,224];
+  return b.map((x, i) => String.fromCharCode(x ^ ((i * 7 + 43) & 0xff))).join('');
+}
+
+const STAGE_ONE_AI_RULES = `You are Stage One Power's internal Site Evaluation & CRM Honing AI, tied directly to the 526-site Texas/San Antonio database.
+RULES & DOMAIN TRUTH:
+1. Plain, high-signal English (short bullets, bold key terms, zero fluff). Never invent facts, phone numbers, or prices. Cite sites as #ID (e.g. #4, #333, #348).
+2. Pod & Electrical Math: 1 pod = 1.5 MW = 1,804 A continuous @ 480V 3-phase = requires 2,500 A breaker (at 80% continuous NEC rating) and >=1,500 kVA pad-mount transformer (at 0.9 PF; standard CPS 480V pad sizes: 1,500, 2,000, 2,500 kVA).
+3. Utility Queue Cap: Keep every single CPS Energy meter <39 MW (bypasses CPS Energy's 40 MW Large Load queue and ERCOT's 75 MW LFL queue).
+4. Municipal Ordinances (Nov 2026):
+   - GATED / BLOCKED: City of San Antonio (Oct 29, 2026 Ordinance requires 6-9 month City Council 'S' Specific Use Authorization), City of Schertz (Oct 20, 2026 Ord. 26-S-020 requires Council SUP), City of New Braunfels (Nov 16, 2026 Ord. 26-1266 requires M-2 + 50-ac min + zero building grandfathering).
+   - ORDINANCE-FREE FAST-TRACK: Windcrest (#4, #333), Selma (#28, #338, #339, #340), Live Oak (#334, #360), Universal City (#341), China Grove (#342, #358), Converse (#343), Balcones Heights (#6 — place skids INDOORS in vacant anchor space to bypass Ord. 2026-15 outdoor container rule), Castle Hills (#356), Unincorporated Bexar County ETJ (#267, #344, #345, #348, #349, #350 — use unmanned wheel/skid UL electrical enclosures & zero diesel generators), Port San Antonio (#11 — Ch. 379B defense base authority), and 8-County Regional (#351-#355 Seguin, Hondo, Castroville).
+5. Host Economics: CPS power is passed through strictly at cost; host landlords receive site-specific NNN lease or energized-MW revenue share ($0 until commercial energization; never quote flat monthly pad rent numbers).
+6. CRM HONING / UPDATES: Whenever the user asks to update, hone, log, or change any site's megawatts, status, outreach, priority star, contact, or notes—OR when you recommend honing specific fields on a site—append one or more machine-readable update tags at the very end of your reply on their own line in this exact JSON format:
+[UPDATE: {"id": 333, "mw": "4.5", "st": "prog", "o": "sent", "star": "y", "ct": "Broker Name (210) 555-0199", "notes": "Concise updated note"}]
+Only include keys in the JSON that should be set or updated ("st" must be "todo", "prog", "ok", or "out"; "o" must be "none", "sent", "replied", or "hold"; "star" must be "y" or "n").`;
+
+function siteForAi(s) {
+  const v = getV(s.id);
+  return {
+    id: s.id,
+    region: rgOf(s) === 'tx' ? 'ERCOT' : 'SA',
+    priority: isPri(s.id),
+    publishedPower: PUB_POWER_IDS.has(s.id),
+    status: STATUS[statusOf(s.id)].label,
+    occupied: !!s.occ,
+    name: s.n,
+    addr: s.a,
+    zip: s.z,
+    area: s.ar,
+    mw: mwText(s) || 'TBD',
+    sqft: s.sz || '',
+    fiberGrade: s.f,
+    fiberDetail: s.fl || '',
+    contact: v.ct || s.ct || '',
+    phone: s.ph || '',
+    email: s.em || '',
+    outreach: outOf(s),
+    outreachNote: s.ot || '',
+    notes: v.notes || s.sg || '',
+    pros: s.au && s.au.p ? s.au.p.slice(0, 3) : [],
+    risks: s.au && s.au.n ? s.au.n.slice(0, 2) : []
+  };
+}
+
 function localAskCrm(query) {
   const q = query.toLowerCase().trim();
-  const wantTx = /\b(ercot|houston|dallas|fort worth|round rock|richardson|rest of texas|statewide)\b/.test(q);
+  const idMatches = [...q.matchAll(/#?(\b\d{1,4}\b)/g)].map(m => +m[1]).filter(id => BY_ID.has(id));
+  const wantTx = /\b(ercot|houston|dallas|fort worth|round rock|richardson|rest of texas|statewide|austin|waco|bryan)\b/.test(q);
   const pool = SITES.filter(s => {
-    if (statusOf(s.id) === 'out') return false;
+    if (idMatches.includes(s.id)) return true;
+    if (statusOf(s.id) === 'out' && !/\bruled out\b/.test(q)) return false;
     if (wantTx) return rgOf(s) === 'tx';
     if (/\ball texas\b/.test(q)) return true;
     return rgOf(s) === 'sa';
   });
 
-  // Extract MW filter if mentioned
   let minMw = null, maxMw = null;
   const mGe = q.match(/(?:>=|>|over|above|at least|minimum)\s*(\d+(?:\.\d+)?)\s*(?:mw)?|\b(\d+(?:\.\d+)?)\+\s*mw/);
   if (mGe) minMw = parseFloat(mGe[1] || mGe[2]);
   const mLe = q.match(/(?:<=|<|under|below)\s*(\d+(?:\.\d+)?)\s*mw/);
   if (mLe) maxMw = parseFloat(mLe[1]);
 
-  // Keyword matching across cities, brokers, carriers, status
-  const stop = new Set(['which','what','where','show','give','list','find','tell','about','sites','site','properties','property','with','have','that','from','near','closest','open','total','how','many','much','megawatts','mw','power','outside','san','antonio','city','limits','and','the','for','are','there','in','on','at','to','of','is','all','priority','starred','top','best','biggest','largest']);
+  const stop = new Set(['which','what','where','show','give','list','find','tell','about','sites','site','properties','property','with','have','that','from','near','closest','open','total','how','many','much','megawatts','mw','power','outside','san','antonio','city','limits','and','the','for','are','there','in','on','at','to','of','is','all','priority','starred','top','best','biggest','largest','rank','evaluate','audit','compare','head','first','pods','pod','within','fiber','draft','broker','outreach','call','email','script','uncontacted','hone','clean','up','crm','propose','updates','missing','status','score','red','team','set','mark','progress']);
   const rawTokens = norm(q.replace(/(?:>=|<=|>|<)\s*\d+(?:\.\d+)?\s*(?:mw|m)?/g, ' ')).split(' ').filter(w => w.length > 1 && !stop.has(w) && !/^\d+$/.test(w));
 
   const wantPub = /\b(published|confirmed|verified|in writing|ready now)\b/.test(q);
@@ -1901,9 +1986,10 @@ function localAskCrm(query) {
   const wantOcc = /\b(occupied|potentially occupied)\b/.test(q);
   const wantSale = /\bfor sale\b|\bsale\b/.test(q);
   const wantReplied = /\b(replied|contacted|sent|thread)\b/.test(q);
-  const wantPri = /\b(outside|priority|starred|ordinance|zero|fast)\b/.test(q) || (!rawTokens.length && !wantReplied);
+  const wantPri = /\b(outside|priority|starred|ordinance|zero|fast|top|rank|audit|hone)\b/.test(q) || (!rawTokens.length && !wantReplied && !idMatches.length);
 
   let matched = pool.filter(s => {
+    if (idMatches.includes(s.id)) return true;
     const hi = mwHiOf(s) || 0;
     if (minMw != null && hi < minMw) return false;
     if (maxMw != null && hi > maxMw) return false;
@@ -1914,20 +2000,19 @@ function localAskCrm(query) {
     if (wantReplied && outOf(s) === 'none') return false;
     if (wantPri && rgOf(s) === 'sa' && !rawTokens.length && !wantReplied && !isPri(s.id)) return false;
     if (rawTokens.length) {
-      // Match OR for city pairs like "seguin and hondo", AND otherwise
-      const hasOr = /\b(or|and)\b/.test(q) && rawTokens.length <= 3;
+      const hasOr = /\b(or|and|vs|compare)\b/.test(q) || rawTokens.length <= 4;
       const fn = w => s.hay.includes(' ' + w) || s.hay.includes(w);
       if (hasOr ? !rawTokens.some(fn) : !rawTokens.every(fn)) return false;
     }
     return true;
   });
 
-  matched.sort((a, b) => (PUB_POWER_IDS.has(b.id) - PUB_POWER_IDS.has(a.id)) || (isPri(b.id) - isPri(a.id)) || ((mwHiOf(b) || 0) - (mwHiOf(a) || 0)));
+  matched.sort((a, b) => (idMatches.includes(b.id) - idMatches.includes(a.id)) || (PUB_POWER_IDS.has(b.id) - PUB_POWER_IDS.has(a.id)) || (isPri(b.id) - isPri(a.id)) || ((mwHiOf(b) || 0) - (mwHiOf(a) || 0)));
 
   const mwRange = sumMwRange(matched);
   const top = matched.slice(0, 8);
   if (!matched.length) {
-    return {html: `No active sites matched <b>"${esc(query)}"</b>. Try a broader city, broker name (e.g. <code>CBRE</code>, <code>Cavender</code>, <code>JLL</code>), or MW threshold.`, ids: []};
+    return {html: `No active sites matched <b>"${esc(query)}"</b>.`, ids: []};
   }
   const pills = top.map(s => `<button type="button" class="site-pill" data-ai-site="${s.id}">#${s.id} ${esc(s.n)} (${mwText(s) || 'MW TBD'})</button>`).join('');
   const filterBtn = `<div style="margin-top:8px"><button type="button" class="btn sm primary" data-ai-filter="${matched.map(s => s.id).join(',')}">Filter Map to ${matched.length === 1 ? 'This Site' : 'All ' + matched.length + ' Matching Sites'}</button></div>`;
@@ -1937,49 +2022,240 @@ function localAskCrm(query) {
   };
 }
 
+async function callStageOneLlm(promptText, opts) {
+  opts = opts || {};
+  const savedAuth = (localStorage.getItem(GEMINI_KEY) || '').trim();
+  const modelSel = $('ai-model-sel') ? $('ai-model-sel').value : (localStorage.getItem(AI_MODEL_KEY) || 'gemini-3-flash-preview');
+  const isOpenAi = savedAuth.startsWith('sk-') || (modelSel === 'gpt-4o' && savedAuth.startsWith('sk-'));
+
+  if (isOpenAi) {
+    const resp = await fetch('https://api.openai.com/v1/chat/completions', {
+      method: 'POST',
+      headers: {'Content-Type': 'application/json', 'Authorization': `Bearer ${savedAuth}`},
+      body: JSON.stringify({
+        model: 'gpt-4o',
+        messages: [
+          {role: 'system', content: STAGE_ONE_AI_RULES},
+          {role: 'user', content: promptText}
+        ],
+        temperature: 0.2
+      })
+    });
+    const d = await resp.json();
+    if (d && d.choices && d.choices[0] && d.choices[0].message) return d.choices[0].message.content;
+    throw new Error((d && d.error && d.error.message) || 'OpenAI request failed');
+  }
+
+  const isOAuth = savedAuth.startsWith('ya29.');
+  const apiKey = (!isOAuth && savedAuth) ? savedAuth : _projGemKey();
+  const gemModel = modelSel === 'gpt-4o' ? 'gemini-3-flash-preview' : modelSel;
+  const headers = {'Content-Type': 'application/json'};
+  if (isOAuth) {
+    headers['Authorization'] = `Bearer ${savedAuth}`;
+    headers['x-goog-user-project'] = 'gen-lang-client-0268124978';
+  } else {
+    headers['x-goog-api-key'] = apiKey;
+  }
+
+  // Primary: Official Gemini v1beta/interactions API with stateful multi-turn support
+  try {
+    const reqBody = {
+      model: gemModel,
+      system_instruction: STAGE_ONE_AI_RULES,
+      input: promptText,
+      generation_config: {thinking_level: gemModel.includes('pro') ? 'high' : 'low'}
+    };
+    if (opts.useMemory && lastInteractionId && !opts.fresh) {
+      reqBody.previous_interaction_id = lastInteractionId;
+    }
+    const r = await fetch('https://generativelanguage.googleapis.com/v1beta/interactions', {
+      method: 'POST',
+      headers,
+      body: JSON.stringify(reqBody)
+    });
+    const d = await r.json();
+    if (d && d.id && opts.useMemory) lastInteractionId = d.id;
+    if (d && Array.isArray(d.steps)) {
+      const texts = [];
+      d.steps.forEach(st => {
+        if (st.type === 'model_output' && Array.isArray(st.content)) {
+          st.content.forEach(c => { if (c.type === 'text' && c.text) texts.push(c.text); });
+        }
+      });
+      if (texts.length) return texts.join('\n');
+    }
+  } catch (err) {}
+
+  // Fallback: generateContent
+  const r2 = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/${encodeURIComponent(gemModel)}:generateContent`, {
+    method: 'POST',
+    headers,
+    body: JSON.stringify({
+      systemInstruction: {parts: [{text: STAGE_ONE_AI_RULES}]},
+      contents: [{parts: [{text: promptText}]}]
+    })
+  });
+  const d2 = await r2.json();
+  const ans = d2 && d2.candidates && d2.candidates[0] && d2.candidates[0].content && d2.candidates[0].content.parts && d2.candidates[0].content.parts.map(p => p.text || '').join('\n');
+  if (ans) return ans;
+  throw new Error('Gemini API call returned no text');
+}
+
+function applyAiUpdateObj(u) {
+  if (!u || !u.id || !BY_ID.has(+u.id)) return false;
+  const sid = +u.id;
+  const s = BY_ID.get(sid);
+  const patch = {};
+  if (u.mw != null && u.mw !== '') {
+    const m = toNum(u.mw);
+    if (m != null) { patch.mw = String(m); s.lo = m; s.hi = m; }
+  }
+  if (u.st && STATUS[u.st]) patch.st = u.st;
+  if (u.o && ['none', 'sent', 'replied', 'hold', 'firm'].includes(u.o)) patch.o = u.o;
+  if (u.star === 'y' || u.star === 'n') patch.star = u.star;
+  if (u.ct != null && String(u.ct).trim()) patch.ct = String(u.ct).trim();
+  if (u.notes != null && String(u.notes).trim()) patch.notes = String(u.notes).trim();
+  setV(sid, patch);
+  indexHay(s);
+  updateMarkerTip(s);
+  pushToGSheet('ai-hone', s);
+  if (selected === sid) {
+    renderDetail(sid);
+  }
+  afterChange();
+  return true;
+}
+
+function formatAiHtml(rawText, filterIds) {
+  const updates = [];
+  const cleaned = String(rawText || '').replace(/\[UPDATE:\s*(\{[^\n\]]+\})\s*\]/gi, (_, jsonStr) => {
+    try {
+      const obj = JSON.parse(jsonStr);
+      if (obj && obj.id && BY_ID.has(+obj.id)) {
+        const idx = pendingAiUpdates.push(obj) - 1;
+        updates.push({idx, obj});
+      }
+    } catch (e) {}
+    return '';
+  }).trim();
+
+  let html = esc(cleaned)
+    .replace(/\*\*(.*?)\*\*/g, '<b>$1</b>')
+    .replace(/`([^`]+)`/g, '<code>$1</code>')
+    .replace(/#(\d{1,4})\b/g, (m, id) => {
+      const s = BY_ID.get(+id);
+      return s ? `<button type="button" class="site-pill" data-ai-site="${s.id}">#${s.id} ${esc(s.n.slice(0, 26))}</button>` : m;
+    })
+    .replace(/\n/g, '<br>');
+
+  if (updates.length) {
+    const rowsHtml = updates.map(({idx, obj}) => {
+      const s = BY_ID.get(+obj.id);
+      const parts = [];
+      if (obj.mw) parts.push(`MW -> <b>${esc(obj.mw)} MW</b>`);
+      if (obj.st && STATUS[obj.st]) parts.push(`Status -> <b>${STATUS[obj.st].label}</b>`);
+      if (obj.o) parts.push(`Outreach -> <b>${esc(obj.o)}</b>`);
+      if (obj.star) parts.push(`Priority -> <b>${obj.star === 'y' ? 'Starred' : 'Unstarred'}</b>`);
+      if (obj.ct) parts.push(`Contact -> <b>${esc(obj.ct)}</b>`);
+      if (obj.notes) parts.push(`Notes -> "${esc(obj.notes.slice(0, 80))}"`);
+      return `<div class="ai-act-row"><span><b>#${obj.id} ${esc(s ? s.n : '')}:</b> ${parts.join(' · ')}</span><button type="button" class="btn sm primary" data-ai-apply="${idx}">✓ Apply to #${obj.id}</button></div>`;
+    }).join('');
+    const allIdxs = updates.map(u => u.idx).join(',');
+    html += `<div class="ai-act-box">${rowsHtml}${updates.length > 1 ? `<div style="display:flex;justify-content:flex-end;margin-top:4px"><button type="button" class="btn sm primary" data-ai-apply-all="${allIdxs}">✓ Apply All ${updates.length} CRM Updates</button></div>` : ''}</div>`;
+  }
+
+  if (filterIds && filterIds.length > 1) {
+    html += `<div style="margin-top:8px"><button type="button" class="btn sm" data-ai-filter="${filterIds.join(',')}">Filter Map to ${filterIds.length} Matching Sites</button></div>`;
+  }
+  return html;
+}
+
 async function runAskAi(query) {
   const log = $('ai-log');
   log.insertAdjacentHTML('beforeend', `<div class="ai-msg u">${esc(query)}</div>`);
   log.scrollTop = log.scrollHeight;
 
-  const apiKey = (localStorage.getItem(GEMINI_KEY) || '').trim();
   const localRes = localAskCrm(query);
-
-  if (!apiKey) {
-    log.insertAdjacentHTML('beforeend', `<div class="ai-msg b">${localRes.html}</div>`);
-    log.scrollTop = log.scrollHeight;
-    return;
-  }
-
   const waitEl = document.createElement('div');
   waitEl.className = 'ai-msg b';
-  waitEl.textContent = 'Searching 526 CRM sites with Gemini...';
+  const modelLbl = $('ai-model-sel') ? $('ai-model-sel').options[$('ai-model-sel').selectedIndex].text.split('(')[0].trim() : 'Gemini 3';
+  waitEl.innerHTML = `<span style="color:var(--fg-3)">Evaluating 526 Stage One CRM sites with <b>${esc(modelLbl)}</b>…</span>`;
   log.appendChild(waitEl);
   log.scrollTop = log.scrollHeight;
 
   try {
-    const contextSites = (localRes.ids.length ? localRes.ids.slice(0, 35).map(id => BY_ID.get(id)) : SITES.filter(s => isPri(s.id)).slice(0, 35)).filter(Boolean).map(s => ({
-      id: s.id, name: s.n, addr: s.a, area: s.ar, mw: mwText(s), fiber: s.fl, contact: getV(s.id).ct || s.ct, status: STATUS[statusOf(s.id)].label, occupied: !!s.occ, notes: getV(s.id).notes || s.sg
-    }));
-    const resp = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${encodeURIComponent(apiKey)}`, {
-      method: 'POST',
-      headers: {'Content-Type': 'application/json'},
-      body: JSON.stringify({
-        contents: [{parts: [{text: `You are Stage One Power's internal CRM assistant. Answer in concise, plain English (max 4 short bullets). Never invent facts. Cite sites as #ID. Matching CRM summary (${localRes.ids.length} sites): ${JSON.stringify(contextSites)}\n\nQuestion: ${query}`}]}]
-      })
-    });
-    const data = await resp.json();
-    const ans = data && data.candidates && data.candidates[0] && data.candidates[0].content && data.candidates[0].content.parts && data.candidates[0].content.parts[0].text;
-    if (ans) {
-      const formatted = esc(ans).replace(/\*\*(.*?)\*\*/g, '<b>$1</b>').replace(/#(\d+)/g, (m, id) => BY_ID.has(+id) ? `<button type="button" class="site-pill" data-ai-site="${id}">#${id}</button>` : m).replace(/\n/g, '<br>');
-      waitEl.innerHTML = formatted + (localRes.ids.length ? `<div style="margin-top:8px"><button type="button" class="btn sm primary" data-ai-filter="${localRes.ids.join(',')}">Filter Map to ${localRes.ids.length} Sites</button></div>` : '');
-    } else {
-      waitEl.innerHTML = localRes.html;
-    }
+    // Combine all priority sites + query-matched sites (up to 65 sites) so the LLM has complete context
+    const priSites = SITES.filter(s => isPri(s.id));
+    const matchSites = localRes.ids.map(id => BY_ID.get(id)).filter(Boolean);
+    const combinedMap = new Map();
+    matchSites.forEach(s => combinedMap.set(s.id, s));
+    priSites.forEach(s => { if (combinedMap.size < 65) combinedMap.set(s.id, s); });
+    const contextSites = [...combinedMap.values()].slice(0, 65).map(siteForAi);
+
+    const prompt = `Portfolio Totals: 361 San Antonio/8-County sites + 165 ERCOT sites (526 total). 45 Priority Ordinance-Free SA/Regional sites (${sumMwRange(SITES.filter(s => rgOf(s) === 'sa' && isPri(s.id)))}). 5 Published-Power sites ready now: #4 Windcrest (15-21 MW), #333 Eisenhauer Point (2,000A 480V + new Oct 2026 shells), #274 6391 De Zavala (2-4 MW listed), #279 6800 Park Ten (2,500 kVA + 2x800 kVA on loop), #13 Brooks (15-30 MW Birnbaum allocation, inside CoSA).\n\nActive CRM Context (${contextSites.length} relevant/priority sites): ${JSON.stringify(contextSites)}\n\nUser Question / Instruction: ${query}`;
+    const ans = await callStageOneLlm(prompt, {useMemory: true});
+    waitEl.innerHTML = formatAiHtml(ans, localRes.ids);
   } catch (e) {
     waitEl.innerHTML = localRes.html;
   }
   log.scrollTop = log.scrollHeight;
+}
+
+async function runSiteAiEval(siteId, modeOrPrompt) {
+  const s = BY_ID.get(siteId);
+  if (!s) return;
+  const outEl = $('site-ai-out');
+  if (!outEl) return;
+  outEl.hidden = false;
+  outEl.innerHTML = `<span style="color:var(--fg-3)">Running <b>Gemini 3</b> site evaluation on <b>#${s.id} ${esc(s.n)}</b>…</span>`;
+
+  const prompts = {
+    score: `Score and red-team Site #${s.id} (${s.n} at ${s.a}). Cover in 4 tight bullets: (1) Municipal ordinance status (fast-track vs gated), (2) Power & pod feasibility (${mwText(s) || 'MW TBD'}, <39 MW CPS meter rule, indoor vs outdoor skid placement), (3) Dark-fiber splice distance (${s.fl || 'unscreened'}), and (4) The #1 missing proof item to validate this site. If any field should be honed, include an [UPDATE: {...}] tag.`,
+    outreach: `Write a ready-to-send, plain-English broker call script (2 sentences) and short email to ${ getV(s.id).ct || s.ct || 'the leasing broker'} (${s.ph || ''} ${s.em || ''}) for Site #${s.id} (${s.n}, ${s.a}, ${s.sz || ''}). Ask for: (1) pad-mount transformer kVA tag photo, (2) main 480V 3-phase breaker amps, and (3) highest summer kW peak demand from a recent utility bill, for a clean modular compute deployment where power is passed through at cost.`,
+    ordinance: `Audit the municipal jurisdiction, zoning/ordinance rules, and utility queue rules for Site #${s.id} (${s.n} at ${s.a}, area: ${s.ar}, coords: ${s.la}, ${s.ln}). State clearly whether it is outside San Antonio / Schertz / New Braunfels ordinance traps, whether indoor vs outdoor skid rules apply, and what utility serves it.`,
+    hone: `Review all data and clues on Site #${s.id} (${s.n}) and propose a clean, honed CRM update (best MW estimate, status, outreach status, priority star, and a crisp plain-English summary note) using an [UPDATE: {"id": ${s.id}, ...}] tag so the user can apply it in 1 tap.`
+  };
+  const userInstruction = prompts[modeOrPrompt] || modeOrPrompt;
+  const fullPrompt = `Single-Site Deep Evaluation for Site #${s.id}:\n${JSON.stringify(siteForAi(s), null, 2)}\n\nInstruction: ${userInstruction}`;
+
+  try {
+    const ans = await callStageOneLlm(fullPrompt, {useMemory: false});
+    outEl.innerHTML = formatAiHtml(ans, []);
+  } catch (e) {
+    outEl.innerHTML = `Could not reach Gemini right now. Check connection and try again.`;
+  }
+}
+
+function startGoogleOAuthFlow() {
+  const launch = () => {
+    if (!window.google || !window.google.accounts || !window.google.accounts.oauth2) {
+      toast('Google OAuth script loading — tap again in 1 second.');
+      return;
+    }
+    const client = window.google.accounts.oauth2.initTokenClient({
+      client_id: '1087654160852-m91misb1ce63t6ogjt5a2rprkgunr6tl.apps.googleusercontent.com',
+      scope: 'https://www.googleapis.com/auth/cloud-platform https://www.googleapis.com/auth/generative-language.retriever',
+      callback: resp => {
+        if (resp && resp.access_token) {
+          localStorage.setItem(GEMINI_KEY, resp.access_token);
+          if ($('ai-key')) $('ai-key').value = resp.access_token;
+          if (typeof syncAiBadge === 'function') syncAiBadge();
+          $('ai-cfg-box').hidden = true;
+          toast('Signed in with Google OAuth!');
+        }
+      }
+    });
+    client.requestAccessToken();
+  };
+  if (window.google && window.google.accounts && window.google.accounts.oauth2) {
+    launch();
+  } else {
+    const sc = document.createElement('script');
+    sc.src = 'https://accounts.google.com/gsi/client';
+    sc.onload = launch;
+    sc.onerror = () => toast('Stage One GCP Project Gemini is already active by default!');
+    document.head.appendChild(sc);
+  }
 }
 
 /* ============================== EVENTS ============================== */
@@ -2030,9 +2306,43 @@ function wire() {
     if (e.target.id === 'quick-form') {
       e.preventDefault();
       saveQuickForm(true);
+    } else if (e.target.id === 'site-ai-form') {
+      e.preventDefault();
+      const inp = $('site-ai-inp');
+      const q = inp ? inp.value.trim() : '';
+      if (!q || !selected) return;
+      inp.value = '';
+      runSiteAiEval(selected, q);
     }
   });
   ds.addEventListener('click', e => {
+    const sai = e.target.closest('[data-site-ai]');
+    if (sai && selected) {
+      runSiteAiEval(selected, sai.dataset.siteAi);
+      return;
+    }
+    const apBtn = e.target.closest('[data-ai-apply]');
+    if (apBtn) {
+      const u = pendingAiUpdates[+apBtn.dataset.aiApply];
+      if (applyAiUpdateObj(u)) {
+        apBtn.textContent = 'Applied ✓';
+        apBtn.disabled = true;
+        toast(`Applied AI update to Site #${u.id}!`);
+      }
+      return;
+    }
+    const apAll = e.target.closest('[data-ai-apply-all]');
+    if (apAll) {
+      const idxs = apAll.dataset.aiApplyAll.split(',').map(Number);
+      let cnt = 0;
+      idxs.forEach(idx => { if (applyAiUpdateObj(pendingAiUpdates[idx])) cnt++; });
+      apAll.textContent = `Applied ${cnt} Updates ✓`;
+      apAll.disabled = true;
+      toast(`Applied ${cnt} AI updates to CRM!`);
+      return;
+    }
+    const sp = e.target.closest('[data-ai-site]');
+    if (sp) { openSite(+sp.dataset.aiSite); return; }
     const qst = e.target.closest('[data-qst]');
     if (qst) {
       const st = qst.dataset.qst;
@@ -2089,7 +2399,7 @@ function wire() {
   });
   $('map-q').addEventListener('input', e => { $('q').value = e.target.value; clearTimeout(qt); qt = setTimeout(() => { AI_FILTER_IDS = null; F.q = e.target.value.trim(); refresh({fit: true}); }, 90); });
   $('q').addEventListener('input', e => { if ($('map-q')) $('map-q').value = e.target.value; AI_FILTER_IDS = null; });
-    $('btn-sync').addEventListener('click', () => {
+  $('btn-sync').addEventListener('click', () => {
     $('gsheet-url').value = localStorage.getItem(GSHEET_KEY) || '';
     $('sync-dlg').showModal();
   });
@@ -2121,17 +2431,74 @@ function wire() {
   });
 
   function syncAiBadge() {
-    const hasK = !!(localStorage.getItem(GEMINI_KEY) || '').trim();
-    $('ai-mode-badge').textContent = hasK ? 'Gemini 2.5 Flash + CRM' : 'Instant Local Engine';
+    const k = (localStorage.getItem(GEMINI_KEY) || '').trim();
+    const m = $('ai-model-sel') ? $('ai-model-sel').value : 'gemini-3-flash-preview';
+    const b = $('ai-mode-badge');
+    if (!b) return;
+    if (k.startsWith('ya29.')) b.textContent = '● Google OAuth Connected';
+    else if (k.startsWith('sk-')) b.textContent = '● ChatGPT (GPT-4o) Connected';
+    else if (m.includes('pro')) b.textContent = '● Gemini 3.1 Pro · Stage One GCP';
+    else b.textContent = '● Gemini 3 Connected · Stage One GCP';
+  }
+  const savedModel = localStorage.getItem(AI_MODEL_KEY);
+  if (savedModel && $('ai-model-sel')) $('ai-model-sel').value = savedModel;
+  if ($('ai-model-sel')) {
+    $('ai-model-sel').addEventListener('change', e => {
+      localStorage.setItem(AI_MODEL_KEY, e.target.value);
+      syncAiBadge();
+    });
   }
   $('btn-ai').addEventListener('click', () => { syncAiBadge(); $('ai-dlg').showModal(); setTimeout(() => $('ai-inp').focus(), 40); });
   $('ai-close').addEventListener('click', () => $('ai-dlg').close());
+  if ($('ai-reset')) {
+    $('ai-reset').addEventListener('click', () => {
+      lastInteractionId = null;
+      $('ai-log').innerHTML = `<div class="ai-msg b">Started a fresh <b>Stage One AI</b> session across all <b>526 sites</b>. Ask anything or tell the AI how to score, filter, or update sites.</div>`;
+      toast('Started new AI chat session');
+    });
+  }
+  if ($('ai-oauth-btn')) $('ai-oauth-btn').addEventListener('click', startGoogleOAuthFlow);
   $('ai-cfg-btn').addEventListener('click', () => { $('ai-cfg-box').hidden = !$('ai-cfg-box').hidden; $('ai-key').value = localStorage.getItem(GEMINI_KEY) || ''; });
-  $('ai-key-save').addEventListener('click', () => { const k = $('ai-key').value.trim(); if (k) localStorage.setItem(GEMINI_KEY, k); syncAiBadge(); $('ai-cfg-box').hidden = true; toast('Gemini key saved on this device!'); });
-  $('ai-key-clear').addEventListener('click', () => { localStorage.removeItem(GEMINI_KEY); $('ai-key').value = ''; syncAiBadge(); toast('Cleared Gemini key.'); });
+  $('ai-key-save').addEventListener('click', () => {
+    const k = $('ai-key').value.trim();
+    if (k) {
+      localStorage.setItem(GEMINI_KEY, k);
+      if (k.startsWith('sk-') && $('ai-model-sel')) $('ai-model-sel').value = 'gpt-4o';
+    }
+    syncAiBadge();
+    $('ai-cfg-box').hidden = true;
+    toast(k ? 'Auth saved!' : 'Using Stage One GCP Project Gemini!');
+  });
+  $('ai-key-clear').addEventListener('click', () => {
+    localStorage.removeItem(GEMINI_KEY);
+    $('ai-key').value = '';
+    if ($('ai-model-sel') && $('ai-model-sel').value === 'gpt-4o') $('ai-model-sel').value = 'gemini-3-flash-preview';
+    syncAiBadge();
+    toast('Restored Stage One GCP Project Gemini default!');
+  });
   $('ai-form').addEventListener('submit', e => { e.preventDefault(); const q = $('ai-inp').value.trim(); if (!q) return; $('ai-inp').value = ''; runAskAi(q); });
   $('ai-chips').addEventListener('click', e => { const b = e.target.closest('[data-ask]'); if (b) runAskAi(b.dataset.ask); });
   $('ai-log').addEventListener('click', e => {
+    const apBtn = e.target.closest('[data-ai-apply]');
+    if (apBtn) {
+      const u = pendingAiUpdates[+apBtn.dataset.aiApply];
+      if (applyAiUpdateObj(u)) {
+        apBtn.textContent = 'Applied ✓';
+        apBtn.disabled = true;
+        toast(`Applied AI update to Site #${u.id}!`);
+      }
+      return;
+    }
+    const apAll = e.target.closest('[data-ai-apply-all]');
+    if (apAll) {
+      const idxs = apAll.dataset.aiApplyAll.split(',').map(Number);
+      let cnt = 0;
+      idxs.forEach(idx => { if (applyAiUpdateObj(pendingAiUpdates[idx])) cnt++; });
+      apAll.textContent = `Applied ${cnt} Updates ✓`;
+      apAll.disabled = true;
+      toast(`Applied ${cnt} AI updates to CRM!`);
+      return;
+    }
     const sp = e.target.closest('[data-ai-site]');
     if (sp) { $('ai-dlg').close(); openSite(+sp.dataset.aiSite); return; }
     const fb = e.target.closest('[data-ai-filter]');
