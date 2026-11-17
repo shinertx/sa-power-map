@@ -79,8 +79,10 @@ def sync_all():
         sh = 1 if pri_txt in ("yes", "y", "1", "true", "star", "priority") else 0
         gov_col = col.get("government / public host")
         gov_raw = str(r[gov_col] or "").strip() if gov_col is not None else ""
-        gov_on = 1 if gov_raw.lower().startswith(("yes", "y", "1", "true", "gov")) else 0
-        gov_gt = gov_raw.split("—", 1)[1].strip() if ("—" in gov_raw and gov_on) else (gov_raw if gov_on and gov_raw.lower() not in ("yes", "y", "1", "true") else "")
+        gov_l = gov_raw.lower()
+        gov_on = 1 if (gov_l.startswith(("yes", "y", "1", "true", "gov", "rule 1")) or "rule 1" in gov_l) else 0
+        sci_on = 1 if ("rule 2" in gov_l or "open sci" in gov_l or "research" in gov_l) else 0
+        gov_gt = gov_raw.split("—", 1)[1].strip() if ("—" in gov_raw and (gov_on or sci_on)) else ""
         st_txt = str(r[col.get("site status", 3)] or "").strip().lower()
         lo = to_float(r[col.get("mw low", 4)])
         hi = to_float(r[col.get("mw high", 5)])
@@ -124,6 +126,12 @@ def sync_all():
                 else:
                     s.pop("gov", None)
                     s.pop("gt", None)
+                if sci_on:
+                    s["sci"] = 1
+                    if gov_gt:
+                        s["gt"] = gov_gt
+                else:
+                    s.pop("sci", None)
             if lo is not None:
                 s["lo"] = lo
             if hi is not None:
